@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	{{ inc_header }}
+	<style>
+		.spanClassRed {
+			color: red;
+		}
+		.checkboxsw {
+   		 margin-top: 25px;}
+		
+	</style>
+</head>
+
+<body>
+
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col-12 col-md-4 col-lg-3">
+				<div class="logo_payment">
+					<a href="index.php"><img src="asset/images/payment/Payment_logo_03.png" class="img-fluid smlogo_p"></a>
+				</div>
+
+			</div>
+			<div class="col-12 col-md-8 col-lg-9">
+				<div class="bgyellow_title text-right">
+					ต้องการสอบถามการสั่งซื้อสินค้าของคุณ <i class="fas fa-phone-alt"></i> 09-2929-4998
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="bgblack text-md-right">
+					<span class="whitetxt_sm">โปรดตรวจสอบข้อมูลการสั่งซื้อสินค้าทุกครั้ง</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="wrapper_pad">
+			<div class="row">
+				<div class="col-md-12 col-lg-8">
+					<form action="index.php?route=checkout/cart/checkout" method="post">
+					<div class="title_head_text">
+						รายละเอียดการจัดส่ง
+					</div>
+					<div class="box_l_blue">
+						สินค้ามีขนาด 50 กิโลกรัมจะมีการจัดส่งที่นานกว่าปกติประมาณ 5-7 วัน *กรุณากรอกข้อมูลการจัดส่งให้ถูกต้องเพื่อผลประโยชน์ของคุณลูกค้าทุกท่านเอง เข้าสู่ระบบก่อน (ในกรณีที่เป็นสมาชิก) 
+					</div>
+					<div class="title_head_text">
+						ระบุข้อมูลการจัดส่ง
+					</div>
+					<hr>
+					
+					<div class="box_delivery" style="width: 100%;">
+						<div class="row">
+							<div class="column">
+								<div>
+									<label>
+										<input type="radio" name="check1" id="receive_address" value="3" onclick="receiveProduct('cod');" required />
+										<span><b>รับสินค้าตามที่อยู่ปลายทาง</b></span>
+									</label>
+									<label>
+										&nbsp;&nbsp;&nbsp;<input type="radio" id="receiveByMe" id="receive_me" name="check1" value="1" onclick="receiveProduct('me');" required />
+										<span>รับสินค้าที่แลนด์มาร์ท เวลาทำการ {{ businessHoursCtrl.business_hours_text }}</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+					<div id="check1-other">
+						<div class="title_head_text">
+							การจัดส่งสินค้า
+						</div>
+						<hr>
+						<div class="form_address_input">
+							<div class="row">
+								<div class="col-md-6">
+									<label>ชื่อ<span class="spanClassRed">*</span></label>
+									<input type="text" name="firstname" id="firstname" class="form-control" placeholder="กรอกชื่อของคุณ" value="{{ member.firstname }}" required>
+								</div>
+								<div class="col-md-6">
+									<label>นามสกุล<span class="spanClassRed">*</span></label>
+									<input type="text" name="lastname" id="lastname" class="form-control" placeholder="กรอกนามสกุลของคุณ" value="{{ member.lastname }}" required>
+								</div>
+								<div class="col-md-6">
+									<label>เบอร์โทรศัพท์<span class="spanClassRed">*</span></label>
+									<input type="text" name="telephone" id="telephone" class="form-control" placeholder="กรอกเบอร์ 9 - 10 หลัก" value="{{ member.telephone }}" required>
+								</div>
+								<div class="col-md-6">
+									<label>อีเมล<span class="spanClassRed">*</span></label>
+									<input type="text" name="email" id="email" class="form-control" placeholder="test@test.com" value="{{ member.email }}" required>
+								</div>
+								<div class="col-md-12">
+									<label>ที่อยู่จัดส่ง<span class="spanClassRed">*</span></label>
+									<input type="text" name="customer_address1" id="customer_address1" class="form-control" placeholder="บ้านเลขที่ หมู่ที่" value="{{ member.customer_address1 }}" required>
+								</div>
+								<div class="col-md-12">
+									<label>ที่อยู่จัดส่ง 2</label>
+									<input type="text" name="customer_address2" id="customer_address2" class="form-control" value="{{ member.customer_address2 }}" placeholder="หมู่บ้าน / ชั้น ซอย ถนน">
+								</div>
+								<div class="col-md-6">
+									<label>รหัสไปรษณีย์<span class="spanClassRed">*</span></label>
+									<input type="text" name="customer_postcode" id="customer_postcode" class="form-control" value="{{ member.customer_postcode }}" placeholder="ความยาวต่ำสุด 5 ตัวอักษร" required>
+								</div>
+								<div class="col-md-6">
+									<label>จังหวัด<span class="spanClassRed">*</span></label>
+									<select name="customer_province" id="customer_province" class="form-control arrow_down" onchange="changeProvince(this.value);" required>
+										<option value="">กรุณาเลือก</option>
+{% for provinces in provinces_list %}
+										<option value="{{ provinces.PROVINCE_ID }}" {% if member.customer_province == provinces.PROVINCE_ID %} selected {% endif %}>{{ provinces.PROVINCE_NAME }}</option>
+{% endfor %}										
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label>อำเภอ<span class="spanClassRed">*</span></label>
+									<select name="customer_amphur" id="customer_amphur" class="form-control arrow_down" onchange="changeAmphur(this.value);" required>
+										<option value="">กรุณาเลือก</option>
+{% for amphurs in amphurs_list %}
+										<option value="{{ amphurs.AMPHUR_ID }}" {% if member.customer_amphur == amphurs.AMPHUR_ID %} selected {% endif %}>{{ amphurs.AMPHUR_NAME }}</option>
+{% endfor %}										
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label>ตำบล<span class="spanClassRed">*</span></label>
+									<select name="customer_tumbol" id="customer_tumbol" class="form-control arrow_down" required>
+										<option value="">กรุณาเลือก</option>
+{% for tumbol in tumbol_list %}
+										<option value="{{ tumbol.DISTRICT_ID }}" {% if member.customer_tumbol == tumbol.DISTRICT_ID %} selected {% endif %}>{{ tumbol.DISTRICT_NAME }}</option>
+{% endfor %}
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-7 col-md-8">
+								<div class="title_head_text">
+									ใบกำกับภาษี
+								</div>
+							</div>
+							<div class="col-5 col-md-4">
+								<div class="checkboxsw">
+									<input type="checkbox" id="switch" /><label for="switch"> </label>
+								</div>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="box01">
+							<div class="form_address_input mt-2">
+								<div class="row">
+									{# <div class="col-md-12">
+										<input type="radio" name="order_branch" id="order_branch_main" value="สำนักงานใหญ่"> สำนักงานใหญ่
+										<input type="radio" name="order_branch" id="order_branch_item" value="สาขา"> สาขา
+										<input type="text" name="order_branch_" class="form-control" placeholder="สาขา">
+									</div> #}
+									<div class="col-md-12">
+										<label>ชื่อที่ใช้ในการออกใบกำกับภาษี</label>
+										<input type="text" name="customer_invoice_name" id="customer_invoice_name" value="{{ member.customer_invoice_name }}" class="form-control" placeholder="ชื่อที่ใช้ในการออกใบกำกับภาษี">
+									</div>
+									<div class="col-md-12">
+										<label>ที่อยู่ที่ใช้ในการออกใบกำกับภาษี</label>
+										<input type="text" name="customer_invoice_address1" id="customer_invoice_address1" value="{{ member.customer_invoice_address1 }}" class="form-control" placeholder="บ้านเลขที่ หมู่ที่">
+									</div>
+									<div class="col-md-12">
+										<label>ที่อยู่จัดส่ง 2</label>
+										<input type="text" name="customer_invoice_address2" id="customer_invoice_address2" value="{{ member.customer_invoice_address2 }}" class="form-control" placeholder="หมู่บ้าน / ชั้น ซอย ถนน">
+									</div>
+									<div class="col-md-6">
+									<label>รหัสไปรษณีย์<span class="spanClassRed">*</span></label>
+									<input type="text" name="customer_invoice_postcode" id="customer_invoice_postcode" value="{{ member.customer_invoice_postcode }}" class="form-control" placeholder="ความยาวต่ำสุด 5 ตัวอักษร">
+								</div>
+								<div class="col-md-6">
+									<label>จังหวัด<span class="spanClassRed">*</span></label>
+									<select name="customer_invoice_province" id="customer_invoice_province" class="form-control arrow_down" onchange="changeProvinceInvoice(this.value);">
+										<option value="" selected>กรุณาเลือก</option>
+{% for provinces in provinces_list %}
+										<option value="{{ provinces.PROVINCE_ID }}" {% if member.customer_invoice_province == provinces.PROVINCE_ID %} selected {% endif %}>{{ provinces.PROVINCE_NAME }}</option>
+{% endfor %}
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label>อำเภอ<span class="spanClassRed">*</span></label>
+									<select name="customer_invoice_amphur" id="customer_invoice_amphur" class="form-control arrow_down" onchange="changeAmphurInvoice(this.value);">
+										<option value="">กรุณาเลือก</option>
+{% for amphurs in amphurs_invoice_list %}
+										<option value="{{ amphurs.AMPHUR_ID }}" {% if member.customer_invoice_amphur == amphurs.AMPHUR_ID %} selected {% endif %}>{{ amphurs.AMPHUR_NAME }}</option>
+{% endfor %}
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label>ตำบล<span class="spanClassRed">*</span></label>
+									<select name="customer_invoice_tumbol" id="customer_invoice_tumbol" class="form-control arrow_down">
+										<option value="">กรุณาเลือก</option>
+{% for tumbols in tumbol_invoice_list %}
+										<option value="{{ tumbols.DISTRICT_ID }}" {% if member.customer_invoice_tumbol == tumbols.DISTRICT_ID %} selected {% endif %}>{{ tumbols.DISTRICT_NAME }}</option>
+{% endfor %}
+									</select>
+								</div>
+								<div class="col-md-12">
+										<label>เลขประจำตัวผู้เสียภาษี</label>
+										<input type="text" name="customer_card_id" id="customer_card_id" class="form-control" placeholder="กรอกตัวเลขประจำตัวผู้เสียภาษี 13 หลัก" value="{{ member.customer_card_id }}">
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div id="check-me" style="display: none;">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<label>ชื่อ<span class="spanClassRed">*</span></label>
+									<input type="text" name="firstname_me" id="firstname_me" class="form-control" placeholder="กรอกชื่อของคุณ" value="{{ member.firstname }}" required>
+								</div>
+								<div class="col-md-6">
+									<label>นามสกุล<span class="spanClassRed">*</span></label>
+									<input type="text" name="lastname_me" id="lastname_me" class="form-control" placeholder="กรอกนามสกุลของคุณ" value="{{ member.lastname }}" required>
+								</div>
+								<div class="col-md-6">
+									<label>เบอร์โทรศัพท์<span class="spanClassRed">*</span></label>
+									<input type="text" name="telephone_me" id="telephone_me" class="form-control" placeholder="กรอกเบอร์ 9 - 10 หลัก" value="{{ member.telephone }}" required>
+								</div>
+								<div class="col-md-6">
+									<label>อีเมล์<span class="spanClassRed">*</span></label>
+									<input type="text" name="email_me" id="email_me" class="form-control" placeholder="test@test.com" value="{{ member.email }}" required>
+								</div>
+								<div class="col-md-12">
+									<label>ที่อยู่<span class="spanClassRed">*</span></label>
+									<textarea name="address_me" id="address_me" class="form-control" required>{{ member.payment_address_1 }}</textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="title_head_text">
+						การจัดส่งสินค้า
+					</div>
+					<hr>
+					<div class="cart_smallbox  mt-3">
+						<div class="row">
+							<div class="col-md-6">
+								1 จาก&nbsp;{{ cart_amount.quantity_ }} จำหน่ายโดย <b>LANDMART</b><!--  จัดส่งโดย Business idea -->
+							</div>
+							<div class="col-md-6 text-md-right">
+								<!-- จัดส่งสินค้า ภายในวันที่ 16 - 18 ธ.ค. 63 -->
+							</div>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<div>
+						
+					</div>
+					<div class="summary_cart class_cart_basket">
+{% for cart in carts_ %}
+	{% set shipping_price = 0 %}
+	{% if productCtrl %}
+		{% for product in productCtrl %}
+			{% if product.product_id == cart.product_id and product.shipping == 1 and free_shipping != true %}
+				{% set shipping_price = shipping_price + (product.shipping_price * cart.quantity) %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+						<div class="row">
+							<div class="col-md-2">
+								<img src="image/{{ cart.image }}" class="img-fluid" alt="">
+							</div>
+							<div class="col-md-4">
+								<div class="product_name">
+									<h3>{{ cart.product_name }}</h3> {% if cart.option != false %} <h5>({{ cart.option }})</h5> {% endif %}
+									<span class="lightgray">
+										รหัสสินค้า {{ cart.model }}
+									</span>
+									{# <span class="bot_tell">
+										*งดร่วมรายการส่วนลดอื่นๆ
+									</span> #}
+								</div>
+							</div>
+							<div class="col-6 col-md-3">
+								<div class="product_name">
+									<input type="button" value=" - " onclick="diffQty('{{ cart.product_id }}');">
+									<input type="text" id="qty_{{ cart.product_id }}" style="width: 30px; text-align: center !important;" value="{{ cart.quantity }}" onblur="onblurQty('{{ cart.product_id }}');" onKeyUp="if(isNaN(this.value)){ this.value = '';}">
+									<input type="button" value=" + " onclick="plusQty('{{ cart.product_id }}');">
+								</div>
+							</div>
+							<div class="col-6 col-md-2 text-right text-md-left">
+								<div class="product_name">
+									{# {% if cart.special != 0 %}
+										฿{{ cart.special|number_format(2, '.', ',') }} <br>
+									{% else %}
+										฿{{ cart.price|number_format(2, '.', ',') }} <br>
+									{% endif %}
+										<!-- (฿9,290 รวมค่าจัดส่ง) -->
+									{% if cart.option == true %}
+										{{ cart.option }}
+									{% endif %} #}
+									฿{{ (cart.price * cart.quantity)|number_format(2, '.', ',') }}
+									<br><br>
+									<p style="color: red;">
+										฿<span class="spanClassTotal">{{ ((cart.price * cart.quantity) + shipping_price)|number_format(2, '.', ',') }}</span><br>
+										<span style="font-size: 12px;">รวมภาษีมูลค่าเพิ่มแล้ว</span>
+									</p>
+								</div>
+							</div>
+							<div class="col-md-1">
+								<div class="product_name">
+									<a href="javascript:deleteCart('{{ cart.product_id }}');" style="color: black;"><i class="far fa-trash-alt"></i></a>
+								</div>
+							</div>
+						</div>
+{% endfor %}
+					</div>
+					<br>
+					{# <div class="row">
+						<div class="col-md-3 offset-md-9">
+							฿<span class="bSpanSubTotal class_sub_total">{{ sub_total|number_format(2, '.', ',') }}</span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-3 offset-md-9">
+							฿<span class="spanClassReceiveMe class_discount">{{ discount_price|number_format(2, '.', ',') }}</span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-3 offset-md-9">
+							฿<span class="spanClassDiscount class_shipping">{{ shipping|number_format(2, '.', ',') }}</span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-3 offset-md-9">
+							฿<span class="spanClassTotal class_total">{{ total|number_format(2, '.', ',') }}</span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-3 offset-md-9">
+							<input type="submit" name="submit" class="btn btn-yellow" value="ดำเนินการชำระเงิน">
+						</div>
+					</div>
+					<br> #}
+					<div class="row">
+						<div class="col-md-3 offset-md-9">
+							<input type="submit" name="submit" class="btn btn-yellow" value="ดำเนินการชำระเงิน">
+						</div>
+					</div>
+					<br>
+				</div>
+				<div class="col-md-12 col-lg-4">
+					<div class="title_head_text">
+						สรุปรายการสั่งซื้อ
+					</div>
+
+					<div class="summary_cart">
+						{# <input type="submit" name="submit" class="btn btn-yellow" value="ดำเนินการชำระเงิน"> #}
+					</form>
+
+						<div class="promocode">
+							<input type="text" id="coupon_code" placeholder="รหัสคูปอง / โปรโมชั่น" value="{{ coupon_code }}">
+							<button class="icon-sub-m" onclick="checkCoupon();">ใช้</button>
+						</div>
+						<div class="row">
+							<div class="col-6 col-md-6">
+								ราคาสินค้าไม่รวมภาษี
+							</div>
+							<div class="col-6 col-md-6 text-right">
+								<b>฿<span class="bSpanSubTotal class_sub_total">{{ sub_total|number_format(2, '.', ',') }}</span></b>
+							</div>
+							<div class="col-6 col-md-6">
+								ส่วนลด
+							</div>
+							<div class="col-6 col-md-6 text-right">
+								<b>฿<span class="spanClassReceiveMe class_discount">{{ discount_price|number_format(2, '.', ',') }}</span></b>
+							</div>
+							<div class="col-6 col-md-6">
+								ค่าขนส่ง
+							</div>
+							<div class="col-6 col-md-6 text-right">
+								<b>฿<span class="spanClassDiscount class_shipping">{{ shipping|number_format(2, '.', ',') }}</span></b>
+							</div>
+						</div>
+						<hr style="margin-top: 10px; margin-bottom: 10px;">
+
+						<div class="row">
+							<div class="col-6 col-md-6">
+								<b>ผลรวมทั้งสิ้น</b>
+							</div>
+							<div class="col-6 col-md-6 text-right">
+								<b><span class="redtxt spanClassTotal">฿<span class="spanClassTotal class_total">{{ total|number_format(2, '.', ',') }}</span></span></b><br>
+								<span style="font-size:10px; color:red; font-weight: bold;">รวมภาษีมูลค่าเพิ่มแล้ว</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		$('#switch').on("change", function() {
+			if ($('#switch').is(':checked')) {
+				$('.box01').slideDown();
+			} else {
+				$('.box01').slideUp();
+			}
+		});
+
+	</script>
+	<script>
+		function showIfChecked(radioName, value, element) {
+			var $radios = $('[name="' + radioName + '"]');
+			var $element = $('#' + element);
+
+			if ($element.length == 0) {
+				return false;
+			}
+
+			$element.hide();
+
+			$radios.on('change', function() {
+				var $this = $(this);
+				var check = $this.val() == value && $this.is(':checked');
+				$element[check ? 'show' : 'hide']();
+			});
+		}
+
+		$(document).ready(function() {
+			showIfChecked('check1', 3, 'check1-other');
+			showIfChecked('check1', 1, 'check3-other');
+		});
+
+		function changeProvince(province_id) {
+			$.post('index.php?route=member/member/ajaxChangeProvince', { province_id: province_id }, function(data) {
+				$("#customer_amphur").html(data);
+			});
+		}
+
+		function changeAmphur(amphur_id) {
+			$.post('index.php?route=member/member/ajaxChangeAmphur', { amphur_id: amphur_id }, function(data) {
+				$("#customer_tumbol").html(data);
+			});
+		}
+
+		function changeProvinceInvoice(province_id) {
+			$.post('index.php?route=member/member/ajaxChangeProvince', { province_id: province_id }, function(data) {
+				$("#customer_invoice_amphur").html(data);
+			});
+		}
+
+		function changeAmphurInvoice(amphur_id) {
+			$.post('index.php?route=member/member/ajaxChangeAmphur', { amphur_id: amphur_id }, function(data) {
+				$("#customer_invoice_tumbol").html(data);
+			});
+		}
+
+		function addressSame() {
+			if($("#addressSame_").is(":checked") == true) {
+				$("#customer_invoice_name").val($("#firstname").val() + ' ' + $("#lastname").val());
+				$("#customer_invoice_address1").val($("#customer_address1").val());
+				$("#customer_invoice_address2").val($("#customer_address2").val());
+				$("#customer_invoice_postcode").val($("#customer_postcode").val());
+				$("#customer_invoice_province").val($("#customer_province").val());
+				$("#customer_invoice_amphur").val($("#customer_amphur").val());
+				$("#customer_invoice_tumbol").val($("#customer_tumbol").val());
+			} else if($("#addressSame_").is(":checked") == false) {
+				$("#customer_invoice_name").val('');
+				$("#customer_invoice_address1").val('');
+				$("#customer_invoice_address2").val('');
+				$("#customer_invoice_postcode").val('');
+				$("#customer_invoice_province").val('');
+				$("#customer_invoice_amphur").val('');
+				$("#customer_invoice_tumbol").val('');
+			}
+		}
+
+		function receiveProduct(type) {
+			if(type == 'cod') {
+				$('#firstname').prop('required', true);
+				$('#lastname').prop('required', true);
+				$('#telephone').prop('required', true);
+				$('#email').prop('required', true);
+				$('#customer_address1').prop('required', true);
+				$('#customer_postcode').prop('required', true);
+				$('#customer_province').prop('required', true);
+				$('#customer_amphur').prop('required', true);
+				$('#customer_tumbol').prop('required', true);
+
+				$('#firstname_me').prop('required', false);
+				$('#lastname_me').prop('required', false);
+				$('#telephone_me').prop('required', false);
+				$('#address_me').prop('required', false);
+				$('#email_me').prop('required', false);
+
+				$("#check1-other").show();
+				$("#check-me").hide();
+
+				$.post("index.php?route=checkout/cart/ajaxShippingAndCoupon", { coupon_code: $("#coupon_code").val(), shipping_type: 'cod' }, function(data) {
+					var data_split = data.split('!@#$%^&*()_');
+
+					$(".bSpanSubTotal").html(data_split[0]);
+					$(".spanClassReceiveMe").html(data_split[1]);
+					$(".spanClassDiscount").html(data_split[2]);
+					$(".spanClassTotal").html(data_split[3]);
+
+					//alert(data_split[4]);
+				});
+			} else if(type == 'me') {
+				$('#firstname').prop('required', false);
+				$('#lastname').prop('required', false);
+				$('#telephone').prop('required', false);
+				$('#email').prop('required', false);
+				$('#customer_address1').prop('required', false);
+				$('#customer_postcode').prop('required', false);
+				$('#customer_province').prop('required', false);
+				$('#customer_amphur').prop('required', false);
+				$('#customer_tumbol').prop('required', false);
+
+				$('#firstname_me').prop('required', true);
+				$('#lastname_me').prop('required', true);
+				$('#telephone_me').prop('required', true);
+				$('#address_me').prop('required', true);
+				$('#email_me').prop('required', true);
+
+				$("#check1-other").hide();
+				$("#check-me").show();
+
+				$.post("index.php?route=checkout/cart/ajaxShippingAndCoupon", { coupon_code: $("#coupon_code").val(), shipping_type: 'me' }, function(data) {
+					var data_split = data.split('!@#$%^&*()_');
+
+					$(".bSpanSubTotal").html(data_split[0]);
+					$(".spanClassReceiveMe").html(data_split[1]);
+					$(".spanClassDiscount").html(data_split[2]);
+					$(".spanClassTotal").html(data_split[3]);
+
+					//alert(data_split[4]);
+				});
+			}
+		}
+
+		function checkCoupon() {
+			if($("#coupon_code").val() == '') {
+				alert('กรุณากรอกรหัสคูปอง / โปรโมชัน');
+
+				$("#coupon_code").focus();
+			} else {
+				$.post('index.php?route=checkout/cart/ajaxShippingAndCoupon', { coupon_code: $("#coupon_code").val() }, function(data) {
+					var data_split = data.split('!@#$%^&*()_');
+
+					if(data_split[4] == 'true') {
+						$(".bSpanSubTotal").html(data_split[0]);
+						$(".spanClassReceiveMe").html(data_split[1]);
+						$(".spanClassDiscount").html(data_split[2]);
+						$(".spanClassTotal").html(data_split[3]);
+
+						//alert(data_split[4]);
+					} else {
+						$("#coupon_code").val('');
+
+						$(".bSpanSubTotal").html(data_split[0]);
+						$(".spanClassReceiveMe").html(data_split[1]);
+						$(".spanClassDiscount").html(data_split[2]);
+						$(".spanClassTotal").html(data_split[3]);
+
+						alert('รหัสคูปองไม่ถูกต้อง');
+
+						//alert(data_split[4]);
+					}
+				});
+			}
+		}
+
+		function deleteCart(product_id) {
+			if(confirm("ยืนยันการลบ") == true) {
+				$.post("index.php?route=checkout/cart/ajaxDeleteCart", { product_id: product_id }, function(data) {
+					/*var data_split = data.split('!@#$%^&*()_');
+
+					$(".bSpanSubTotal").html(data_split[0]);
+					$(".spanClassReceiveMe").html(data_split[1]);
+					$(".spanClassDiscount").html(data_split[2]);
+					$(".spanClassTotal").html(data_split[3]);
+
+					//alert(data_split[4]);
+					*/
+
+					window.location.href = 'index.php?route=checkout/cart';
+				});
+			}
+		}
+
+		function onblurQty(product_id) {
+			var qty = $("#qty_" + product_id).val();
+
+			$.post('index.php?route=checkout/cart/ajaxUpdateCart', { qty: qty, product_id: product_id }, function(data) {
+				location.reload();
+				
+				var data_split = data.split('!@#$%^&*()(*&^%$#@!');
+				$(".class_sub_total").html(data_split[1]);
+				$(".class_discount").html(data_split[2]);
+				$(".class_shipping").html(data_split[3]);
+				$(".class_total").html(data_split[4]);
+				$(".class_cart_basket").html(data_split[5]);
+			});
+		}
+
+		function diffQty(product_id) {
+			var qty = $("#qty_" + product_id).val();
+
+			if(qty > 1) {
+				qty--;
+
+				$("#qty_" + product_id).val(qty);
+
+				$.post('index.php?route=checkout/cart/ajaxUpdateCart', { qty: qty, product_id: product_id }, function(data) {
+					location.reload();
+
+					var data_split = data.split('!@#$%^&*()(*&^%$#@!');
+					$(".class_sub_total").html(data_split[1]);
+					$(".class_discount").html(data_split[2]);
+					$(".class_shipping").html(data_split[3]);
+					$(".class_total").html(data_split[4]);
+					$(".class_cart_basket").html(data_split[5]);
+				});
+			}
+		}
+
+		function plusQty(product_id) {
+			var qty = $("#qty_" + product_id).val();
+
+			qty++;
+
+			$("#qty_" + product_id).val(qty);
+			
+			$.post('index.php?route=checkout/cart/ajaxUpdateCart', { qty: qty, product_id: product_id }, function(data) {
+				location.reload();
+
+				var data_split = data.split('!@#$%^&*()(*&^%$#@!');
+				$(".class_sub_total").html(data_split[1]);
+				$(".class_discount").html(data_split[2]);
+				$(".class_shipping").html(data_split[3]);
+				$(".class_total").html(data_split[4]);
+				$(".class_cart_basket").html(data_split[5]);
+			});
+		}
+
+		function clickCheckboxAll() {
+			if($("#check_all").is(":checked") == true) {
+				$(".item-check").prop('checked', true);
+			} else {
+				$(".item-check").prop('checked', false);
+			}
+		}
+	</script>
+
+{{ footer }}

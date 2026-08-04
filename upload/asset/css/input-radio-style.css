@@ -1,0 +1,142 @@
+.md-radio.md-radio-inline {
+	display: block;
+	margin-top: 10px;
+
+	cursor: pointer;
+}
+
+.md-radio.md-radio-inline:checked {
+bac	
+}
+
+.md-radio input[type="radio"] {
+	display: none;
+}
+
+.md-radio input[type="radio"]:checked + label:before {
+	border-color: #252525;
+	animation: ripple 0.2s linear forwards;
+	background-color: #fff;
+}
+
+.md-radio input[type="radio"]:checked + label:after {
+	transform: scale(1);
+}
+.md-radio label div{
+	margin-left: 20px;
+}
+.md-radio label {
+	display: block;
+	/*  height: 20px;*/
+	position: relative;
+	padding: 0 10px;
+	margin-bottom: 0;
+	cursor: pointer;
+	vertical-align: bottom;
+
+
+}
+
+.md-radio input[type=checkbox],
+input[type=radio] {
+	display: inline-block;
+}
+
+
+.md-radio label:before, .md-radio label:after {
+  position: absolute;
+  content: '';
+  border-radius: 50%;
+  transition: all .3s ease;
+  transition-property: transform, border-color;
+}
+.md-radio label:before {
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #252525;
+}
+
+.md-radio label:after {
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  background: #252525;
+}    
+
+.accordion {
+	margin-top: 20px;
+	position: relative;
+}
+
+.accordion section,
+.accordion input:checked ~ section {
+	-webkit-transition: max-height 0.3s, opacity 0.5s ease-out, border 0.1s ease-out;
+	transition: max-height 0.3s, opacity 0.5s ease-out, border 0.1s ease-out;
+}
+
+.accordion label:after,
+.accordion input:checked + label:after {
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	transition: -webkit-transform 0.3s ease-out;
+	transition: transform 0.3s ease-out;
+	transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+
+.accordion label {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.accordion section {
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	border-bottom: 1px solid #ebebeb;
+	margin-bottom: 10px;
+}
+
+.accordion input {
+	display: block;
+}
+
+.accordion input:checked + label {
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.accordion input:checked + label:after {
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+
+.accordion input:checked ~ section {
+	margin-bottom: 3px;
+	max-height: 1000px;
+	opacity: 1;
+	border-bottom: none;
+
+}
+
+.address {
+	margin-top: -30px;
+	margin-left: 35px;
+}
+
+.styethis {
+	font-weight: 700;
+}
+
+@media only screen and (max-width: 767px) {
+	.accordion label {
+		font-size: 1em;
+		vertical-align: text-bottom;
+
+	}
+
+}

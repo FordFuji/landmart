@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>
+	Landmart
+</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robot" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<meta name="facebook-domain-verification" content="nhrnf312v9hda1k8x3io2r7dpocht9" />
+
+<link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="asset/css/layout.css" />
+<link type="image/ico" rel="shortcut icon" href="asset/images/favicon.ico">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+<link rel="stylesheet" href="asset/fancybox-master/dist/jquery.fancybox.css" />
+<link rel="stylesheet" href="asset/OwlCarousel/dist/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="asset/OwlCarousel/dist/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="asset/css/jquery-ui.css">
+<link rel="stylesheet" href="asset/css/slick-theme.css">
+<link rel="stylesheet" href="asset/css/slick.css">
+<link rel="stylesheet" href="asset/css/menu_nav.css">
+<link rel="stylesheet" href="asset/css/input-radio-style.css">
+
+
+<script src="asset/js/jquery-3.3.1.slim.min.js"></script>
+<script src="asset/js/jquery.min.js"></script>
+<script src="asset/js/jquery-ui.js"></script>
+<script src="asset/js/popper.min.js"></script>
+<script src="asset/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.12.0/js/v4-shims.js"></script>
+<script src="asset/OwlCarousel/dist/owl.carousel.min.js"></script>
+<script src="asset/fancybox-master/dist/jquery.fancybox.min.js"></script>
+<script src="asset/js/slick.min.js"></script>
+
+<script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+
+<style>
+	.smlogo_p {
+		width: 60%;
+	}
+
+</style>
+</head>
+
+<body>
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="logo_payment">
+					<a href="index.php"><img src="asset/images/payment/Payment_logo.png" class="img-fluid smlogo_p"></a>
+				</div>
+
+			</div>
+			<div class="col-md-9">
+				<div class="bgyellow_title text-right">
+					ต้องการสอบถามการสั่งซื้อสินค้าของคุณ <i class="fas fa-phone-alt"></i> 09-2929-4998
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="bgblack text-md-right">
+					<span class="whitetxt_sm">โปรดตรวจสอบข้อมูลการสั่งซื้อสินค้าทุกครั้ง</span>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper_pad">
+			
+			<div class="row mt-4">
+				<div class="col-md-12">
+					<div class="text-center">
+						
+						<img src="asset/images/Payment_summary_16.png" alt="">
+						<h1><b>ทำรายการสำเร็จแล้ว</b></h1>
+					</div>
+				</div>
+			<!-- 	<div class="col-md-3">
+				
+					<div class="address_landmart text-right">
+						<h3> <b>LANDMART </b></h3>
+						945 หมู่ 1 ต.เมืองพาน/Mueangphan Sub-District <br> เชียงราย/Chiang Rai <br>โทร 09-2929-4998
+					</div>
+				</div>
+				-->
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="text-center">
+					<h3>รายการสั่งซื้อเลขที่ : <b>{{ row.invoice_no }}</b></h3>
+						<h4><b>ชื่อผู้สั่งซื้อ {{ row.shipping_firstname }} {{ row.shipping_lastname }}</b></h4>
+						<!-- 	<h2><span class="greentxt">โปรดตรวจสอบอีเมลแอดเดรสของคุณในการทำรายการสั่งซื้อ</span> </h2> -->
+						<h4>ขอบพระคุณทุกท่านที่เชื่อมั่นในสินค้าแลนด์มาร์ท</h4>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 	<div class="row mt-3">
+				<div class="col-md-3 text-center"><img src="asset/images/Payment_summary_20.png" alt=""></div>
+				<div class="col-md-6 text-center">
+					<h2>มีคำถามเกี่ยวกับคำสั่งซื้อ ติดต่อสอบถามได้ที่</h2> 
+					<h3>LINE : landmart 09-2929-4998</h3>
+					<span class="smtxt">*เงื่อนไขเป็นไปตามที่บริษัทฯกำหนด</span>
+					<div align="center"><img src="asset/images/Payment_summary_23.png" alt=""></div>
+				</div>
+				<div class="col-md-3 text-center"></div>
+			</div>
+			-->
+			<div class="row mt-3 mb-3">
+				<div class="col">
+					<center><a href="index.php" class="btn btn-yellow-width">ช้อปปิ้งต่อ</a>
+						<a href="index.php?route=checkout/checkout/print_order&invoice_no={{ invoice_no }}" class="btn btn-yellow-width" target="_blank">พิมพ์ใบรายการ</a>
+{% if row.payment_method == 'Online Banking' or row.payment_method2 == 'Online Banking' %}
+						<a href="index.php?route=checkout/payment_confirm&invoice_no={{ invoice_no }}" class="btn btn-yellow-width">แจ้งหลักฐานการชำระเงิน</a>
+{% endif %}
+					</center>
+						
+				</div>
+			</div>
+
+			<div class="row text-center">
+				<div class="col-md-12 smtxt">
+				<div align="center"><img src="asset/images/LmnewSB.svg" alt="" class="smLB"></div> 
+				<div align="center"><img src="asset/images/Payment_summary_23.png" alt=""></div> 
+				<p>มีคำถามเกี่ยวกับคำสั่งซื้อ ติดต่อสอบถามได้ที่ <br> โทร 09-2929-4998</p> 
+					</div>
+			</div>	
+
+		</div>
+
+
+	</div>
+
+{{ footer }}

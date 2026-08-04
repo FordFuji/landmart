@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<?php require('inc_header.php'); ?>
+
+
+
+</head>
+
+<body>
+	<?php require('inc_topmenu.php'); ?>
+	<div class="container-fluid">
+
+		<div class="row mt-3">
+			<div class="col-md-8">
+				<div class="title_product">
+					<b> แลนด์มาร์ทโฮเซล (ค้าส่ง) B2B</b>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+						<li class="breadcrumb-item"><a href="#">เกษตร</a></li>
+						<li class="breadcrumb-item active" aria-current="page">เครื่องยนต์และอุปกรณ์
+						</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="bgbodygray">
+		<div class="container">
+			<div class="boxwhite">
+				<div class="row">
+					<div class="col">
+						<div class="cover_b2b mt-2 text-center">
+							<img src="images/b2b/b2b_cover.png" class="img-fluid" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="borderbidd"></div>
+				<div class="box_icon_b2b">
+					<div class="row">
+						<div class="col-md-3 text-center">
+							<img src="images/b2b/icon_b2b1.png" class="img-fluid" alt=""> <br>
+							<h5><b>เลือกช่องทางสั่งซื้อ</b></h5>
+							เลือกสินค้าออนไลน์ <br>
+							ทุกแพล็ทฟอร์ม หรือทางโทรศัพท์
+
+						</div>
+						<div class="col-md-3 text-center">
+							<img src="images/b2b/icon_b2b2.png" class="img-fluid" alt=""> <br>
+							<h5><b>ขอใบเสนอราคา</b></h5>
+							คำนวนสินค้าและราคา <br>
+							ตามจำนวนออเดอร์การสั่งซื้อ
+
+						</div>
+						<div class="col-md-3 text-center">
+							<img src="images/b2b/icon_b2b3.png" class="img-fluid" alt=""> <br>
+							<h5><b>ชำระสินค้า</b></h5>
+							ชำระสินค้าได้ผ่านทางบัตรเครดิต <br>
+							หรือโอนเงินตามที่คุณสะดวก
+
+						</div>
+						<div class="col-md-3 text-center">
+							<img src="images/b2b/icon_b2b4.png" class="img-fluid" alt=""> <br>
+							<h5><b>จัดส่งสินค้า</b></h5>
+							สินค้าแพ็คอย่างมาตรฐาน <br>
+							จัดส่งถึงร้านค้าของคุณอย่างปลอดภัย
+
+						</div>
+					</div>
+				</div>
+				<div class="borderbidd"></div>
+				<div class="row mt-5">
+					<div class="col text-center">
+						<h3><b>ค้าส่ง</b></h3>
+						<h3 class="yellotxt">B2B</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio dolores recusandae, ipsam omnis. Fugiat mollitia soluta quas libero id recusandae modi numquam totam, tempora nam repudiandae, ea. Odio, qui, cumque!</p>
+					</div>
+				</div>
+				<div class="youvideo">
+					<iframe width="100%" height="615" src="https://www.youtube.com/embed/-TnZoSEtgKw?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="row mt-5">
+					<div class="col text-center">
+						<h3><b>การันตีจากแบรนด์ชั้นนำ
+							</b></h3>
+						<h3 class="yellotxt">ด้วยสินค้าคุณภาพมากมาย</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio dolores recusandae, ipsam omnis. Fugiat mollitia soluta quas libero id recusandae modi numquam totam, tempora nam repudiandae, ea. Odio, qui, cumque!</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="logo_partner">
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+							<li><a href="#"><img src="images/newd/newlogo.png" alt="" class="img-fluid"></a></li>
+						</div>
+					</div>
+				</div>
+				<div class="borderbidd"></div>
+				<div class="row mt-5">
+					<div class="col text-center">
+						<h3><b>แบบฟอร์มรายละเอียด
+							</b></h3>
+						<h5 class="redtxt">กรอกข้อมูลเพิ่มเติม เจ้าหน้าที่จะติดต่อกลับโดยเร็วที่สุด</h5>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
+						<div class="form_address_input mt-2">
+							<div class="row">
+								<div class="col-md-12">
+									<label>ชื่อและนามสกุลผู้ติดต่อ*</label>
+									<input type="text" class="form-control">
+								</div>
+								<div class="col-md-12">
+									<label>จังหวัดในการจัดส่ง</label>
+									<input type="text" class="form-control">
+								</div>
+								<div class="col-md-12">
+									<label>ประเภทธุรกิจของลูกค้า*</label>
+									<input type="text" class="form-control">
+								</div>
+								<div class="col-md-6">
+									<label>เบอร์โทรศัพท์*</label>
+									<input type="text" class="form-control">
+								</div>
+								<div class="col-md-6">
+									<label>Email</label>
+									<input type="text" class="form-control">
+								</div>
+								<div class="col-md-12">
+									<label>รายละเอียดเพิ่มเติม</label>
+									<textarea name="" id="" cols="30" rows="4" class="form-control"></textarea>
+									
+								</div>
+									<br>
+								<div class="col-md-12">
+								
+								
+								<a href="#" class="btn btn-yellow-width">ส่งข้อมูล</a>
+								</div>
+								
+								
+								
+								
+							</div>
+							</div>
+						</div>
+					</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<?php require('inc_footer.php'); ?>
+
+
+</body>
+
+
+
+
+
+</html>

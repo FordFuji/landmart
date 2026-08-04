@@ -1,0 +1,568 @@
+{{ header }}
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
+					<!--	BANNER-PC			-->
+					<div class="bannertop owl-carousel owl-theme">
+{% for banner in banners %}
+						<div class="item">
+							<a href="{{ banner.link }}"><img src="image/{{ banner.image }}" class="img-fluid" alt=""></a>
+						</div>
+{% endfor %}
+					</div>
+				</div>
+				<!--	BANNER-MOBILE			-->
+				<div class="d-block d-sm-block d-md-block d-lg-none d-xl-none">
+					<div class="bannertop owl-carousel owl-theme">
+{% for banner_mobile in banner_mobiles %}
+						<div class="item">
+							<a href="{{ banner_mobile.link }}"><img src="image/{{ banner_mobile.image }}" class="img-fluid" alt=""></a>
+						</div>
+{% endfor %}
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="row padcol mt-2">
+{% for banner4 in banners4 %}
+			<div class="col-6 col-md-6 col-lg-3">
+				<div class="addon_banner">
+					<a href="{{ banner4.link }}"><img src="image/{{ banner4.image }}" class="img-fluid" alt=""></a>
+				</div>
+			</div>
+{% endfor %}
+		</div>
+		<div class="row padcol mt-2">
+{% for banner2 in banners2 %}
+			<div class="col-sm-6">
+				<div class="addon_banner">
+					<a href="{{ banner2.link }}"><img src="image/{{ banner2.image }}" class="img-fluid" alt=""></a>
+				</div>
+			</div>
+{% endfor %}
+		</div>
+
+		<div class="wrapper_pad mt-md-2">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="bgwith_title text-center">
+						<span class="yellotxt">โปรโมชั่น</span> <br>
+						<span class="promosmall">PROMOTION</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mt-3">
+				<div class="col">
+					<div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
+{% for product_promotion in productPromotion %}
+						<div class="promobox_wid">
+							<a href="index.php?route=product/product&product_id={{ product_promotion.product_id }}"><img src="image/{{ product_promotion.image_promotion }}" alt="" class="img-fluid"></a>
+						</div>
+{% endfor %}
+					</div>
+					<div class="d-block d-sm-block d-md-block d-lg-none d-xl-none">
+						<div class="promotion_slide_mobile owl-carousel owl-theme">
+{% for product_promotion in productPromotion %}
+							<div class="item">
+								<a href="index.php?route=product/product&product_id={{ product_promotion.product_id }}"><img src="image/{{ product_promotion.image_promotion }}" alt="" class="img-fluid"></a>
+							</div>
+{% endfor %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+{% for category in categories %}
+			<div class="box_section_index">
+				<div class="row">
+					<div class="col-lg-2 padright d-none d-sm-none d-md-none d-lg-block d-xl-block">
+							<div class="bgwithSMblack">
+								<img src="image/{{ category.image2 }}" alt="">
+							</div>
+					</div>
+					<div class="col-md-12 col-lg-10">
+						<div class="bgwith_title">
+							<div class="text_right">
+								<span class="whitetxt">{{ category.name }}</span> <br>
+							<!-- 
+								<span class="promosmall">{{ category.description }}</span>  -->
+							</div>
+							<div class="right_logo_serie">
+								<img src="image/{{ category.image3 }}" class="img-fluid" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-2 row-product">
+					<div class="col-md-12 col-lg-2 padright">
+						<div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
+							<div class="category_side owl-carousel owl-theme">
+	{% for all_banner in all_banners %}
+		{% if category.category_id == 60 and all_banner.banner_id == 9 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}" class="slideleft_hh"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 61 and all_banner.banner_id == 10 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}" class="slideleft_hh"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 62 and all_banner.banner_id == 11 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}" class="slideleft_hh"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 69 and all_banner.banner_id == 12 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}" class="slideleft_hh"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 70 and all_banner.banner_id == 13 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}" class="slideleft_hh"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 71 and all_banner.banner_id == 14 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}" class="slideleft_hh"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 72 and all_banner.banner_id == 15 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}" class="slideleft_hh"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+	{% endfor %}
+							</div>
+						</div>
+						<div class="d-none">
+							<div class="category_side owl-carousel owl-theme">
+	{% for all_banner in all_banners %}
+		{% if category.category_id == 60 and all_banner.banner_id == 17 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 61 and all_banner.banner_id == 18 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 62 and all_banner.banner_id == 19 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 69 and all_banner.banner_id == 20 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 70 and all_banner.banner_id == 21 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 71 and all_banner.banner_id == 22 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+
+		{% if category.category_id == 72 and all_banner.banner_id == 23 %}
+								<div class="item">
+									<a href="{{ all_banner.link }}"> <img src="image/{{ all_banner.image }}" class="img-fluid" alt="">
+									</a>
+								</div>
+		{% endif %}
+	{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 col-lg-10 product-wrapper">
+						<div class="slick-wrapper">
+							<div class="slick1">
+	{% for product in products %}
+		{% set i = 0 %}
+		{% if category.category_id == product.category_id %}
+								<div class="slide-item each_product">
+									<div class="product_cropbox">
+										<div class="grad_product">
+											<a href="index.php?route=product/product&path={{ product.category_id }}&product_id={{ product.product_id }}">
+												<img src="image/{{ product.product_image }}" class="img-fluid" alt="">
+											</a>
+			{% if product.special != 0 %}
+											<span class="savetag_new">
+												SAVE
+											</span>
+											<div class="ribbon">
+												{% set discount = ((product.price_pure - product.special_pure) * 100 / product.price_pure) %}
+												{{ discount|round }}%
+											</div>
+			{% endif %}
+										</div>
+
+										<div class="product_box_details">
+			{% if manufac %}
+				{% for manu in manufac %}
+					{% if manu.manufacturer_id == product.manufacturer_id %}
+											<span class="brand_small" style="color: {{ manu.color_link }} !important;">
+												{{ manu.name }}
+											</span>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+											<h4>{{ product.product_name }}</h4>
+											<span class="wishlist_new">
+												<a href="#"><img src="asset/images/g2494_06.png"></a>
+											</span>
+											<div class="row">
+												<div class="col">
+													<span class="code_product">
+														{{ product.model }}
+													</span>
+												</div>
+											</div>
+
+			{% if product.special == 0 %}
+												<div class="price_discount">
+													฿ {{ product.price }}
+												</div>
+			{% else %}
+												<div class="price_original">
+													฿ {{ product.price }}
+												</div>
+												<div class="price_discount">
+													฿ {{ product.special }}
+												</div>
+			{% endif %}
+
+
+											<!-- <div class="addselect">
+												<a href="#" class="btn btn-cart-select">แสดงตัวเลือก</a>
+											</div> -->
+											<!-- <div class="bottom_cart"> -->
+			
+			{% for r in rows %}
+				{% if r.product_id == product.product_id %}
+					{% if r.quantity > 0 %}
+						{% if product.isSizeColor == true %}
+												<div class="addselect">
+													<a href="javascript:void(0);"
+														class="btn btn-cart-select more-select">แสดงตัวเลือก</a>
+												</div>
+						{% elseif product.isSizeColor == false %}
+												<div class="qty_sm">
+													<input type="text" class="form-control qty qty_{{ product.product_id }}" value="1">
+												</div>
+												<div class="addcart">
+													<a href="javascript:cart.add({{ product.product_id }});" class="btn btn-cart-new"><img src="asset/images/cartNew_pp.png" alt=""> 
+													<span class="cartDmb">
+														สั่งซื้อสินค้า
+													</span>
+													
+													</a>
+												</div>
+						{% endif %}
+					{% else %}
+												<div class="addcart" align="center"> 
+													<b>{{ r.name }}</b>
+												</div>	
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+											<!-- </div> -->
+										</div>
+									</div>
+			{% for r in rows %}
+				{% if r.product_id == product.product_id %}
+					{% if r.quantity > 0 %}
+						{% if product.isSizeColor == true %}
+									<!-- โค้ดวิว ทำเลือกสี รุ่น -->
+									<div class="product_cropbox" style="display:none;">
+										<div class="more_chioce_box">
+				
+							{% set i = 0 %}
+							{% for size_color in sizeColor %}
+								{% if product.product_id == size_color.product_id %}
+									{% set i = i + 1 %}
+											<div class="display-slide" rel="{{ i }}" {% if i == 1 %}style="display:block;"{% endif %}>
+												<div class="row">
+													<div class="col-md-12 pad_right_no">
+														<img src="{{ size_color.product_option_value_image }}" class="img-fluid" alt="">
+													</div>
+													<div class="col-md-12 product_box_details">
+														{% if product.product_landmart == 'Yes' %}
+														<span class="brand_small">
+															LANDMART
+														</span>
+														{% endif %}
+														<h4>{{ product.product_name }}</h4>
+														<span class="code_product">
+															{{ product.model }}
+														</span>
+														{# {% if product.special == '0.00' %}
+															<div class="price_discount">
+																{{ product.price }}
+															</div>
+														{% else %}
+															<div class="price_original">
+																{{ product.price }}
+															</div>
+															<div class="price_discount">
+																{{ product.special }}
+															</div>
+														{% endif %} #}
+														<div class="price_discount">
+															฿&nbsp;{{ size_color.price_cal|number_format(0, '.', ',') }}
+														</div>
+													</div>
+												</div>
+											</div>
+								{% endif %}
+							{% endfor %}
+											<span class="title_select">Select more</span>
+											<div class="gallery_pic select-display-slide">
+							{% set i = 0 %}
+							{% for sc in sizeColor %}
+								{% if product.product_id == sc.product_id %}
+									{% set i = i + 1 %}
+												{# <li {% if i == 1 %} class="active" {% endif %} rel="{{ i }}">
+													<a href="javascript:void(0)" id="{{ sc.product_option_value_id }}" class="color_size_image">
+														{{ sc.name_option }}
+													</a>
+												</li> #}
+												<li rel="{{ i }}">
+													<a href="javascript:void(0)" id="{{ sc.product_option_value_id }}" class="color_size_image">
+														{{ sc.name_option }}
+													</a>
+												</li>
+								{% endif %}
+							{% endfor %}
+											</div>
+											
+											<div class="bottom_cart_more mt-2">
+												<div class="qty_sm">
+													<input type="text" class="form-control qtyMore_{{ product.product_id }}" value="1">
+												</div>
+												<div class="addcart">
+													<a href="javascript:cartMore.add({{ product.product_id }});" class="btn btn-cart-new"><svg
+															xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#000" class="bi bi-cart3" viewBox="0 0 16 16">
+														<path
+															d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+													</svg> สั่งซื้อสินค้า</a>
+												</div>
+											</div>
+										</div>
+	
+										<a href="javascript:void(0);" class="close-more-select">
+											<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#000" class="bi bi-x" viewBox="0 0 16 16">
+												<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+											</svg>
+										</a>
+									</div>
+							{% set i = i + 1 %}
+						{% endif %}
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+									<!-- End โค้ดวิว ทำเลือกสี รุ่น -->
+								</div>
+		{% endif %}						
+	{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+{% endfor %}
+	
+		</div>
+	
+
+	</div>
+<script>
+	$(document).ready(function () {
+		$('.bannertop').owlCarousel({
+			margin: 20,
+			loop: true,
+			item: 1,
+			autoplay: true,
+			autoplayTimeout: 4000,
+			autoplayHoverPause: false,
+			smartSpeed: 2000,
+			dots: true,
+			responsive: {
+				0: {
+					items: 1,
+					slideBy: 1,
+					margin: 10,
+					nav: false,
+
+				},
+				600: {
+					items: 1,
+					slideBy: 1,
+					nav: false,
+
+				},
+				1024: {
+					items: 1,
+					slideBy: 1
+				},
+				1200: {
+					items: 1,
+					slideBy: 1
+				}
+			}
+		})
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".select-display-slide > li").click(function () {
+			var rel = $(this).attr("rel");
+			console.log(rel);
+			$('.display-slide').hide();
+			$('.display-slide[rel=' + rel + ']').fadeIn();
+			$(".select-display-slide > li").removeClass("active");
+			$(this).addClass("active");
+		});
+	});
+</script>
+<script>
+	$(document).ready(function () {
+		$(".more-select").click(function () {
+			$(this).parents('.each_product').find('.product_cropbox').eq(0).hide();
+			$(this).parents('.each_product').find('.product_cropbox').eq(1).show();
+		});
+
+		$('.close-more-select').click(function () {
+			$(this).parents('.each_product').find('.product_cropbox').eq(0).show();
+			$(this).parents('.each_product').find('.product_cropbox').eq(1).hide();
+		});
+	});
+</script>
+<script>
+// Cart add remove functions
+var cart = {
+	'add': function(product_id) {
+		
+		$.ajax({
+			url: 'index.php?route=checkout/cart/add',
+			type: 'post',
+			data: 'product_id=' + product_id + '&quantity=' + $(".qty_" + product_id).val(),
+			dataType: 'json',
+			beforeSend: function() {
+				$('#cart > button').button('loading');
+			},
+			success: function(json) {
+				$('.alert, .text-danger').remove();
+
+				$('#cart > button').button('reset');
+
+				if (json['redirect']) {
+					location = json['redirect'];
+				}
+
+				if (json['success']) {
+					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+					//$('#cart-total').html(json['total']);
+
+					$(".numbercart").html(json['total']);
+
+					$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+					$('#cart > ul').load('index.php?route=common/cart/info ul li');
+				}
+			}
+		});
+	},
+};
+
+// Add More 
+var color_size; 
+$(".color_size_image").click(function () {
+	//console.log($(this).attr('id'));
+	//return false;
+	color_size = $(this).attr('id');
+	console.log(color_size);	
+});
+
+//console.log(color_size);
+
+// Cart add remove functions
+var cartMore = {
+	'add': function(product_id) {
+		$.ajax({
+			url: 'index.php?route=checkout/cart/add',
+			type: 'post',
+			data: 'product_id=' + product_id + '&quantity=' + $(".qtyMore_" + product_id).val() + '&option=' + color_size,
+			dataType: 'json',
+			beforeSend: function() {
+				$('#cart > button').button('loading');
+			},
+			success: function(json) {
+
+				$('.alert, .text-danger').remove();
+
+				$('#cart > button').button('reset');
+
+				/*if (json['redirect']) {
+					location = json['redirect'];
+				}*/
+
+				console.log(json);
+				
+				console.log(color_size);
+
+				if (json['success']) {
+					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+					//$('#cart-total').html(json['total']);
+
+					$(".numbercart").html(json['total']);
+
+					$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+					$('#cart > ul').load('index.php?route=common/cart/info ul li');
+				}
+			}
+		});
+	},
+};
+// End Add More
+</script>
+{{ footer }}

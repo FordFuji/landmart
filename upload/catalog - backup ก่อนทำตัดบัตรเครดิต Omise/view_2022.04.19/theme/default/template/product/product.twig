@@ -1,0 +1,834 @@
+{{ header }}
+<style>
+.boxwhite p{
+	font-weight:300;
+	font-family: 'cloudregular',sans seref;
+}
+.cartInside a img {
+    width: 30px;
+    height: 35px;
+    margin-right: 10px;
+	vertical-align: bottom;
+}
+	.boxwhite ul{
+	    list-style-position: inside;
+	}
+	.ribbon,
+	.savetag_new {
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+
+	.btn-yellow {
+		padding: 10px;
+	}
+
+	.toggled {
+		left: 15px;
+		width: 93%;
+	}
+
+	.input-number {
+		text-align: center;
+	}
+
+	.select-size input {
+		display: none;
+	}
+
+	.sizechoose {
+		display: inline-block;
+		width: 65px;
+		height: 35px;
+		text-align: center;
+		background-color: transparent;
+		border: 1px solid #ebebeb;
+		line-height: 35px;
+		cursor: pointer;
+		font-size: 0.8em;
+		font-weight: bold;
+		margin-top: 10px;
+	}
+
+	#small:checked~label[for="small"],
+	#medium:checked~label[for="medium"],
+	#large:checked~label[for="large"] {
+		background-color: transparent;
+		color: #6a5753;
+		
+		border: 1px solid #6a5753;
+		
+	}
+
+	#s:checked~label[for="s"],
+	#m:checked~label[for="m"],
+	#l:checked~label[for="l"],
+	{
+		background-color: transparent;
+		color: #6a5753;
+		border: 1px solid #6a5753;
+		
+	}
+
+	.activeSizeColor {
+		background-color: transparent;
+		color: #6a5753;
+		
+		border: 1px solid #6a5753;
+	}
+</style>
+
+
+	
+		<div class="container-fluid nopad">
+
+			<div class="wrapper_pad">
+				<div class="content_wrap">
+					<div class="row pt-3 mb-3">
+						<div class="col">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									{% for breadcrumb in breadcrumbs %}
+										<li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+									{% endfor %}
+										<li class="breadcrumb-item active" aria-current="page">{{ heading_title }}</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-lg-8">
+							<div class="boxwhite">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="slide_product">
+											<div class="ref-slide">
+												<div id="big" class="owl-carousel owl-theme">
+													{% if images %}
+													{% for image in images %}
+													<a class="item" data-fancybox="gallery" href="{{ image.thumb }}"><img src="{{ image.thumb }}" class="img-fluid" /></a>
+													{% endfor %}
+													{% endif %}
+												</div>
+												<div id="thumbs" class="owl-carousel owl-theme">
+													{% if images %}
+													{% for image in images %}
+													<div class="item"><img src="{{ image.thumb }}" class="img-fluid" /></a></div>
+													{% endfor %}
+													{% endif %}
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+									<div class="nameProduct">
+										<h3><b>{{ heading_title }}</b></h3></div>
+										{% if products.product_landmart == 'Yes' %}
+										<span class="smlogo_p yellotxt">
+										LANDMART
+										</span> <br>
+										{% endif %}
+										<span class="spec_product"><span class="code_product">รุ่น</span> {{ model }}</span>
+										<div class="banner_promo mt-3 mb-3">
+											<img src="http://www.landmart.co.th/image/{{ row.product_banner_image }}" class="img-fluid" alt="">
+										</div>
+										<div class="select-size mb-3">
+{% for r in optionColorSize %}
+											<input type="radio" name="s-size" id="size_{{ r.product_option_value_id }}" class="activeSizeColor" onclick="clickColorSize({{ r.product_option_value_id }});" value="{{ r.product_option_value_id }}" />
+{% endfor %}
+											{#<input type="radio" name="s-size" id="medium" />
+											<input type="radio" name="s-size" id="large" /> #}
+{% for r in optionColorSize %}
+											<label class="sizechoose" for="size_{{ r.product_option_value_id }}" id="active_size_{{ r.product_option_value_id }}" class="active_size">{{ r.name }}</label>
+{% endfor %}
+											{#<label class="sizechoose" for="medium">500ml</label>
+											<label class="sizechoose" for="large">1000ml</label>#}
+										</div>
+										{% if special != '' %}
+										<div class="labelsave_is">
+											<span class="savetag_new">
+												ประหยัด
+											</span>
+											<div class="ribbon">
+												{{ discount }}%
+											</div>
+										</div>
+										<br>
+										<div class="bigprice">
+											<h3><b class="price_size_color">{{ special }}</b></h3>
+										</div>
+										<div class="price_original">
+											<h5>฿ {{ price }}</h5>
+										</div>
+										{% else %}
+										<div class="bigprice">
+											<h3><b class="price_size_color">{{ price }}</b></h3>
+										</div>
+										{% endif %}
+										{% if row.quantity > 0 %}
+										<div class="text_qty">จำนวน</div>
+										<div class="center_qty">
+											<div class="qty_is">
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+																<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+															</svg>
+														</button>
+													</span>
+													<input type="text" name="quantity" id="qty" class="form-control input-number" value="1" min="1" max="10">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+																<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+															</svg>
+														</button>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="ready_ship"> สินค้าพร้อมส่ง</div>
+										{% else %}
+										<!--กรณีสินค้าหมด-->
+										<div class="soldout_tag"> {{ row.name }}{# สินค้าหมด #}</div>
+										<!--END	-->
+										{% endif %}
+
+										<div class="addcart_is mt-4">
+											<div class="row">
+												<div class="col-md-6">
+												{% if row.quantity <= 0 %}
+													<a class="btn btn btn-register"> ซื้อเลย</a>
+												{% else %}
+													<a id="button-buy" class="btn btn-yellow" > ซื้อเลย</a>
+												{% endif %}
+												</div>
+												<div class="col-md-6">
+												<div class="cartInside">
+													{% if row.quantity <= 0 %}
+													<a class="btn btn-register">
+														<img src="asset/images/cartNew.svg" class="img-fluid"> 
+														เพิ่มลงรถเข็น
+													</a>
+													{% else %}
+													<a id="button-cart" class="btn btn-register">
+														<img src="asset/images/cartNew.svg" class="img-fluid"> 
+														เพิ่มลงรถเข็น
+													</a>
+													{% endif %}
+												</div>
+												
+												 </div>
+														
+											</div>
+											<input type="hidden" name="quantity" value="{{ minimum }}" id="input-quantity" class="form-control" /><input type="hidden" name="product_id" id="product_id" value="{{ product_id }}" />
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="boxwhite">
+								<h4>รายละเอียด: <b>{{ description }}</b></h4>
+								<!-- <img src="asset/images/product_details_pic1_03.png" class="img-fluid">
+								<img src="asset/images/product_details_pic2.png" class="img-fluid">
+								<img src="asset/images/product_details_pic3.png" class="img-fluid">
+								<img src="asset/images/product_details_pic4.png" class="img-fluid">
+								<img src="asset/images/product_details_pic5.png" class="img-fluid"> -->
+							</div>
+						</div>
+						<div class="col-12 col-lg-4">
+							<div class="boxwhite Prod_d">
+								<div class="delivery_method">
+									<div class="row">
+										<div class="col-md-6">
+											<h4><b>การจัดส่งสินค้า</b></h4>
+										</div>
+										<div class="col-md-6 text-md-right position-static">
+											<!-- <input type="checkbox" class="toggle" id="toggle" /> -->
+
+											
+
+ <a class="CoindtionBtn" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+													<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+													<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+												</svg>   เงื่อนไขการจัดส่งสินค้า <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+</svg>
+  </a>
+  <div class="Condi collapse" id="collapseExample">
+  <div class="card card-body">
+   	<p>{# condition.shipping_condition #}{{ shipping_detail }}</p>
+  </div>
+</div>
+
+
+										
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="listdelivery">
+{% if shipping_price == '0.00' %}
+												<li>
+													<div class="row no-gutters">
+														<div class="col-3 col-md-2">
+														<div class="crOPstat">
+														<img src="asset/images/deliverySv.svg" alt="" class="smpicD"> 
+														</div>
+														</div>
+														<div class="col-6 col-md-8">
+															<h5 class="yellotxt pt-3 shipType"><b>จัดส่งฟรี! </b></h5>
+
+														</div>
+													</div>
+												</li>
+{% else %}
+												<li>
+													<div class="row no-gutters">
+														<div class="col-3 col-md-2">
+														<div class="crOPstat">
+														<img src="asset/images/icon_ship.png" alt="" class="smpic"> 
+														</div>
+														</div>
+														<div class="col-6 col-md-6">
+															<h5 class="shipType"><b>จัดส่งผ่านขนส่งเอกชน </b></h5>
+															5 - 7 วันทำการ
+														</div>
+														<div class="col-3 col-md-3 text-md-right">
+															฿ {{ shipping_price|number_format(2, '.', ',')}}
+														</div>
+													</div>
+
+												</li>
+{% endif %}
+												<!-- <li>
+													<div class="row no-gutters">
+														<div class="col-3 col-md-2"><img src="images/icon_cash.png" alt="" class="smpic"> </div>
+														<div class="col-6 col-md-8">
+															<h5 class="pt-3 shipType"><b> สามารถเก็บเงินปลายทางได้ </b></h5>
+
+														</div>
+													</div>
+												</li> -->
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-md-6">
+										<h4><b>การรับประกันสินค้า</b></h4>
+									</div>
+									<div class="col-md-6 position-static text-md-right">
+
+
+										<!-- <input type="checkbox" class="toggle" id="toggle" /> -->
+
+									
+
+ <a class="CoindtionBtn" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+													<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+													<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+												</svg>    เงื่อนไขการรับประกัน <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+</svg>
+  </a>
+  <div class="Condi collapse" id="collapseExample2">
+  <div class="card card-body">
+  	<p>{{ warranty_shipping_condition.warranty_condition }}</p>
+  </div>
+</div>
+
+
+
+									</div>
+								</div>
+
+								<div class="listdelivery">
+									<li>
+										<div class="row no-gutters">
+											<div class="col-3 col-md-2">
+											<div class="crOPstat">
+												<img src="asset/images/qur1.svg" alt="" class="smpicQ">
+											</div>
+											 </div>
+											<div class="col-6 col-md-8">
+												<h5 class="pt-3 shipType"><b>
+													{% if warranty.warranty_day == '0' %} เป็นไปตามเงื่อนไขของบริษัทฯ
+													{% elseif warranty.warranty_day == '7' %} 7 วัน
+													{% elseif warranty.warranty_day == '14' %} 14 วัน
+													{% elseif warranty.warranty_day == '30' %} 1 เดือน
+													{% elseif warranty.warranty_day == '60' %} 2 เดือน
+													{% elseif warranty.warranty_day == '90' %} 3 เดือน
+													{% elseif warranty.warranty_day == '120' %} 4 เดือน
+													{% elseif warranty.warranty_day == '150' %} 5 เดือน
+													{% elseif warranty.warranty_day == '180' %} 6 เดือน
+													{% elseif warranty.warranty_day == '210' %} 7 เดือน
+													{% elseif warranty.warranty_day == '240' %} 8 เดือน
+													{% elseif warranty.warranty_day == '270' %} 9 เดือน
+													{% elseif warranty.warranty_day == '300' %} 10 เดือน
+													{% elseif warranty.warranty_day == '330' %} 11 เดือน
+													{% elseif warranty.warranty_day == '365' %} 1 ปี
+													{% elseif warranty.warranty_day == '730' %} 2 ปี
+													{% elseif warranty.warranty_day == '1095' %} 3 ปี
+													{% elseif warranty.warranty_day == '1460' %} 4 ปี
+													{% elseif warranty.warranty_day == '1825' %} 5 ปี
+													{% endif %}</b></h5>
+											</div>
+										</div>
+									</li>
+								</div>
+
+
+								<hr>
+								<br>
+
+
+								<div class="row">
+									<div class="col-md-6">
+										<h4><b>ติดต่อฝ่ายขาย</b></h4>
+									</div>
+									<div class="col-md-6  position-static text-md-right">
+								
+
+ <a class="CoindtionBtn" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample3">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+													<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+													<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+												</svg>    เวลาทำการ <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+</svg>
+  </a>
+  <div class="Condi collapse" id="collapseExample3">
+  <div class="card card-body">
+  	<p>{{ business_hours.business_hours_text }}</p>
+  </div>
+</div>
+
+
+
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-4 col-md-4">
+										<img src="asset/images/qr_tests.webp" class="img-fluid" alt="">
+									</div>
+									<div class="col-8 col-md-8">
+										<div class="telprod">
+											{# หรือ โทร 09-2929-4998 #}
+										</div>
+
+									</div>
+								</div>
+
+								<hr>
+
+								<br>
+
+
+								<div class="sharesocial">
+									<ul>
+										<li>
+											<h4><b>แชร์</b></h4>
+										</li>
+										<li>
+											<a href="#"><img src="asset/images/social_04.png" class="img-fluid" alt=""></a> </li>
+										<li><a href="#"><img src="asset/images/social_06.png" class="img-fluid" alt=""></a></li>
+										<li> <a href="#"><img src="asset/images/social_07.png" class="img-fluid" alt=""></a></li>
+										<li> <a href="#"><img src="asset/images/social_09.png" class="img-fluid" alt=""></a></li>
+									</ul>
+								</div>
+
+
+
+							</div>
+							<div class="boxwhite mb-3 mt-3">
+								<h4><b>สินค้าขายดีประจำเดือนนี้</b></h4>
+
+								
+{% for r in similar %}
+								<div class="side_bestseller">
+									<a href="index.php?route=product/product&path={{ r.category_id }}&product_id={{ r.product_id }}" class="productBig"><img src="image/{{ r.image  }}" width="271" alt=""></a>
+
+									<h4>{{ r.name }}</h4>
+									<div style="color: #ddd; stroke: black;">
+										฿ {{ r.price|number_format(2, '.', ',') }}
+									</div>
+									<div class="price_discount_red">
+										฿ {{ r.special|number_format(2, '.', ',') }}
+									</div>
+	{% if r.quantity > 0 %}
+		{% if product.isSizeColor == true %}
+												<div class="addselect">
+													<a href="javascript:void(0);"
+														class="btn btn-cart-select more-select">แสดงตัวเลือก</a>
+												</div>
+		{% elseif product.isSizeColor == false %}
+												<div class="qty_sm">
+													<input type="text" class="form-control qty qty_{{ product.product_id }}" value="1">
+												</div>
+												<div class="addcart">
+		
+													<a href="javascript:cart.add({{ product.product_id }});" class="btn btn-cart-new"><img src="asset/images/newd/icon_cart.png" alt=""> สั่งซื้อสินค้า</a>
+		{% endif %}
+												</div>
+	{% else %}
+												<div class="addselect">
+													<a href="javascript:void(0);" class="btn btn-register">{{ r.oss_name }}</a>
+												</div>
+	{% endif %}
+								</div>
+								<hr><br><br>
+{% endfor %}
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	
+	<script>
+		//plugin bootstrap minus and plus
+		//http://jsfiddle.net/laelitenetwork/puJ6G/
+		$('.btn-number').click(function(e) {
+			e.preventDefault();
+
+			fieldName = $(this).attr('data-field');
+			type = $(this).attr('data-type');
+			var input = $("input[name='" + fieldName + "']");
+			var currentVal = parseInt(input.val());
+			if (!isNaN(currentVal)) {
+				if (type == 'minus') {
+
+					if (currentVal > input.attr('min')) {
+						input.val(currentVal - 1).change();
+					}
+					if (parseInt(input.val()) == input.attr('min')) {
+						$(this).attr('disabled', true);
+					}
+
+				} else if (type == 'plus') {
+
+					if (currentVal < input.attr('max')) {
+						input.val(currentVal + 1).change();
+					}
+					if (parseInt(input.val()) == input.attr('max')) {
+						$(this).attr('disabled', true);
+					}
+
+				}
+			} else {
+				input.val(0);
+			}
+		});
+		$('.input-number').focusin(function() {
+			$(this).data('oldValue', $(this).val());
+		});
+		$('.input-number').change(function() {
+
+			minValue = parseInt($(this).attr('min'));
+			maxValue = parseInt($(this).attr('max'));
+			valueCurrent = parseInt($(this).val());
+
+			name = $(this).attr('name');
+			if (valueCurrent >= minValue) {
+				$(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+			} else {
+				alert('Sorry, the minimum value was reached');
+				$(this).val($(this).data('oldValue'));
+			}
+			if (valueCurrent <= maxValue) {
+				$(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+			} else {
+				alert('Sorry, the maximum value was reached');
+				$(this).val($(this).data('oldValue'));
+			}
+		});
+		$(".input-number").keydown(function(e) {
+			// Allow: backspace, delete, tab, escape, enter and .
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+				// Allow: Ctrl+A
+				(e.keyCode == 65 && e.ctrlKey === true) ||
+				// Allow: home, end, left, right
+				(e.keyCode >= 35 && e.keyCode <= 39)) {
+				// let it happen, don't do anything
+				return;
+			}
+			// Ensure that it is a number and stop the keypress
+			if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				e.preventDefault();
+			}
+		});
+
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var bigimage = $("#big");
+			var thumbs = $("#thumbs");
+			//var totalslides = 10;
+			var syncedSecondary = true;
+
+			bigimage
+				.owlCarousel({
+					items: 1,
+					slideSpeed: 3500,
+					smartSpeed: 1500,
+					nav: true,
+					autoplay: false,
+					dots: false,
+					loop: true,
+					responsiveRefreshRate: 200,
+					navText: [
+						'<i class="fas fa-chevron-left"></i>',
+						'<i class="fas fa-chevron-right"></i>'
+					]
+				})
+				.on("changed.owl.carousel", syncPosition);
+			thumbs
+				.on("initialized.owl.carousel", function() {
+					thumbs
+						.find(".owl-item")
+						.eq(0)
+						.addClass("current");
+				})
+				.owlCarousel({
+					items: 3,
+					margin: 10,
+					dots: false,
+					nav: false,
+					smartSpeed: 200,
+					slideSpeed: 1500,
+					slideBy: 1,
+					responsiveRefreshRate: 100,
+					responsive: {
+						0: {
+							items: 3,
+							margin: 6
+						},
+						640: {
+							items: 3,
+							margin: 6
+						},
+						1024: {
+							items: 5
+						},
+						1200: {
+							items: 4
+						}
+					}
+				})
+				.on("changed.owl.carousel", syncPosition2);
+
+			function syncPosition(el) {
+				//if loop is set to false, then you have to uncomment the next line
+				//var current = el.item.index;
+
+				//to disable loop, comment this block
+				var count = el.item.count - 1;
+				var current = Math.round(el.item.index - el.item.count / 2 - 0.5);
+				if (current < 0) {
+					current = count;
+				}
+				if (current > count) {
+					current = 0;
+				}
+				//to this
+				thumbs
+					.find(".owl-item")
+					.removeClass("current")
+					.eq(current)
+					.addClass("current");
+				var onscreen = thumbs.find(".owl-item.active").length - 1;
+				var start = thumbs
+					.find(".owl-item.active")
+					.first()
+					.index();
+				var end = thumbs
+					.find(".owl-item.active")
+					.last()
+					.index();
+
+				if (current > end) {
+					thumbs.data("owl.carousel").to(current, 100, true);
+				}
+				if (current < start) {
+					thumbs.data("owl.carousel").to(current - onscreen, 100, true);
+				}
+			}
+
+			function syncPosition2(el) {
+				if (syncedSecondary) {
+					var number = el.item.index;
+					bigimage.data("owl.carousel").to(number, 100, true);
+				}
+			}
+			thumbs.on("click", ".owl-item", function(e) {
+				e.preventDefault();
+				var number = $(this).index();
+				bigimage.data("owl.carousel").to(number, 300, true);
+			});
+		});
+
+		var product_option_value_id_ = '';
+
+		function clickColorSize(product_option_value_id) {
+			$(".active_size").css('background-color', 'transparent');
+			$(".active_size").css('color', '#000');
+			$(".active_size").css('border', '1px solid #ebebeb');
+
+			$("#active_size_" + product_option_value_id).css('background-color', 'transparent');
+			$("#active_size_" + product_option_value_id).css('color', '#6a5753');
+			$("#active_size_" + product_option_value_id).css('border', '1px solid #6a5753');
+
+			product_option_value_id_ = product_option_value_id;
+
+			$.post('index.php?route=product/product/ajaxChangeSizeColor', { product_option_value_id: product_option_value_id_ }, function(data) {
+				$(".price_size_color").html(data);
+			});
+		}
+	</script>
+	<script type="text/javascript"><!--
+	$('#button-cart').on('click', function() {
+		$("#input-quantity").val($("#qty").val());
+
+		$.ajax({
+			url: 'index.php?route=checkout/cart/add',
+			type: 'post',
+			//data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea, #product_id'),
+			data: 'product_id=' + {{ product_id }} + '&quantity=' + $("#qty").val() + '&option=' + product_option_value_id_,
+			dataType: 'json',
+			beforeSend: function() {
+				$('#button-cart').button('loading');
+			},
+			complete: function() {
+				$('#button-cart').button('reset');
+			},
+			success: function(json) {
+				$('.alert-dismissible, .text-danger').remove();
+				$('.form-group').removeClass('has-error');
+
+				if (json['error']) {
+					if (json['error']['option']) {
+						for (i in json['error']['option']) {
+							var element = $('#input-option' + i.replace('_', '-'));
+
+							if (element.parent().hasClass('input-group')) {
+								element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+							} else {
+								element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+							}
+						}
+					}
+
+					if (json['error']['recurring']) {
+						$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+					}
+
+					// Highlight any found errors
+					$('.text-danger').parent().addClass('has-error');
+				}
+
+				if (json['success']) {
+					
+					$('.breadcrumb').after('<div class="alert alert-success alert-dismissible">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+					//$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+
+					$(".numbercart").html(json['total']);
+
+					$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+					$('#cart > ul').load('index.php?route=common/cart/info ul li');
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+
+	$('#button-buy').on('click', function() {
+		$("#input-quantity").val($("#qty").val());
+
+		$.ajax({
+			url: 'index.php?route=checkout/cart/add',
+			type: 'post',
+			data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea, #product_id'),
+			dataType: 'json',
+			beforeSend: function() {
+				$('#button-cart').button('loading');
+			},
+			complete: function() {
+				//$('#button-cart').button('reset');
+				window.location.href = 'index.php?route=checkout/cart'
+			},
+			success: function(json) {
+				$('.alert-dismissible, .text-danger').remove();
+				$('.form-group').removeClass('has-error');
+
+				if (json['error']) {
+					if (json['error']['option']) {
+						for (i in json['error']['option']) {
+							var element = $('#input-option' + i.replace('_', '-'));
+
+							if (element.parent().hasClass('input-group')) {
+								element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+							} else {
+								element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+							}
+						}
+					}
+
+					if (json['error']['recurring']) {
+						$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+					}
+
+					// Highlight any found errors
+					$('.text-danger').parent().addClass('has-error');
+				}
+
+				if (json['success']) {
+					
+					/*$('.breadcrumb').after('<div class="alert alert-success alert-dismissible">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+					//$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+
+					$(".numbercart").html(json['total']);
+
+					$('html, body').animate({ scrollTop: 0 }, 'slow');*/
+
+					//$('#cart > ul').load('index.php?route=common/cart/info ul li');
+
+					window.location.href = 'index.php?route=checkout/cart';
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+	//--></script>
+	<script>
+        $("body").on("click", "label", function(e) {
+            var getValue = $(this).attr("for");
+            var goToParent = $(this).parents(".select-size, .select-length");
+            var getInputRadio = goToParent.find("input[id = " + getValue + "]");
+            console.log(getInputRadio.attr("id"));
+        });
+    </script>
+{{ footer }}

@@ -1,0 +1,92 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-product" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>สมัครงาน</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid"> 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> สมัครงาน</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{% if id != '' %}index.php?route=career/career/edit&id={{ id }}&user_token={{ user_token }}{% else %}index.php?route=career/career/add&user_token={{ user_token }}{% endif %}" method="post" enctype="multipart/form-data" id="form-product" class="form-horizontal">
+          <div class="form-group required">
+            <label class="col-sm-2" style="text-align: right;">หมวดหมู่</label>
+            <div class="col-sm-10">
+              <select name="career_category_id" class="form-control" required>
+                <option value="">กรุณาเลือก</option>
+                {% for c in category %}
+                  <option value="{{ c.career_category_id }}" {% if row.career_category_id == c.career_category_id %}selected{% endif %}>{{ c.career_category_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2" style="text-align: right;">ตำแหน่ง</label>
+            <div class="col-sm-10">
+              <input type="text" name="career_name" class="form-control" value="{{ row.career_name }}" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2" style="text-align: right;">จำนวน</label>
+            <div class="col-sm-10">
+              <input type="text" name="career_amount" class="form-control" value="{{ row.career_amount }}" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2" style="text-align: right;">รายละเอียดงาน</label>
+            <div class="col-sm-10">
+              <textarea name="career_detail" class="form-control" rows="3" data-toggle="summernote" required>{{ row.career_detail }}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2" style="text-align: right;">คุณสมบัติผู้สมัคร</label>
+            <div class="col-sm-10">
+              <textarea name="career_applicant_property" class="form-control" rows="3" data-toggle="summernote" required>{{ row.career_applicant_property }}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2" style="text-align: right;"></label>
+            <div class="col-sm-10">
+              <input type="checkbox" name="career_but_now" value="Yes" {% if row.career_but_now == 'Yes' %}checked{% endif %}> ด่วน
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2" style="text-align: right;"></label>
+            <div class="col-sm-10">
+              <input type="checkbox" name="career_new" value="Yes" {% if row.career_new == 'Yes' %}checked{% endif %}> ใหม่
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <link href="view/javascript/codemirror/lib/codemirror.css" rel="stylesheet" />
+  <link href="view/javascript/codemirror/theme/monokai.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/codemirror/lib/codemirror.js"></script> 
+  <script type="text/javascript" src="view/javascript/codemirror/lib/xml.js"></script> 
+  <script type="text/javascript" src="view/javascript/codemirror/lib/formatting.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#news_datetime" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  } );
+  </script>
+
+  {{ footer }}

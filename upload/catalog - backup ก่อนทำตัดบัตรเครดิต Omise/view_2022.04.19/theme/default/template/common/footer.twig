@@ -1,0 +1,519 @@
+<style>
+.colorWW{
+	border-color:#a5a7aa;
+}
+.icon_footer {
+		position: absolute;
+		top: -45px;
+	}
+
+	.footergroup {
+		position: relative;
+	}
+
+	.footerlink_social li,
+	.footerlink li {
+		list-style: none;
+
+	}
+	.footerlink_social li a img{
+		width:30px;
+	}
+
+.copyrightF{
+	color: #a8a7a7;
+		font-size:0.7em;
+}
+	.footercontent,
+	.footerlink li a {
+		color: #a8a7a7;
+		font-size:0.9em;
+	}
+	.footercontent h5 img{
+		    width: 45%;
+    position: absolute;
+    top: -45px;
+
+	}
+
+	.footerbg {
+		background-color: #ffcd0a;
+		padding: 5px;
+		font-family: 'cloudsemibold';
+	}
+
+	.footerbg_black {
+		background-color: #231f20;
+	
+	}
+
+	.service_footer {
+		text-align: center;
+		padding: 10px 0px;
+	}
+
+	.service_footer li {
+		display: inline-block;
+		color: #a7a9ac;
+		font-size: 1em;
+		padding: 0px 30px;
+	}
+
+	.service_footer li img {
+		vertical-align: middle;
+	}
+
+	.dev_group h4,
+	.social_group h4,
+	.footer_group h4 {
+		font-size: 20px;
+	}
+
+	.dev_group li {
+		list-style: none;
+		display: inline-block;
+		width: 17%;
+	}
+
+	.social_group li {
+		list-style: none;
+		display: inline-block;
+	}
+
+	.social_group li a img {
+		width: 50px;
+	}
+
+	.deliverygroup li a img {
+		width: 80px;
+	}
+
+	.deliverygroup li {
+		list-style: none;
+		display: inline-block;
+	}
+
+	.left_subscribe {
+		float: left;
+		width: 32%;
+		padding-top: 8px;
+		font-size: 1.1em;
+		margin-right: 20px;
+	}
+
+	.right_subscribe {
+		float: left;
+		width: 62%;
+	}
+
+	.rightcrop {
+		float: right;
+		position: relative;
+		width: 30%;
+	}
+
+	.dev_group li a img {
+		width: 70%;
+	}
+
+	@media (max-width:1499px) {
+		.rightcrop {
+			width: 40%;
+		}
+	}
+		@media (max-width:1199px) {
+		.rightcrop {
+			width: 43%;
+		}
+	}
+	@media (max-width: 991px) {
+		.footercontent{
+			margin-top:40px;
+		}
+		.footergroup{
+			margin-top:60px;
+		}
+		.rightcrop {
+			width: 100%;
+		}
+
+		.left_subscribe {
+			width: 20%;
+		}
+
+		.right_subscribe {
+			width: 60%;
+		}
+			.footerlink_social li{
+			display:inline-block;
+		}
+			.footerbg{
+			margin-top:20px;
+		}
+	}
+
+	@media (max-width: 767px) {
+	
+	.footergroup {
+    margin-top: 10px;
+	}
+	
+		.icon_footer{
+			position:relative;
+			top:0;
+		}
+
+		.rightcrop,
+		.left_subscribe,
+		.right_subscribe {
+			width: 100%;
+		}
+	}
+
+</style>
+
+
+<div class="container-fluid nopad">
+	<div class="footerbg">
+
+		<div class="wrapper_pad">
+			<div class="row">
+				<div class="col">
+					<div class="rightcrop">
+						<div class="left_subscribe">รับโปรโมชั่นพิเศษสุดๆ</div>
+						<div class="right_subscribe"><input type="text" class="form-control" placeholder="กรอกอีเมลตรงนี้"></div>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footerbg_black">
+
+	<div class="wrapper_pad2">
+		
+		<hr><br>
+		<div class="row mt-2 mt-lg-5 mb-3">
+			<div class="col-12 col-md-12 col-lg-4">
+				<div class="footercontent">
+					<h5>
+						<img src="asset/images/logo_white.svg" alt=""> 
+						<span style="color:#fff;" class="mt-2 d-block">บริษัท แลนด์มาร์ท (ประเทศไทย) จำำกัด </span> </h5>
+					945 Village No.1, Mueang Phan Sub-district <br>
+					Phan District, Chiang Rai Province, Thailand 57120
+
+					<br><br>
+					
+					TEL: <span style="color:#fff;">09-2929-4998 </span><br>
+					Line: <span style="color:#fff;">@landmart </span><br>
+					
+				</div>
+			</div>
+			<div class="col-12 col-md-12 col-lg-7">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="footergroup">
+
+							<b style="color:#fff;">Product Series </b><br>
+							<ul class="footerlink mt-2">
+							{% for series in product_series %}
+								<li><a href="?route=product/category&path={{ series.category_id }}">{{ series.name }}</a></li>
+							{% endfor %}
+								<!-- <li><a href="#">Smart Farm </a></li>
+								<li><a href="#">Pump </a></li>
+								<li><a href="#">Power Tools </a></li>
+								<li><a href="#">Home & Garden </a></li>
+								<li><a href="#">Industrial</a></li>
+								<li><a href="#">Animal Farm </a></li>
+								<li><a href="#">Outdoor </a></li> -->
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="footergroup">
+							<span class="icon_footer">
+								<img src="asset/images/newd/cs_1.png" alt="">
+							</span>
+							<b style="color:#fff;">ศูนย์บริการลูกค้า
+							</b>
+							<ul class="footerlink mt-2">
+								{# <li><a href="index.php?route=checkout/payment_confirm">แจ้งชำระเงิน</a></li> #}
+								<li><a href="index.php?route=common/howtoregister">การสมัครสมาชิก</a></li>
+								<li><a href="index.php?route=common/how_to_order">การสั่งซื้อสินค้า</a></li>
+								<li><a href="index.php?route=common/how_to_pay">การชำระเงิน</a></li>
+								<li><a href="#">ขายสินค้ากับเรา (B2B)</a></li>
+								<li><a href="#">เช็คสถานะการจัดส่ง</a></li>
+								<li><a href="#">คำถามที่พบบ่อย</a></li>
+							</ul>
+						</div>
+					</div>
+				
+					<div class="col-md-4">
+						<div class="footergroup">
+							<span class="icon_footer">
+							<img src="asset/images/newd/cs_2.png" alt="">
+							</span>
+							<b style="color:#fff;">องค์กรเรา </b><br>
+							<ul class="footerlink mt-2">
+								<li><a href="index.php?route=common/about_landmart">เกี่ยวกับแลนด์มาร์ท</a></li>
+								<li><a href="index.php?route=common/career">สมัครงาน</a></li>
+								<li><a href="index.php?route=common/news">ข่าวสารและโปรโมชั่น</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			
+			<div class="col-md-12 col-lg-1">
+				<b style="color:#fff;">ติดตามเรา</b><br>
+				<ul class="footerlink_social mt-2">
+					<li><a href="https://www.facebook.com/landmart.co.th/?ref=pages_you_manage" target="_blank"><img src="asset/images/FT1.png" class="img-fluid" alt=""></a></li>
+					<li><a href="https://www.instagram.com/challenge/?next=/landmart.co.th/%253Ffbclid%253DIwAR2bMZdgQuBbnLeUnTod1Rjv88gkk52SnyhaVqnfhywX8smggVuuT4DZ4EM" target="_blank"><img src="asset/images/FT2.png" class="img-fluid" alt=""></a></li>
+					<li><a href="https://lin.ee/XpNbYbI" target="_blank"><img src="asset/images/FT3.png" class="img-fluid" alt=""></a></li>
+					<li><a href="https://www.youtube.com/channel/UCHVIFg4XA9mOaH2zzh8FPjw/videos" target="_blank"><img src="asset/images/FT4.png" class="img-fluid" alt=""></a></li>
+
+				</ul>
+
+			</div>
+		</div>
+
+	
+		<hr class="colorWW">
+		<div class="row">
+			<div class="col mb-3 mt-3">
+				<div class="copyrightF">Copyright © สงวนสิทธิ์ 2021 Landmart (Thailand) Co., Ltd. All rights reserved.</div>
+
+			</div>
+		</div>
+	</div>
+
+	
+
+
+
+	</div>
+</div>
+
+
+
+<script>
+$(document).ready(function() {
+    
+  	$('.slick1').on('init', function(event, slick){
+		  
+
+		  setTimeout(function() {
+        $('.row-product').each(function(index){
+            var rpd = $(this)
+            var pdh = $(this).find('.product-wrapper').outerHeight();
+            rpd.find('.slideleft_hh').css('height', pdh);
+        });
+    }, 500);
+
+
+		/*$('.row-product').each(function(index){
+			var pdh = $(this).find('.product-wrapper').outerHeight();
+			$(this).find('.slideleft_hh').css('height', pdh);
+		});*/
+	});
+});
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('.slick1').slick({
+			rows: 2,
+			dots: false,
+			arrows: false,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 5,
+			slidesToScroll: 5,
+			responsive: [{
+					breakpoint: 1200,
+					settings: {
+						slidesToShow: 4,
+						slidesToScroll: 4,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					}
+				}
+			]
+		});
+
+	});
+
+</script>
+<script>
+	$(document).ready(function() {
+
+		$('.category_side').owlCarousel({
+			margin: 20,
+			loop: false,
+			item: 1,
+			autoplay: false,
+			autoplayTimeout: 4000,
+			autoplayHoverPause: false,
+			smartSpeed: 2000,
+			nav: false,
+			dots: true,
+			responsive: {
+				0: {
+					items: 1,
+					slideBy: 1,
+					margin: 5,
+					nav: false,
+					dots: false
+
+				},
+				600: {
+					items: 1,
+					slideBy: 1,
+					nav: false,
+					stagePadding: 0,
+					dots: false
+
+				},
+				1024: {
+					items: 1,
+					slideBy: 1
+				},
+				1200: {
+					items: 1,
+					slideBy: 1
+				}
+			}
+		})
+
+
+		$('.bannertop').owlCarousel({
+			margin: 20,
+			loop: true,
+			item: 1,
+			autoplay: false,
+			autoplayTimeout: 4000,
+			autoplayHoverPause: false,
+			smartSpeed: 2000,
+			dots: true,
+			responsive: {
+				0: {
+					items: 1,
+					slideBy: 1,
+					margin: 10,
+					nav: false,
+
+				},
+				600: {
+					items: 1,
+					slideBy: 1,
+					nav: false,
+
+				},
+				1024: {
+					items: 1,
+					slideBy: 1
+				},
+				1200: {
+					items: 1,
+					slideBy: 1
+				}
+			}
+		})
+		$('.slide_addon').owlCarousel({
+			margin: 20,
+			loop: true,
+			item: 1,
+			autoplay: false,
+			autoplayTimeout: 4000,
+			autoplayHoverPause: false,
+			smartSpeed: 2000,
+			dots: true,
+			responsive: {
+				0: {
+					items: 1,
+					slideBy: 1,
+					margin: 10,
+					nav: false,
+
+				},
+				600: {
+					items: 1,
+					slideBy: 1,
+					nav: false,
+
+				},
+				1024: {
+					items: 1,
+					slideBy: 1
+				},
+				1200: {
+					items: 1,
+					slideBy: 1
+				}
+			}
+		})
+		$('.promotion_slide_mobile').owlCarousel({
+			margin: 20,
+			loop: true,
+			item: 2,
+			autoplay: false,
+			autoplayTimeout: 4000,
+			autoplayHoverPause: false,
+			smartSpeed: 2000,
+			dots: true,
+			responsive: {
+				0: {
+					items: 2,
+					slideBy: 1,
+					margin: 10,
+					nav: false,
+
+				},
+				600: {
+					items: 2,
+					slideBy: 1,
+					nav: false,
+
+				},
+				1024: {
+					items: 2,
+					slideBy: 1
+				},
+				1200: {
+					items: 2,
+					slideBy: 1
+				}
+			}
+		})
+
+	});
+
+</script>

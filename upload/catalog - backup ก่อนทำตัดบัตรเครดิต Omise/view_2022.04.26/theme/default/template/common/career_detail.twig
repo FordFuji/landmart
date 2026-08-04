@@ -1,0 +1,198 @@
+{{ header }}
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
+							<!--	BANNER-PC			-->
+							<div class="bannertop owl-carousel owl-theme">
+								<div class="item">
+									<a href="#"><img src="asset/images/career_banner.png" class="img-fluid" alt=""></a>
+								</div>
+								<div class="item">
+									<a href="#"><img src="asset/images/career_banner.png" class="img-fluid" alt=""></a>
+								</div>
+							</div>
+						</div>
+						<!--	BANNER-MOBILE			-->
+						<div class="d-block d-sm-block d-md-block d-lg-none d-xl-none">
+							<div class="bannertop owl-carousel owl-theme">
+								<div class="item">
+									<a href="#"><img src="asset/images/career_banner.png" class="img-fluid" alt=""></a>
+								</div>
+								<div class="item">
+									<a href="#"><img src="asset/images/career_banner.png" class="img-fluid" alt=""></a>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="content_wrap mt-5">
+		<div class="row mb-3">
+			<div class="col">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+						<li class="breadcrumb-item active" aria-current="page">ตำแหน่งงาน
+						</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="search_filter_job">
+					<div class="row">
+						<div class="col">
+							<form action="index.php?route=common/career" method="post">
+							ค้นหางาน
+							<div class="search_barbox">
+								<input type="text" name="career_name" class="form-control" placeholder="Keyword">
+							</div>
+							<div class="search_barbox">
+								<select id="career_category_id" name="career_category_id" class="form-control arrow_down">
+									<option value="">All Job Function</option>
+{% if category %}
+	{% for r in category %}
+									<option value="{{ r.career_category_id }}">{{ r.career_category_name }}</option>
+	{% endfor %}
+{% endif %}
+								</select>
+							</div>
+							<div class="search_barbox">
+								<select id="selectbasic" name="selectbasic" class="form-control arrow_down">
+									<option value="" disabled selected>All Location</option>
+								</select>
+							</div>
+							<div class="search_barbox_btn">
+								<input type="submit" class="btn btn-yellow" name="submit_search" value="Search">
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-4">
+			<div class="col">
+				<h1 class="position_name">
+					{% if career %}{{ career.career_name }}{% endif %}</h1>
+				<span class="yellotxt">เปิดรับสมัคร: {% if career %}{{ career.career_amount }}{% endif %} อัตรา</span>
+			</div>
+		</div>
+		<div class="row mt-3">  
+			<div class="col-md-2">
+				<b>รายละเอียดงาน</b>
+			</div>
+			<div class="col-md-10">
+				{% if career %}{{ career.career_detail }}{% endif %}
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-md-2">
+				<b>คุณสมบัติผู้สมัคร
+				</b>
+			</div>
+			<div class="col-md-10">
+				{% if career %}{{ career.career_applicant_property }}{% endif %}
+			</div>
+		</div>
+
+		<div class="row mt-5 mb-5">
+			<div class="col">
+				<center>
+					<a data-fancybox data-src="#detailjob" href="javascript:;" class="btn btn-yellow-width">
+						สมัคร
+					</a>
+				</center>
+				<div style="display: none;" id="detailjob">
+					<form action="" method="post" enctype="multipart/form-data">
+					<h2>สนใจสมัครงาน</h2>
+					<div class="formlist">
+						<div class="row">
+							<div class="col-md-6"><label>ชื่อ</label>
+								<input type="text" name="application_name" class="form-control" required></div>
+							<div class="col-md-6">
+								<label>นามสกุล</label>
+								<input type="text" name="application_surname" class="form-control" required>
+							</div>
+							<div class="col-md-6"><label>อีเมล</label>
+								<input type="text" name="application_email" class="form-control" required></div>
+							<div class="col-md-6">
+								<label>เบอร์ติดต่อ</label>
+								<input type="text" name="application_tel" class="form-control" required>
+							</div>
+						</div>
+						
+						<label>รายละเอียด</label>
+						<textarea name="application_detail" id="" cols="30" rows="5" class="form-control" required></textarea>
+						<label class="mt-2">แนบไฟล์ Resume</label>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Upload</span>
+							</div>
+							<div class="custom-file" required>
+								<input type="file" name="application_file_resume" class="custom-file-input" id="inputGroupFile01">
+								<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+							</div>
+						</div>
+						<center><input type="submit" name="submit_application" class="btn btn-yellow-width" value="สมัครเลย"></center>
+						<input type="hidden" name="career_id" value="{% if career %}{{ career.career_id }}{% endif %}">
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		$(document).ready(function() {
+
+
+
+			$('.bannertop').owlCarousel({
+				margin: 20,
+				loop: true,
+				item: 1,
+				autoplay: false,
+				autoplayTimeout: 4000,
+				autoplayHoverPause: false,
+				smartSpeed: 2000,
+				dots: true,
+				responsive: {
+					0: {
+						items: 1,
+						slideBy: 1,
+						margin: 10,
+						nav: false,
+
+					},
+					600: {
+						items: 1,
+						slideBy: 1,
+						nav: false,
+
+					},
+					1024: {
+						items: 1,
+						slideBy: 1
+					},
+					1200: {
+						items: 1,
+						slideBy: 1
+					}
+				}
+			})
+
+		});
+
+	</script>
+{{ footer }}

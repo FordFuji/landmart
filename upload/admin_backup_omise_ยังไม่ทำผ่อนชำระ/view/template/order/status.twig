@@ -1,0 +1,59 @@
+                <div class="order_status">
+                    <li>
+                        <a href="index.php?route=sale/order&user_token={{ user_token }}">
+                            รอการชำระเงิน ({{ count_pending }})
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=sale/order/order1&user_token={{ user_token }}">
+                            กำลังดำเนินการ ({{ count_complete }}) ทั้งหมด ({{ count_processing }})
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=sale/order/order2&user_token={{ user_token }}">
+                            พร้อมจัดส่ง ({{ count_processed }})
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=sale/order/order3&user_token={{ user_token }}">
+                            จัดส่งแล้ว ({{ count_shipped }})
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=sale/order/order4&user_token={{ user_token }}">
+                            ยกเลิก ({{ count_canceled }})
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=sale/order/order5&user_token={{ user_token }}">
+                            ประวัติการขาย ({{ count_all }})
+                        </a>
+                    </li>
+                </div>
+
+                {# <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"> #}
+                <link type="text/css" rel="stylesheet" href="asset/css/layout.css"/>
+                <link type="image/ico" rel="shortcut icon" href="asset/images/favicon.ico">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+                <link rel="stylesheet" href="asset/fancybox-master/dist/jquery.fancybox.css" />
+                <link rel="stylesheet" href="asset/css/jquery-ui.css">
+
+
+                <script src="asset/js/jquery-3.3.1.slim.min.js"></script>
+                <script src="asset/js/jquery.min.js"></script>
+                <script src="asset/js/jquery-ui.js"></script>
+                <script src="asset/js/popper.min.js"></script>
+                <script src="asset/js/bootstrap.min.js"></script>
+                <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+                <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/v4-shims.js"></script>
+                <script src="asset/fancybox-master/dist/jquery.fancybox.min.js"></script>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+
+                        $('.selectAll').click(function (e) {
+                            $(this).closest('table').find('td input:checkbox').prop('checked', this.checked);
+                        });
+                    });
+                </script>

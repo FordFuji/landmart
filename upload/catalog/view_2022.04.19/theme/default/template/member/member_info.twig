@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	{{ inc_header }}
+</head>
+<style>
+	.sidemember li:nth-child(2) {
+		background-color: #f9cc48;
+		font-weight: bold;
+	}
+
+	.spanClassRed {
+		color: red;
+	}
+
+</style>
+
+<body>
+
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="logo_payment">
+					<a href="index.php"><img src="asset/images/payment/Payment_logo_03.png" class="img-fluid smlogo_p"></a>
+				</div>
+
+			</div>
+			<div class="col-md-9">
+				<div class="bgyellow_title text-right">
+					ต้องการสอบถามการสั่งซื้อสินค้าของคุณ <i class="fas fa-phone-alt"></i> 09-2929-4998
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="bgblack text-md-right">
+					<span class="whitetxt_sm">โปรดตรวจสอบข้อมูลการสั่งซื้อสินค้าทุกครั้ง</span>
+				</div>
+			</div>
+		</div>
+		<div class="bgbodygray">
+			<div class="wrapper_pad">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="title_head_text">
+							บัญชีของฉัน
+						</div>
+						<div class="box_l_blue">
+							โปรดตรวจสอบข้อมูลของคุณให้ดีก่อนทำการสั่งซื้อสินค้าทุกครั้ง เพราะจะเป็นข้อมูลในการนำส่งสินค้า
+						</div>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						{{ inc_sidemember }}
+					</div>
+					<div class="col-md-9">
+						<div class="bgwhite mt-5">
+							<div class="title_head_text">
+								ตั้งค่าข้อมูลส่วนตัว
+							</div>
+							<hr>
+							<div class="row mt-3">
+								<div class="col-md-10">
+									<div class="memberid">
+										Member ID : {{ member.customer_id}}
+									</div>
+								</div>
+
+							</div>
+
+							<div class="title_head_text mt-3">
+								การจัดส่งสินค้า
+							</div>
+							<hr>
+							<form action="index.php?route=member/member/save_update" method="post">
+							<div class="row mt-3">
+								<div class="col-md-8">
+									<div class="form_address_input">
+										<div class="row">
+											<div class="col-md-6">
+												<label>ชื่อ<span class="spanClassRed">*</span></label>
+												<input type="text" class="form-control" name="firstname" id="firstname" placeholder="กรอกชื่อของคุณ" value="{{ member.firstname }}" required>
+											</div>
+											<div class="col-md-6">
+												<label>นามสกุล<span class="spanClassRed">*</span></label>
+												<input type="text" class="form-control" name="lastname" id="lastname" placeholder="กรอกนามสกุลของคุณ" value="{{ member.lastname }}" required>
+											</div>
+											<div class="col-md-12">
+												<label>เบอร์โทรศัพท์<span class="spanClassRed">*</span></label>
+												<input type="text" name="telephone" id="telephone" class="form-control" placeholder="กรอกเบอร์ 9 - 10 หลัก" value="{{ member.telephone }}" required>
+											</div>
+											<div class="col-md-6">
+												<label>อีเมล<span class="spanClassRed">*</span></label>
+												<input type="email" id="email" class="form-control" name="email" value="{{ member.email }}" required>
+											</div>
+											<div class="col-md-12">
+												<label>ที่อยู่จัดส่ง<span class="spanClassRed">*</span></label>
+												<input type="text" name="customer_address1" id="customer_address1" class="form-control" placeholder="บ้านเลขที่ หมู่ที่" value="{{ member.customer_address1 }}">
+											</div>
+											<div class="col-md-12">
+												<label>ที่อยู่จัดส่ง 2</label>
+												<input type="text" name="customer_address2" id="customer_address2" class="form-control" placeholder="หมู่บ้าน / ชั้น ซอย ถนน" value="{{ member.customer_address2 }}">
+											</div>
+											<div class="col-md-6">
+												<label>รหัสไปรษณีย์<span class="spanClassRed">*</span></label>
+												<input type="text" name="customer_postcode" id="customer_postcode" class="form-control" placeholder="ความยาวต่ำสุด 5 ตัวอักษร" value="{{ member.customer_postcode }}" required>
+											</div>
+											<div class="col-md-6">
+												<label>จังหวัด<span class="spanClassRed">*</span></label>
+												<select id="customer_province" name="customer_province" id="customer_province" class="form-control arrow_down" required onchange="changeProvince(this.value);">
+													<option value="">กรุณาเลือก</option>
+{% for provinces in provinces_list %}
+													<option value="{{ provinces.PROVINCE_ID }}" {% if member.customer_province == provinces.PROVINCE_ID %} selected {% endif %}>{{ provinces.PROVINCE_NAME }}</option>
+{% endfor %}
+												</select>
+											</div>
+											<div class="col-md-6">
+												<label>อำเภอ<span class="spanClassRed">*</span></label>
+												<select id="customer_amphur" name="customer_amphur" id="customer_amphur" class="form-control arrow_down" required onchange="changeAmphur(this.value);">
+													<option value="" selected>กรุณาเลือก</option>
+{% for amphurs in amphurs_list %}
+													<option value="{{ amphurs.AMPHUR_ID }}" {% if member.customer_amphur == amphurs.AMPHUR_ID %} selected {% endif %}>{{ amphurs.AMPHUR_NAME }}</option>
+{% endfor %}
+												</select>
+											</div>
+											<div class="col-md-6">
+												<label>ตำบล<span class="spanClassRed">*</span></label>
+												<select id="customer_tumbol" name="customer_tumbol" id="customer_tumbol" class="form-control arrow_down" required>
+													<option value="" selected>กรุณาเลือก</option>
+{% for tumbol in tumbol_list %}
+													<option value="{{ tumbol.DISTRICT_ID }}" {% if member.customer_tumbol == tumbol.DISTRICT_ID %} selected {% endif %}>{{ tumbol.DISTRICT_NAME }}</option>
+{% endfor %}
+												</select>
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-8">
+									<div class="title_head_text">
+										ใบกำกับภาษี
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="seitch_mmm">
+										<span class="text_tax"> ต้องการใบกำกับภาษีด้วย</span>
+										<div class="checkboxsw">
+											<input type="checkbox" id="switch" /><label for="switch"></label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="box01">
+								<div class="form_address_input mt-2">
+									<div class="row">
+										<div class="col-md-12">
+											<input type="checkbox" value="same_address" id="addressSame_" onclick="addressSame();">
+											<label for="flexCheckDefault">
+												ในกรณีที่ใช้ที่อยู่เดียวกัน
+											</label>
+										</div>
+										<div class="col-md-12">
+											<label>ชื่อที่ใช้ในการออกใบกำกับภาษี</label>
+											<input type="text" class="form-control" name="customer_invoice_name" id="customer_invoice_name" placeholder="ชื่อที่ใช้ในการออกใบกำกับภาษี" value="{{ member.customer_invoice_name }}">
+										</div>
+										<div class="col-md-12">
+											<label>ที่อยู่ที่ใช้ในการออกใบกำกับภาษี</label>
+											<input type="text" name="customer_invoice_address1" id="customer_invoice_address1" class="form-control" placeholder="บ้านเลขที่ หมู่ที่" value="{{ member.customer_invoice_address1 }}">
+										</div>
+										<div class="col-md-12">
+											<label>ที่อยู่จัดส่ง 2</label>
+											<input type="text" name="customer_invoice_address2" id="customer_invoice_address2" class="form-control" placeholder="หมู่บ้าน / ชั้น ซอย ถนน" value="{{ member.customer_invoice_address2 }}">
+										</div>
+										<div class="col-md-6">
+											<label>รหัสไปรษณีย์<span class="spanClassRed">*</span></label>
+											<input type="text" name="customer_invoice_postcode" id="customer_invoice_postcode" class="form-control" placeholder="ความยาวต่ำสุด 5 ตัวอักษร" value="{{ member.customer_invoice_postcode }}">
+										</div>
+										<div class="col-md-6">
+											<label>จังหวัด<span class="spanClassRed">*</span></label>
+											<select id="customer_invoice_province" name="customer_invoice_province" class="form-control arrow_down" onchange="changeProvinceInvoice(this.value);">
+												<option value="">กรุณาเลือก</option>
+{% for provinces in provinces_list %}
+												<option value="{{ provinces.PROVINCE_ID }}" {% if member.customer_invoice_province == provinces.PROVINCE_ID %} selected {% endif %}>{{ provinces.PROVINCE_NAME }}</option>
+{% endfor %}
+											</select>
+										</div>
+										<div class="col-md-6">
+											<label>อำเภอ<span class="spanClassRed">*</span></label>
+											<select id="customer_invoice_amphur" name="customer_invoice_amphur" class="form-control arrow_down" onchange="changeAmphurInvoice(this.value);">
+												<option value="">กรุณาเลือก</option>
+{% for amphurs in amphurs_invoice_list %}
+												<option value="{{ amphurs.AMPHUR_ID }}" {% if member.customer_invoice_amphur == amphurs.AMPHUR_ID %} selected {% endif %}>{{ amphurs.AMPHUR_NAME }}</option>
+{% endfor %}
+											</select>
+										</div>
+										<div class="col-md-6">
+											<label>ตำบล<span class="spanClassRed">*</span></label>
+											<select id="customer_invoice_tumbol" name="customer_invoice_tumbol" class="form-control arrow_down">
+												<option value="">กรุณาเลือก</option>
+{% for tumbols in tumbol_invoice_list %}
+												<option value="{{ tumbols.DISTRICT_ID }}" {% if member.customer_invoice_tumbol == tumbols.DISTRICT_ID %} selected {% endif %}>{{ tumbols.DISTRICT_NAME }}</option>
+{% endfor %}
+											</select>
+										</div>
+										<div class="col-md-12">
+											<label>เลขประจำตัวผู้เสียภาษี</label>
+											<input type="text" name="customer_card_id" class="form-control" placeholder="ความยาวไม่เกิน 13 ตัว" value="{{ member.customer_card_id }}">
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							<input type="submit" name="submit" value="Save">
+							</form>
+							<br>
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		$('#switch').on("change", function() {
+			if ($('#switch').is(':checked')) {
+				$('.box01').slideDown();
+			} else {
+				$('.box01').slideUp();
+			}
+		});
+
+	</script>
+	<script>
+		function showIfChecked(radioName, value, element) {
+			var $radios = $('[name="' + radioName + '"]');
+			var $element = $('#' + element);
+
+			if ($element.length == 0) {
+				return false;
+			}
+
+			$element.hide();
+
+			$radios.on('change', function() {
+				var $this = $(this);
+				var check = $this.val() == value && $this.is(':checked');
+				$element[check ? 'show' : 'hide']();
+			});
+		}
+
+		$(document).ready(function() {
+			showIfChecked('check1', 3, 'check1-other');
+		});
+
+		function changeProvince(province_id) {
+			$.post('index.php?route=member/member/ajaxChangeProvince', { province_id: province_id }, function(data) {
+				$("#customer_amphur").html(data);
+			});
+		}
+
+		function changeAmphur(amphur_id) {
+			$.post('index.php?route=member/member/ajaxChangeAmphur', { amphur_id: amphur_id }, function(data) {
+				$("#customer_tumbol").html(data);
+			});
+		}
+
+		function changeProvinceInvoice(province_id) {
+			$.post('index.php?route=member/member/ajaxChangeProvince', { province_id: province_id }, function(data) {
+				$("#customer_invoice_amphur").html(data);
+			});
+		}
+
+		function changeAmphurInvoice(amphur_id) {
+			$.post('index.php?route=member/member/ajaxChangeAmphur', { amphur_id: amphur_id }, function(data) {
+				$("#customer_invoice_tumbol").html(data);
+			});
+		}
+
+		function addressSame() {
+			if($("#addressSame_").is(":checked") == true) {
+				$("#customer_invoice_name").val($("#firstname").val() + ' ' + $("#lastname").val());
+				$("#customer_invoice_address1").val($("#customer_address1").val());
+				$("#customer_invoice_address2").val($("#customer_address2").val());
+				$("#customer_invoice_postcode").val($("#customer_postcode").val());
+				$("#customer_invoice_province").val($("#customer_province").val());
+				$("#customer_invoice_amphur").val($("#customer_amphur").val());
+				$("#customer_invoice_tumbol").val($("#customer_tumbol").val());
+			} else if($("#addressSame_").is(":checked") == false) {
+				$("#customer_invoice_name").val('');
+				$("#customer_invoice_address1").val('');
+				$("#customer_invoice_address2").val('');
+				$("#customer_invoice_postcode").val('');
+				$("#customer_invoice_province").val('');
+				$("#customer_invoice_amphur").val('');
+				$("#customer_invoice_tumbol").val('');
+			}
+		}
+	</script>
+{{ footer }}

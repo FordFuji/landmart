@@ -1,0 +1,92 @@
+
+#menu {
+/*    position: fixed;*/
+    left: 0%;
+    height: 100%;
+    z-index: 100;
+    background-color: #ffffff;
+    width: 100%;
+/*    margin: -150px 0 0 -130px;*/
+    -webkit-box-shadow: 0px 2px 2px 0px rgba(50, 50, 50, 0.1);
+    -moz-box-shadow: 0px 2px 2px 0px rgba(50, 50, 50, 0.1);
+    box-shadow: 0px 2px 2px 0px rgba(50, 50, 50, 0.1);
+}
+
+#menu .menu-wrapper-inner {}
+
+#menu .menu-wrapper {
+    position: relative;
+    overflow-x: hidden;
+}
+
+#menu .menu {
+    width: 320px;
+    float: left;
+}
+
+#menu .menu-item {
+    position: relative;
+}
+
+#menu .menu-item:hover {
+    background-color: #fafafa;
+}
+
+#menu .menu-item a {
+    font-size: 15px;
+    padding: 15px 20px;
+/*    line-height: 18px;*/
+    font-weight: normal;
+    color: #252525;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#menu .menu-item .spt {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    margin-top: -5px;
+}
+
+#menu .menu-slider {
+    position: relative;
+    width: 2000px;
+    left: 0;
+}
+
+#menu .submenu {
+    display: none;
+}
+
+#menu .submenu-back {
+    border-bottom: 1px solid #eeeeee;
+}
+
+#menu .submenu-back .spt {
+    left: 25px;
+}
+
+#menu .submenu-back a {
+    padding-left: 30px;
+}
+
+.menu-box {
+    overflow: auto;
+    position: relative;
+    height: 100%;
+}
+
+.detail {
+    width: 10px;
+    position: absolute;
+    top:45%;
+    right: 20px;
+    margin-top: -5px;
+}
+
+.detail.back {
+    left: 10px;
+    top: 22px;
+}

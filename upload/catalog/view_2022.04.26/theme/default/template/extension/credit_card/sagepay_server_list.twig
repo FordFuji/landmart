@@ -1,0 +1,50 @@
+modify=20210313020751;perm=flcdmpe;type=cdir;unique=FD02U223EE717;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0755;UNIX.owner=1028;UNIX.ownername=ftp; .
+modify=20210324031954;perm=flcdmpe;type=pdir;unique=FD02U41232296;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0755;UNIX.owner=1028;UNIX.ownername=ftp; ..
+modify=20210313020449;perm=adfrw;size=2264;type=file;unique=FD02U22405BA3;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-01-100x100.jpg
+modify=20210313020450;perm=adfrw;size=2169;type=file;unique=FD02U22405BA4;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-02-100x100.jpg
+modify=20210313020450;perm=adfrw;size=2373;type=file;unique=FD02U22405BA5;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-03-100x100.jpg
+modify=20210313020450;perm=adfrw;size=2092;type=file;unique=FD02U22405BA6;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-04-100x100.jpg
+modify=20210313020653;perm=adfrw;size=2495;type=file;unique=FD02U22405BA7;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-05-100x100.jpg
+modify=20210313020451;perm=adfrw;size=2441;type=file;unique=FD02U22405BA8;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-06-100x100.jpg
+modify=20210313020451;perm=adfrw;size=2580;type=file;unique=FD02U22405BA9;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-07-100x100.jpg
+modify=20210313020452;perm=adfrw;size=2531;type=file;unique=FD02U22405BAA;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-08-100x100.jpg
+modify=20210313020452;perm=adfrw;size=2517;type=file;unique=FD02U22405BAB;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_เครื่องอัดฉีดแรงดันสูงLM3013S4_A01-100x100.jpg
+modify=20210313020452;perm=adfrw;size=2668;type=file;unique=FD02U22405BAC;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; สีข้าว_2018-LAZADA-08-100x100.jpg
+modify=20210313020751;perm=adfrw;size=2504;type=file;unique=FD02U22405BAD;UNIX.group=1030;UNIX.groupname=ftp;UNIX.mode=0644;UNIX.owner=1028;UNIX.ownername=ftp; AW_Mark lll-05 - Copy-100x100.jpg
+/div>
+</div>
+<script type="text/javascript"><!--
+$('#button-add-card').bind('click', function () {
+	$.ajax({
+		url: 'index.php?route=extension/credit_card/sagepay_server_cards/addCard',
+		dataType: 'json',
+		cache: false,
+		beforeSend: function () {
+			$('#button-confirm').button('loading');
+		},
+		complete: function () {
+			$('#button-confirm').button('reset');
+		},
+		success: function (json) {
+			// if success
+			if (json['redirect']) {
+				html = '<form action="' + json['redirect'] + '" method="post" id="redirect">';
+				html += '  <input type="hidden" name="Status" value="' + json['Status'] + '" />';
+				html += '  <input type="hidden" name="StatusDetail" value="' + json['StatusDetail'] + '" />';
+				
+				html += '</form>';
+				
+				$('.breadcrumb').after(html);
+				
+				$('#redirect').submit();
+			}
+			
+			// if error
+			if (json['error']) {
+				$('.breadcrumb').after('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+		}
+	});
+});
+//--></script> 
+{{ footer }} 

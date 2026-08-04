@@ -1,0 +1,40 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-product" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>หมวดหมู่สมัครงาน</h1>
+      <ul class="breadcrumb">
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid"> 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> หมวดหมู่สมัครงาน</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{% if id != '' %}index.php?route=career/career/editCategory&id={{ id }}&user_token={{ user_token }}{% else %}index.php?route=career/career/addCategory&user_token={{ user_token }}{% endif %}" method="post" enctype="multipart/form-data" id="form-product" class="form-horizontal">
+          <div class="form-group required">
+            <label class="col-sm-2" style="text-align: right;">หมวดหมู่สมัครงาน</label>
+            <div class="col-sm-10">
+              <input type="text" name="career_category_name" value="{{ row.career_category_name }}" placeholder="" id="career_category_name" class="form-control" required>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <link href="view/javascript/codemirror/lib/codemirror.css" rel="stylesheet" />
+  <link href="view/javascript/codemirror/theme/monokai.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/codemirror/lib/codemirror.js"></script> 
+  <script type="text/javascript" src="view/javascript/codemirror/lib/xml.js"></script> 
+  <script type="text/javascript" src="view/javascript/codemirror/lib/formatting.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+
+  {{ footer }}

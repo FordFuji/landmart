@@ -1,0 +1,33 @@
+booth_reserv.trash_status = '0' 
+and zone.trash_status = '0' 
+and member.trash_status = '0' 
+and market_time.trash_status = '0' 
+and products_category.trash_status = '0' 
+and products.trash_status = '0' 
+and floor.trash_status = '0' 
+and floor_master.trash_status = '0' 
+and zone_master.trash_status = '0' 
+and booth.trash_status = '0' 
+and market.trash_status = '0' 
+and booth_reserv.status = '2' 
+and me.trash_status = '0' 
+and market_time.id = booth_reserv.market_time_id 
+and line_pay_temp_bill.status = '1'
+
+booth_reserv.order_id
+
+inner join booth_reserv on booth.id = booth_reserv.booth_id 
+inner join member on booth_reserv.member_id = member.id 
+inner join zone on booth.zone_id = zone.id 
+inner join floor on zone.floor_id = floor.id 
+inner join market on booth.market_id = market.id 
+inner join market_time on market_time.market_id = market.id 
+inner join products on booth_reserv.product_id = products.id 
+inner join products_category on products.products_category_id = products_category.id 
+inner join floor_master on floor_master.floor_code = booth.floor_code 
+inner join zone_master on zone_master.zone_code = booth.zone_code 
+inner join line_pay_temp_bill on booth_reserv.transaction = line_pay_temp_bill.booth_reserve_transaction 
+inner join member me on booth_reserv.member_id = me.id
+
+(select sum(b.price_reserve_only) from booth_reserv b where b.order_id = booth_reserv.order_id)
+(select sum(b.price_accessory_only) from booth_reserv b where b.order_id = booth_reserv.order_id)

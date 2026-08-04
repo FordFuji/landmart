@@ -1,0 +1,13 @@
+oc_order_status.order_status_id = 1 = Pending  = รอการชำระเงิน
+oc_order_status.order_status_id = 2, 5 = Processing = กำลังดำเนินการ() ทั้งหมด ()
+oc_order_status.order_status_id = 15 = Processed = พร้อมจัดส่ง
+oc_order_status.order_status_id = 3 = Shipped = จัดส่งแล้ว
+oc_order_status.order_status_id = 7 = Canceled = ยกเลิก
+oc_order_status.order_status_id = * = = ประวัติการขาย
+
+oc_order.order_status_id = oc_order_status.order_status_id
+
+oc_order.payment_method = Online Banking
+			= บัตรเครดิต / บัตรเดบิต
+			= เก็บเงินปลายทาง COD
+			= ชำระเงินผ่านทางเคาน์เตอร์เซอร์วิส

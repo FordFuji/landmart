@@ -1,0 +1,571 @@
+{{ header }}
+<style>
+	.ribbon,
+	.savetag_new {
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+
+	/*
+	.qty_is {
+		width: 25%;
+	}
+*/
+
+	.input-number {
+		text-align: center;
+	}
+
+</style>
+
+	<div class="bgbodygray">
+		<div class="container-fluid">
+
+			<div class="wrapper_pad">
+				<div class="content_wrap">
+					<div class="row pt-3 mb-3">
+						<div class="col">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									{% for breadcrumb in breadcrumbs %}
+										<li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+									{% endfor %}
+										<li class="breadcrumb-item active" aria-current="page">{{ heading_title }}</li>
+									<!-- <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
+									<li class="breadcrumb-item"><a href="#">เครื่องมือช่าง</a></li>
+									<li class="breadcrumb-item"><a href="#">เครื่องอัดฉีด</a></li> -->
+									<!-- <li class="breadcrumb-item active" aria-current="page">เครื่องอัดฉีดนํ้าแรงดันสูง
+									</li> -->
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row" id="product">
+						<div class="col-md-8">
+							<div class="boxwhite">
+								<div class="row">
+									<div class="col-md-5">
+										<div class="slide_product">
+											<div class="ref-slide">
+												<div id="big" class="owl-carousel owl-theme">
+													{% if images %}
+													{% for image in images %}
+													<a class="item" data-fancybox="gallery" href="{{ image.thumb }}" title="{{ heading_title }}"> <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" class="img-fluid" /></a></li>
+													{% endfor %}
+													{% endif %}
+													<!-- <a class="item" data-fancybox="gallery" href="https://www.youtube.com/watch?v=FTiHf5jdV8g"><img src="images/newd/product_test.png" class="img-fluid">
+													</a>
+													<a class="item" data-fancybox="gallery" href="images/newd/product_test.png"><img src="images/newd/product_test.png" class="img-fluid"></a>
+													<a class="item" data-fancybox="gallery" href="images/newd/product_test.png"><img src="images/newd/product_test.png" class="img-fluid"></a>
+													<a class="item" data-fancybox="gallery" href="images/newd/product_test.png"><img src="images/newd/product_test.png" class="img-fluid"></a>
+													<a class="item" data-fancybox="gallery" href="images/newd/product_test.png"><img src="images/newd/product_test.png" class="img-fluid"></a>
+													<a class="item" data-fancybox="gallery" href="images/newd/product_test.png"><img src="images/newd/product_test.png" class="img-fluid"></a>
+													<a class="item" data-fancybox="gallery" href="images/newd/product_test.png"><img src="images/newd/product_test.png" class="img-fluid"></a> -->
+												</div>
+												<div id="thumbs" class="owl-carousel owl-theme">
+													{% if images %}
+													{% for image in images %}
+													<div class="item"><img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" class="img-fluid" /></a></div>
+													{% endfor %}
+													{% endif %}
+													<!-- <div class="item"><img src="images/newd/product_test.png" class="img-fluid"></div>
+													<div class="item"><img src="images/newd/product_test.png" class="img-fluid"></div>
+													<div class="item"><img src="images/newd/product_test.png" class="img-fluid"></div>
+													<div class="item"><img src="images/newd/product_test.png" class="img-fluid"></div>
+													<div class="item"><img src="images/newd/product_test.png" class="img-fluid"></div>
+													<div class="item"><img src="images/newd/product_test.png" class="img-fluid"></div> -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-7">
+										<h3><b>{{ heading_title }}</b></h3>
+										<span class="smlogo_p yellotxt">LANDMART</span> <br>
+										<span class="spec_product"><span class="code_product">รุ่น</span> {{ model }}</span>
+										<div class="banner_promo mt-3 mb-3">
+											<img src="catalog/view/theme/default/media/images/sm_banner.png" class="img-fluid" alt="">
+										</div>
+
+
+										<!-- <div class="labelsave_is">
+											<span class="savetag_new">
+												ประหยัด
+											</span>
+											<div class="ribbon">
+												32%
+											</div>
+										</div>
+										<br> -->
+										<div class="bigprice">
+											<h3><b>{{ price }}</b></h3>
+
+										</div>
+										<div class="price_original">
+											<h5>{{ price }}</h5>
+										</div>
+
+
+										<div class="text_qty">จำนวน</div>
+										<div class="center_qty">
+											<div class="qty_is">
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+																<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+															</svg>
+														</button>
+													</span>
+													<input type="number" name="quant[1]" id="qty" class="form-control input-number" value="1" min="1" max="10" style="width: 35px;">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+																<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+															</svg>
+														</button>
+													</span>
+												</div>
+
+											</div>
+
+										</div>
+										<div class="ready_ship"> สินค้าพร้อมส่ง</div>
+
+
+										<div class="addcart_is mt-4">
+											<div class="row">
+												<div class="col-md-6"><a href="#" class="btn btn-yellow"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+															<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+														</svg> ซื้อเลย</a></div>
+												<div class="col-md-6"><a id="button-cart" class="btn btn-register"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#fff" class="bi bi-cart3" viewBox="0 0 16 16">
+															<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+														</svg> เพิ่มลงรถเข็น</a></div>
+											</div>
+											              <input type="hidden" name="quantity" value="{{ minimum }}" id="input-quantity" class="form-control" /><input type="hidden" name="product_id" value="{{ product_id }}" />
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="boxwhite">
+								<h4>รายละเอียด: <b>{{ description }}<!-- เครื่องอัดฉีดแรงดันสูง มอเตอร์ 1 แรง LANDMART รุ่น LM-1808S2 --></b></h4>
+								<!-- <img src="catalog/view/theme/default/media/images/product_details_pic1_03.png" class="img-fluid">
+								<img src="catalog/view/theme/default/media/images/product_details_pic2.png" class="img-fluid">
+								<img src="catalog/view/theme/default/media/images/product_details_pic3.png" class="img-fluid">
+								<img src="catalog/view/theme/default/media/images/product_details_pic4.png" class="img-fluid">
+								<img src="catalog/view/theme/default/media/images/product_details_pic5.png" class="img-fluid"> -->
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="boxwhite">
+								<div class="delivery_method">
+									<div class="row">
+										<div class="col-md-6">
+											<h4><b>การจัดส่งสินค้า</b></h4>
+										</div>
+										<div class="col-md-6 text-md-right">
+											<div class="con-tooltip bottom">
+												<p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+														<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+														<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+													</svg> เงื่อนไขการจัดส่งสินค้า </p>
+												<div class="tooltip ">
+													<p>เนื้อหา</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="listdelivery">
+												<li>
+													<div class="row no-gutters">
+														<div class="col-md-3"><img src="catalog/view/theme/default/media/images/icon_free.png" alt="" class="smpic"> </div>
+														<div class="col-md-8">
+															<h5 class="yellotxt pt-3"><b>จัดส่งฟรี! </b></h5>
+
+														</div>
+													</div>
+												</li>
+												<li>
+													<div class="row no-gutters">
+														<div class="col-md-3"><img src="catalog/view/theme/default/media/images/icon_ship.png" alt="" class="smpic"> </div>
+														<div class="col-md-6">
+															<h5><b>จัดส่งผ่านขนส่งเอกชน </b></h5>
+															5 - 7 วันทำการ
+														</div>
+														<div class="col-md-3 text-md-right">
+															฿ 1,000.00
+														</div>
+													</div>
+
+												</li>
+												<li>
+													<div class="row no-gutters">
+														<div class="col-md-3"><img src="catalog/view/theme/default/media/images/icon_cash.png" alt="" class="smpic"> </div>
+														<div class="col-md-8">
+															<h5 class="pt-3"><b> สามารถเก็บเงินปลายทางได้ </b></h5>
+
+														</div>
+													</div>
+
+
+												</li>
+											</div>
+
+
+										</div>
+									</div>
+
+
+								</div>
+
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-md-6">
+										<h4><b>การรับประกันสินค้า</b></h4>
+									</div>
+									<div class="col-md-6 text-md-right">
+										<div class="con-tooltip bottom">
+											<p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+													<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+													<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+												</svg> เงื่อนไขการรับประกัน </p>
+											<div class="tooltip ">
+												<p>เนื้อหา</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="listdelivery">
+									<li>
+										<div class="row no-gutters">
+											<div class="col-md-3"><img src="catalog/view/theme/default/media/images/icon_gur_06.png" alt="" class="smpic"> </div>
+											<div class="col-md-8">
+												<h5 class="pt-3"><b>12 เดือน</b></h5>
+
+											</div>
+										</div>
+									</li>
+								</div>
+
+
+								<hr>
+								<br>
+
+
+								<div class="row">
+									<div class="col-md-6">
+										<h4><b>ติดต่อฝ่ายขายโดยตรง</b></h4>
+									</div>
+									<div class="col-md-6 text-md-right">
+										<div class="con-tooltip bottom">
+											<p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+													<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+													<path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+												</svg> เวลาทำการ </p>
+											<div class="tooltip ">
+												<p>เนื้อหา</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-md-4">
+										<img src="catalog/view/theme/default/media/images/qr_tests.webp" class="img-fluid" alt="">
+									</div>
+									<div class="col-md-8">
+										หรือ โทร 09-2929-4998
+									</div>
+								</div>
+								<hr>
+								<br>
+								<div class="sharesocial">
+									<ul>
+									<li><h4><b>แชร์</b></h4></li>
+										<li>
+										<a href="#"><img src="catalog/view/theme/default/media/images/social_04.png" class="img-fluid" alt=""></a> </li>
+										<li><a href="#"><img src="catalog/view/theme/default/media/images/social_06.png" class="img-fluid" alt=""></a></li>
+										<li> <a href="#"><img src="catalog/view/theme/default/media/images/social_07.png" class="img-fluid" alt=""></a></li>
+										<li> <a href="#"><img src="catalog/view/theme/default/media/images/social_09.png" class="img-fluid" alt=""></a></li>
+									</ul>
+								</div>
+
+
+
+							</div>
+							<div class="boxwhite mt-3">
+								<h4><b>สินค้าขายดีประจำเดือนนี้</b></h4>
+
+								<div class="">
+									<a href="#"><img src="images/newd/product_test.png" alt=""></a>
+
+									<h4>เครื่องสีข้าว 3 ระบบ 3in1 แลนด์มาร์ท</h4>
+									<div class="price_discount_red">
+										฿ 9,500
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script>
+		//plugin bootstrap minus and plus
+		//http://jsfiddle.net/laelitenetwork/puJ6G/
+		$('.btn-number').click(function(e) {
+			e.preventDefault();
+
+			fieldName = $(this).attr('data-field');
+			type = $(this).attr('data-type');
+			var input = $("input[name='" + fieldName + "']");
+			var currentVal = parseInt(input.val());
+			if (!isNaN(currentVal)) {
+				if (type == 'minus') {
+
+					if (currentVal > input.attr('min')) {
+						input.val(currentVal - 1).change();
+					}
+					if (parseInt(input.val()) == input.attr('min')) {
+						$(this).attr('disabled', true);
+					}
+
+				} else if (type == 'plus') {
+
+					if (currentVal < input.attr('max')) {
+						input.val(currentVal + 1).change();
+					}
+					if (parseInt(input.val()) == input.attr('max')) {
+						$(this).attr('disabled', true);
+					}
+
+				}
+			} else {
+				input.val(0);
+			}
+		});
+		$('.input-number').focusin(function() {
+			$(this).data('oldValue', $(this).val());
+		});
+		$('.input-number').change(function() {
+
+			minValue = parseInt($(this).attr('min'));
+			maxValue = parseInt($(this).attr('max'));
+			valueCurrent = parseInt($(this).val());
+
+			name = $(this).attr('name');
+			if (valueCurrent >= minValue) {
+				$(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+			} else {
+				alert('Sorry, the minimum value was reached');
+				$(this).val($(this).data('oldValue'));
+			}
+			if (valueCurrent <= maxValue) {
+				$(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+			} else {
+				alert('Sorry, the maximum value was reached');
+				$(this).val($(this).data('oldValue'));
+			}
+
+
+		});
+		$(".input-number").keydown(function(e) {
+			// Allow: backspace, delete, tab, escape, enter and .
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+				// Allow: Ctrl+A
+				(e.keyCode == 65 && e.ctrlKey === true) ||
+				// Allow: home, end, left, right
+				(e.keyCode >= 35 && e.keyCode <= 39)) {
+				// let it happen, don't do anything
+				return;
+			}
+			// Ensure that it is a number and stop the keypress
+			if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				e.preventDefault();
+			}
+		});
+
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var bigimage = $("#big");
+			var thumbs = $("#thumbs");
+			//var totalslides = 10;
+			var syncedSecondary = true;
+
+			bigimage
+				.owlCarousel({
+					items: 1,
+					slideSpeed: 3500,
+					smartSpeed: 1500,
+					nav: true,
+					autoplay: false,
+					dots: false,
+					loop: true,
+					responsiveRefreshRate: 200,
+					navText: [
+						'<i class="fas fa-chevron-left"></i>',
+						'<i class="fas fa-chevron-right"></i>'
+					]
+				})
+				.on("changed.owl.carousel", syncPosition);
+			thumbs
+				.on("initialized.owl.carousel", function() {
+					thumbs
+						.find(".owl-item")
+						.eq(0)
+						.addClass("current");
+				})
+				.owlCarousel({
+					items: 3,
+					margin: 10,
+					dots: false,
+					nav: false,
+					smartSpeed: 200,
+					slideSpeed: 1500,
+					slideBy: 1,
+					responsiveRefreshRate: 100,
+					responsive: {
+						0: {
+							items: 3,
+							margin: 6
+						},
+						640: {
+							items: 3,
+							margin: 6
+						},
+						1024: {
+							items: 5
+						},
+						1200: {
+							items: 5
+						}
+					}
+				})
+				.on("changed.owl.carousel", syncPosition2);
+
+			function syncPosition(el) {
+				//if loop is set to false, then you have to uncomment the next line
+				//var current = el.item.index;
+
+				//to disable loop, comment this block
+				var count = el.item.count - 1;
+				var current = Math.round(el.item.index - el.item.count / 2 - 0.5);
+				if (current < 0) {
+					current = count;
+				}
+				if (current > count) {
+					current = 0;
+				}
+				//to this
+				thumbs
+					.find(".owl-item")
+					.removeClass("current")
+					.eq(current)
+					.addClass("current");
+				var onscreen = thumbs.find(".owl-item.active").length - 1;
+				var start = thumbs
+					.find(".owl-item.active")
+					.first()
+					.index();
+				var end = thumbs
+					.find(".owl-item.active")
+					.last()
+					.index();
+
+				if (current > end) {
+					thumbs.data("owl.carousel").to(current, 100, true);
+				}
+				if (current < start) {
+					thumbs.data("owl.carousel").to(current - onscreen, 100, true);
+				}
+			}
+
+			function syncPosition2(el) {
+				if (syncedSecondary) {
+					var number = el.item.index;
+					bigimage.data("owl.carousel").to(number, 100, true);
+				}
+			}
+			thumbs.on("click", ".owl-item", function(e) {
+				e.preventDefault();
+				var number = $(this).index();
+				bigimage.data("owl.carousel").to(number, 300, true);
+			});
+		});
+
+	</script>
+	<script type="text/javascript"><!--
+	$('#button-cart').on('click', function() {
+		$("#input-quantity").val($("#qty").val());
+
+		//alert($("#input-quantity").val());
+
+		$.ajax({
+			url: 'index.php?route=checkout/cart/add',
+			type: 'post',
+			data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+			dataType: 'json',
+			beforeSend: function() {
+				$('#button-cart').button('loading');
+			},
+			complete: function() {
+				$('#button-cart').button('reset');
+			},
+			success: function(json) {
+				$('.alert-dismissible, .text-danger').remove();
+				$('.form-group').removeClass('has-error');
+
+				if (json['error']) {
+					if (json['error']['option']) {
+						for (i in json['error']['option']) {
+							var element = $('#input-option' + i.replace('_', '-'));
+
+							if (element.parent().hasClass('input-group')) {
+								element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+							} else {
+								element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+							}
+						}
+					}
+
+					if (json['error']['recurring']) {
+						$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+					}
+
+					// Highlight any found errors
+					$('.text-danger').parent().addClass('has-error');
+				}
+
+				if (json['success']) {
+					$('.breadcrumb').after('<div class="alert alert-success alert-dismissible">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+					//$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+
+					$(".numbercart").html(json['total']);
+
+					$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+					$('#cart > ul').load('index.php?route=common/cart/info ul li');
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+	//--></script>
+{{ footer }}

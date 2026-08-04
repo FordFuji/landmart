@@ -1,0 +1,17 @@
+คูปอง Landmart
+1. ถ้าใส่รหัสถูก
+	1.1 ลดเป็นบาท
+	1.2 ลดเป็น Percent
+	1.3 ฟรีค่าขนส่ง
+2. เอาโค้ดคูปอง มาเป็น Session
+3. เอาราคาที่ลด มาเป็น Session
+4. ถ้าเป็นขนส่งฟรี ให้เอามาทำ Session
+
+* ถ้าใส่ไม่ถูก ให้ลบ Session ข้อ 2, 3, 4
+
+bSpanSubTotal
+spanClassReceiveMe
+spanClassDiscount
+spanClassTotal
+
+มีตรงติ๊กเลือก รับสินค้าที่แลนด์มาร์ท ยังรวนอยู่

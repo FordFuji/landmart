@@ -1,0 +1,321 @@
+{{ header }}
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
+							<!--	BANNER-PC			-->
+							<div class="bannertop owl-carousel owl-theme">
+								<div class="item">
+									<a href="#"><img src="asset/images/News_head-01-01-01.jpg" class="img-fluid" alt=""></a>
+								</div>
+							
+							</div>
+						</div>
+						<!--	BANNER-MOBILE			-->
+						<div class="d-block d-sm-block d-md-block d-lg-none d-xl-none">
+							<div class="bannertop owl-carousel owl-theme">
+								<div class="item">
+									<a href="#"><img src="asset/images/News_head-01-01-01.jpg" class="img-fluid" alt=""></a>
+								</div>
+							
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="wrapper_pad">
+			<div class="row mt-3">
+				<div class="col">
+					<div class="title_img ">
+						<img src="asset/images/title_banner.png" class="img-fluid" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="row mt-3">
+				<div class="col">
+					<div class="datenews">
+						2 ธ.ค. 2563 08:30 น.
+					</div>
+				</div>
+			</div>
+			<div class="row padcol mt-3">
+				<div class="col-6 col-md-6 col-lg-3">
+					<div class="addon_banner">
+						<a href="#"><img src="asset/images/newd/promotion1.png" class="img-fluid" alt=""></a>
+					</div>
+				</div>
+				<div class="col-6 col-md-6 col-lg-3">
+					<div class="addon_banner">
+						<a href="#"><img src="asset/images/newd/promotion2.png" class="img-fluid" alt=""></a>
+					</div>
+				</div>
+				<div class="col-6 col-md-6 col-lg-3">
+					<div class="addon_banner">
+						<a href="#"><img src="asset/images/newd/promotion3.png" class="img-fluid" alt=""></a>
+					</div>
+				</div>
+				<div class="col-6 col-md-6 col-lg-3">
+					<div class="addon_banner">
+						<a href="#"><img src="asset/images/newd/promotion4.png" class="img-fluid" alt=""></a>
+					</div>
+				</div>
+
+			</div>
+			<div class="row padcol mt-3">
+				<div class="col-lg-6">
+					<a href="#"><img src="asset/images/newd/promotion5.png" class="img-fluid" alt=""></a>
+				</div>
+				<div class="col-lg-6">
+					<div class="addon_banner">
+						<a href="#"><img src="asset/images/newd/promotion6.png" class="img-fluid" alt=""></a>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-3 mb-3">
+				<div class="col">
+					<div class="morenews"><a href="#" class="btn btn_gray">ดูทั้งหมด</a></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="title_new_icon"><img src="asset/images/news_icon.png" alt=""> ข่าววันนี้</div>
+				</div>
+			</div>
+			<div class="row mt-3">
+{% for news in news1 %}
+				<div class="col-md-6">
+					<div class="row no-gutters">
+						<div class="col-md-6">
+							<div class="newspic">
+								<a href="index.php?route=common/news/news_inside&news_id={{ news.news_id }}"><img src="image/{{ news.news_image }}" class="img-fluid" alt=""></a>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="bggray_news">
+								<div class="title_c_news">
+									{{ news.news_topic }}
+								</div>
+								<div class="content_news_sm">
+									{{ news.news_description }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+{% endfor %}
+{#
+				<div class="col-md-6">
+					<div class="row no-gutters">
+						<div class="col-md-6">
+							<div class="newspic">
+								<img src="asset/images/news_pic_21.png" class="img-fluid" alt="">
+							</div>
+
+						</div>
+						<div class="col-md-6">
+							<div class="bggray_news">
+								<div class="title_c_news">
+									เปิดตัวใหม่สับหญ้าเร็วกว่าเดิม <br>
+									เพิมเติมคือของใหม่นี้แหละ
+								</div>
+								<div class="content_news_sm">
+									เกษตรกรมีเฮ! “เครื่องสับ 4 ฟัน” รุ่นใหม่
+									สุดยอดนวัฒกรรมการสับหญ้า ย่อยวัชพืช
+									สนุกการทำฟาร์มคุณภาพได้ดั่งใจ เครื่องมือ
+									ใหม่ที่มาแบ่งเบาภาระของเกษตรกร
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+#}
+			</div>
+			<div class="row mt-3">
+				<div class="col">
+{% for news in news2 %}
+					<div class="each_product">
+						<a href="index.php?route=common/news/news_inside&news_id={{ news.news_id }}" class="news_pcc">
+							<img src="image/{{ news.news_image }}" alt="" class="img-fluid">
+						</a>
+						<div class="content_news_sm">
+							{{ news.news_topic }}
+						</div>
+					</div>
+{% endfor %}
+					{# <div class="each_product">
+						<a href="#" class="news_pcc">
+							<img src="asset/images/news_pic_21.png" alt="" class="img-fluid">
+						</a>
+						<div class="content_news_sm">
+							นวัตกรรมใหม่ที่เกษตรกรห้ามพลาดที่จะทำ
+							ให้การสีข้าวเป็นเรื่องง่าย ...
+						</div>
+					</div>
+					<div class="each_product">
+						<a href="#" class="news_pcc">
+							<img src="asset/images/news_pic_21.png" alt="" class="img-fluid">
+						</a>
+						<div class="content_news_sm">
+							นวัตกรรมใหม่ที่เกษตรกรห้ามพลาดที่จะทำ
+							ให้การสีข้าวเป็นเรื่องง่าย ...
+						</div>
+					</div>
+					<div class="each_product">
+						<a href="#" class="news_pcc">
+							<img src="asset/images/news_pic_21.png" alt="" class="img-fluid">
+						</a>
+						<div class="content_news_sm">
+							นวัตกรรมใหม่ที่เกษตรกรห้ามพลาดที่จะทำ
+							ให้การสีข้าวเป็นเรื่องง่าย ...
+						</div>
+					</div>
+					<div class="each_product">
+						<a href="#" class="news_pcc">
+							<img src="asset/images/news_pic_21.png" alt="" class="img-fluid">
+						</a>
+						<div class="content_news_sm">
+							นวัตกรรมใหม่ที่เกษตรกรห้ามพลาดที่จะทำ
+							ให้การสีข้าวเป็นเรื่องง่าย ...
+						</div>
+					</div>
+					#}
+				</div>
+			</div>
+			<div class="row mt-3 mb-3">
+				<div class="col">
+					<div class="morenews"><a href="#" class="btn btn_gray">ดูทั้งหมด</a></div>
+				</div>
+			</div>
+
+			<div class="row mt-3">
+				<div class="col">
+					<div class="title_new_icon"><img src="asset/images/news_icon.png" alt=""> วีดีโอ</div>
+				</div>
+			</div>
+		</div>
+		<div class="bgdarkgray mt-3">
+			<div class="wrapper_pad">
+				<div class="row mt-3">
+{% if vdo_news %}
+	{% for vn in vdo_news %}
+					<div class="col-md-4">
+
+						<div class="crop_vid">
+							<iframe width="100%" height="315" src="{{ vn.vdo_news_embed_youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+					</div>
+	{% endfor %}
+{% endif %}
+					{# <div class="col-md-4">
+{% if news3 %}
+						<div class="crop_vid">
+							<iframe width="100%" height="315" src="{{ news3.news_embed_video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
+{% endif %}
+					</div>
+					<div class="col-md-8">
+{% for news in news4 %}
+						<div class="each_vid">
+							<div class="crop_vid">
+							<iframe width="100%" height="315" src="{{ news4.news_embed_video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+						</div>
+{% endfor %} #}
+						{#
+						<div class="each_vid">
+							<div class="crop_vid">
+													<iframe width="100%" height="315" src="https://www.youtube.com/embed/33gfCopJ50Q?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+							</div>
+						</div>
+						<div class="each_vid">
+							<div class="crop_vid">
+														<iframe width="100%" height="315" src="https://www.youtube.com/embed/33gfCopJ50Q?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+							</div>
+						</div>
+						<div class="each_vid">
+							<div class="crop_vid">
+														<iframe width="100%" height="315" src="https://www.youtube.com/embed/33gfCopJ50Q?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+							</div>
+						</div>
+						<div class="each_vid">
+							<div class="crop_vid">
+								<a data-fancybox href="https://youtu.be/uafszetm4Vs">
+								<img src="asset/images/news_pic_21.png" class="img-fluid" alt="">
+								<span class="playbtn_vid"><i class="fas fa-play-circle"></i></span>
+							</a>
+							</div>
+						</div>
+						<div class="each_vid">
+							<div class="crop_vid">
+								<a data-fancybox href="https://youtu.be/uafszetm4Vs">
+								<img src="asset/images/news_pic_21.png" class="img-fluid" alt="">
+								<span class="playbtn_vid"><i class="fas fa-play-circle"></i></span>
+							</a>
+							</div>
+						</div>
+						#}
+					</div>
+				</div>
+				<div class="row mt-3 mb-3">
+					<div class="col">
+						<div class="morenews"><a href="#" class="btn btn_bordergray">ดูทั้งหมด</a></div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+
+
+
+			$('.bannertop').owlCarousel({
+				margin: 20,
+				loop: true,
+				item: 1,
+				autoplay: false,
+				autoplayTimeout: 4000,
+				autoplayHoverPause: false,
+				smartSpeed: 2000,
+				dots: true,
+				responsive: {
+					0: {
+						items: 1,
+						slideBy: 1,
+						margin: 10,
+						nav: false,
+
+					},
+					600: {
+						items: 1,
+						slideBy: 1,
+						nav: false,
+
+					},
+					1024: {
+						items: 1,
+						slideBy: 1
+					},
+					1200: {
+						items: 1,
+						slideBy: 1
+					}
+				}
+			})
+
+		});
+
+	</script>
+{{ footer }}

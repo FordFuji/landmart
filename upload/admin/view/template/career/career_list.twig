@@ -1,0 +1,157 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right"><a href="index.php?route=career/career/addCategory&user_token={{user_token}}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        <button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-filter_category').submit() : false;"><i class="fa fa-trash-o"></i></button>
+      </div>
+      <h1>สมัครงาน</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    {% if success %}
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-list"></i> สมัครงาน</h3>
+      </div>
+      <div class="panel-body">
+        <form action="index.php?route=career/career/deleteCategory&user_token={{ user_token }}" method="post" enctype="multipart/form-data" id="form-filter_category">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <td style="width: 1px;" class="text-center"><input type="checkbox" id="delete_all_category" onclick="deleteAllCategory();" /></td>
+                  <td class="text-left">หมวดหมู่</td>
+                  <td class="text-right">ดำเนินการ</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% if categoryCareerCtrl %}
+                {% for r in categoryCareerCtrl %}
+                <tr>
+                  <td class="text-center"><input type="checkbox" name="delete_item_category[]" class="delete_item_category" value="{{ r.career_category_id }}">
+                  <td class="text-left">{{ r.career_category_name }}</td>
+                  <td class="text-right"><a href="index.php?route=career/career/editCategory&id={{ r.career_category_id }}&user_token={{ user_token }}" data-toggle="tooltip" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                  <td class="text-center" colspan="3">{{ text_no_results }}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="row" style="margin-bottom: 10px; margin-right: 10px;">
+          <div class="pull-right"><a href="index.php?route=career/career/add&user_token={{user_token}}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+          <button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-filter').submit() : false;"><i class="fa fa-trash-o"></i></button>
+        </div> 
+        </div>
+        <form action="index.php?route=career/career/delete&user_token={{ user_token }}" method="post" enctype="multipart/form-data" id="form-filter">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <td style="width: 1px;" class="text-center"><input type="checkbox" id="delete_all" onclick="deleteAll();" /></td>
+                  <td class="text-left">หมวดหมู่</td>
+                  <td class="text-center">ตำแหน่ง</td>
+                  <td class="text-left">จำนวน</td>
+                  <td class="text-right">ดำเนินการ</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% if careerCtrl %}
+                {% for rows in careerCtrl %}
+                <tr>
+                  <td class="text-center"><input type="checkbox" name="delete_item[]" class="delete_item" value="{{ rows.career_id }}">
+                  <td class="text-left">{{ rows.career_category_name }}</td>
+                  <td class="text-center">{{ rows.career_name }}</td>
+                  <td class="text-left">{{ rows.career_amount }}</td>
+                  <td class="text-right"><a href="index.php?route=career/career/edit&id={{ rows.career_id }}&user_token={{ user_token }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                  <td class="text-center" colspan="5">{{ text_no_results }}</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </form>
+        <div class="table-responsive">
+          <h3>Application Form</h3>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td style="width: 1px;" class="text-center">ลำดับ</td>
+                <td class="text-left">ชื่อ</td>
+                <td class="text-center">นามสกุล</td>
+                <td class="text-left">อีเมล์</td>
+                <td class="text-right">เบอร์โทรศัพท์</td>
+                <td class="text-right">รายละเอียด</td>
+                <td class="text-right">Resume</td>
+                <td class="text-right">วันเวลาที่ทำการสมัคร</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% if formApplication %}
+              {% set i = 0 %}
+              {% for r in formApplication %}
+                {% set i = i + 1 %}
+              <tr>
+                <td class="text-center">{{ i }}</td>
+                <td class="text-left">{{ r.application_name }}</td>
+                <td class="text-center">{{ r.application_surname }}</td>
+                <td class="text-left">{{ r.application_email }}</td>
+                <td class="text-right">{{ r.application_tel }}</td>
+                <td class="text-right">{{ r.application_detail }}</td>
+                <td class="text-right"><a href="../{{ r.application_file_resume }}" target="_blank">Resume</a></td>
+                <td class="text-right">{{ r.application_datetime_create }}</td>
+              </tr>
+              {% endfor %}
+              {% else %}
+              <tr>
+                <td class="text-center" colspan="5">{{ text_no_results }}</td>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function deleteAllCategory() {
+  if($("#delete_all_category").is(":checked") == true) {
+    $('.delete_item_category').prop('checked', true);
+  } else {
+    $('.delete_item_category').prop('checked', false);
+  }
+}
+
+function deleteAll() {
+  if($("#delete_all").is(":checked") == true) {
+    $('.delete_item').prop('checked', true);
+  } else {
+    $('.delete_item').prop('checked', false);
+  }
+}
+</script>
+{{ footer }}

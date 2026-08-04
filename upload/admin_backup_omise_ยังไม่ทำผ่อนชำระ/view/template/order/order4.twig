@@ -1,0 +1,438 @@
+{{ header }}
+
+{{ column_left }}
+<style>
+    .order_status li:nth-child(5) {
+        border: 2px solid lightgray;
+    }
+
+    .order_status li:nth-child(5) a {
+        color: blue;
+    }
+</style>
+
+    <div class="container" style="overflow: auto; padding-left: 200px;">
+        <div class="row">
+            <div class="col">
+                <div class="title_order">
+                    <h1>คำสั่งซื้อ</h1>
+                    <span>รายละเอียดทั่วไปของคำสั่งซื้อ</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ status }}
+            </div>
+        </div>
+        <div class="row no-gutters mt-3">
+            <div class="col-md-3">
+                <div class="select_print">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            พิมพ์ฉลากสำหรับจัดส่ง
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#"> <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    พิมพ์ฉลากสำหรับจัดส่ง
+                                </label> </a>
+
+                            <div class="btn_pint_group"> <a href="#" class="btn btn-cancel">ยกเลิก</a>
+                                <a href="#" class="btn btn-print">พิมพ์</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="selectbox_status">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            สถานะ
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#" style="color: #1e91cf;"> ยกเลิกออเดอร์</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+{% for order in orderAllCtrl %}
+    {% set check = false %}
+    {% for order_product in orderCtrl %}
+        {% if order.order_id == order_product.order_id %}
+            {% set check = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% if check == true %}
+        <table class="table table_box_c table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th colspan="2">หมายเลขการสั่งซื้อ: <span class="ordernumber">{{ order.invoice_no }}</span></th>
+                    <th colspan="2">ประเภทสินค้า : 
+        {% set category_ = '' %}
+        {% set j = 0 %}
+        {% for order_product in orderCtrl %} 
+            {# {{ order.order_id ~ ' == ' ~ order_product.order_id ~ ' and ' ~ order_product.product_id ~ ' == ' ~ categoryCtrl.product_id }} <br> #}
+            {% if z == order_product.product_id %}
+            {% else %}
+                {% if order_product.product_id == categoryCtrl.product_id %}
+                    {% set z = order_product.product_id %}
+                    {% set category_ = category_ ~ categoryCtrl.name ~ ' + ' %}
+                    {% set j = j + 1 %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ category_|slice(0, -3) }}
+                    </th>
+                    <th class="text-right">ชื่อผู้ซื้อ: <span class="ordernumber" onclick="showUnShowSummaryData('{{ order.order_id }}');">{{ order.firstname }}&nbsp;{{ order.lastname }}</span></th>
+                </tr>
+                <tr style="display: none;" class="order_no_{{ order.order_id }}">
+                                <th align="left" colspan="6">รายละเอียดการสั่งซื้อสำหรับคำสั่งซื้อหมายเลข&nbsp;{{ order.invoice_no }}</th>
+                            </tr>
+                            <tr style="display: none;" class="order_no_{{ order.order_id }}" valign="top">
+                                <td align="left" valign="top" colspan="2">
+                                    <b>ข้อมูลของลูกค้า</b><hr>
+                                    วันที่:&nbsp;<b>{{ order.date_added }}</b><br>
+                                    ลูกค้า:&nbsp;{{ order.firstname }}&nbsp;{{ order.lastname }}<br>
+                                    หมายเลขโทรศัพท์:&nbsp;{{ order.telephone }}<br>
+                                    วิธีการชำระเงิน:&nbsp;{{ order.payment_method }}<br>
+                                    เลขที่ใบกำกับภาษี&nbsp;
+                                </td>
+                                <td align="left" valign="top">
+                                    <b>ข้อมูลการทำธุรกรรม</b><hr>
+        {% if order.payment_method == 'จองสินค้า 50%' %}
+                                    {{ order.payment_method2 }}: {{ order.total|number_format(2, '.', ',') }}<br>
+                                    ยอดรวม COD: {{ order.total|number_format(2, '.', ',') }}<br>
+        {% else %}
+                                    {{ order.payment_method }}: {{ order.total|number_format(2, '.', ',') }}<br>
+        {% endif %}
+                                    ค่าธรรมเนียมการจัดส่ง: +{{ order.shipping_price }}<br>
+                                    LANDMART Discount Total:&nbsp;-{{ order.discount_price }}<br>
+        {% if order.payment_method == 'จองสินค้า 50%' %}
+                                    จำนวนเงินรวมทั้งหมด:&nbsp;{% set order_total_ = order.total * 2 %} {{ order_total_|number_format(2, '.', ',') }}
+        {% else %}
+                                    จำนวนเงินรวมทั้งหมด:&nbsp;{{ order.total|number_format(2, '.', ',') }}<br>&nbsp;
+        {% endif %}
+                                </td>
+                                <td align="left" valign="top">
+                                    <b>ที่อยู่เรียกเก็บเงิน</b><hr>
+        {% if order.payment_firstname == '' %}
+            {% if order.receive_product == 'รับสินค้าตามที่อยู่ปลายทาง' %}
+                                        {{ order.shipping_firstname }}&nbsp;{{ order.shipping_lastname }}<br>
+                {% if order.shipping_company != '' %}
+                                        {{ order.shipping_company }}<br>
+                {% endif %}
+                                        {{ order.shipping_address_1 }}
+                                        {{ order.shipping_address_2 }}<br>
+                {% for tumbol_ in tumbol %}
+                    {% if tumbol_.DISTRICT_ID == order.shipping_tumbol %}
+                                        {{ tumbol_.DISTRICT_NAME }}
+                    {% endif %}
+                {% endfor %},
+                                        &nbsp;
+                {% for amphur_ in amphur %}
+                    {% if amphur_.AMPHUR_ID == order.shipping_amphur %}
+                        {{ amphur_.AMPHUR_NAME }}
+                    {% endif %}
+                {% endfor %}
+                                        <br>
+                {% for province_ in province %}
+                    {% if province_.PROVINCE_ID == order.shipping_city %}
+                        {{ province_.PROVINCE_NAME}}
+                    {% endif %}
+                {% endfor %}
+                                        <br>
+                                        {{ order.shipping_postcode }}                       
+            {% else %}
+                                        {{ order.shipping_firstname }}&nbsp;{{ order.shipping_lastname }}<br>
+                                        {{ order.shipping_address_1 }}
+                                        {{ order.shipping_address_2 }}
+            {% endif %}   
+        {% else %}
+                                        {{ order.payment_firstname }}&nbsp;{{ order.payment_lastname }}<br>
+                                        {{ order.payment_address_1 }}&nbsp;{{ order.payment_address_2 }}<br>
+            {% for tumbol_ in tumbol %}
+                {% if tumbol_.DISTRICT_ID == order.payment_tumbol %}
+                                    {{ tumbol_.DISTRICT_NAME }}
+                {% endif %}
+            {% endfor %}
+                                        ,&nbsp;
+            {% for amphur_ in amphur %}
+                {% if amphur_.AMPHUR_ID == order.payment_amphur %}
+                    {{ amphur_.AMPHUR_NAME }}
+                {% endif %}
+            {% endfor %}
+                                        <br>
+            {% for province_ in province %}
+                {% if province_.PROVINCE_ID == order.payment_city %}
+                    {{ province_.PROVINCE_NAME}}
+                {% endif %}
+            {% endfor %}
+                                        <br>
+                                        {{ order.payment_postcode }}
+        {% endif %}              
+                                        <br>&nbsp;           
+                                </td>
+                                <td align="left" colspan="2" valign="top">
+                                    <b>ที่อยู่สำหรับจัดส่ง</b><hr>
+        {% if order.receive_product == 'รับสินค้าตามที่อยู่ปลายทาง' %}
+                                    {{ order.shipping_firstname }}&nbsp;{{ order.shipping_lastname }}<br>
+            {% if order.shipping_company != '' %}
+                                    {{ order.shipping_company }}<br>
+            {% endif %}
+                                    {{ order.shipping_address_1 }}
+                                    {{ order.shipping_address_2 }}<br>
+            {% for tumbol_ in tumbol %}
+                {% if tumbol_.DISTRICT_ID == order.shipping_tumbol %}
+                                    {{ tumbol_.DISTRICT_NAME }}
+                {% endif %}
+            {% endfor %}
+                                    ,&nbsp;
+            {% for amphur_ in amphur %}
+                {% if amphur_.AMPHUR_ID == order.shipping_amphur %}
+                    {{ amphur_.AMPHUR_NAME }}
+                {% endif %}
+            {% endfor %}
+                                    <br>
+            {% for province_ in province %}
+                {% if province_.PROVINCE_ID == order.shipping_city %}
+                    {{ province_.PROVINCE_NAME}}
+                {% endif %}
+            {% endfor %}
+                                    <br> 
+                                    {{ order.shipping_postcode }}                       
+        {% else %}
+                                    {# {{ order.shipping_firstname }}&nbsp;{{ order.shipping_lastname }}<br>
+                                    {{ order.shipping_address_1 }}
+                                    {{ order.shipping_address_2 }} #}
+        {% endif %}
+                                    <br>&nbsp;
+                                </td>
+                            </tr>
+            </thead>
+            <tbody>
+                <tr class="bornone">
+                    <td> แพ็คเกจ <br> ({{ j }} รายการสินค้า)</td>
+                    <td style="min-width: 150px;">หมายเลขติดตามพัสดุ : <br> <span class="ordernumber">
+                        </span></td>
+                    <td colspan="2">ประเภทการจัดส่ง : <br> Standard</td>
+                    <td colspan="2">หมายเลขใบกำกับสินค้า (อินวอยซ์) :
+                    <br> -
+        {# {% set f = 1 %}
+        {% set invoice = '' %}
+        {% for order_product in orderCtrl %}
+             {{ 'if ' ~ order_product.order_id ~ ' = ' ~ order.order_id }}<br> 
+            {% if order_product.order_id == order.order_id %}
+                {% set invoice = invoice ~ '(' ~ f ~ ')' ~ order_product.processing_invoice ~ ', ' %}
+                {% set f = f + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% if invoice != '' %}
+            {{ invoice|slice(0, -2) }}
+        {% endif %} #}
+                    </td>
+                </tr>
+        {% set i = 0 %}
+        {% for order_product in orderCtrl %}
+            {% if order.order_id == order_product.order_id %}
+                {% set i = i + 1 %}
+                <tr>
+                    <td>{{ i }}</td>
+                    <td>
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-box-seam" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
+                                </svg> * 1 <br> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="#9f9f9f" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z" />
+                                </svg>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="../image/{{ order_product.image }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="productcontent">
+                                    <h4>{{ order_product.name }}</h4> {% if(order_product.size_color != '') %} ({{ order_product.size_color }}) {% endif %}
+                {% if order_product.product_landmart == 'Yes' %}
+                                    <span class="smtxt">LANDMART</span> <br>
+                {% endif %}
+                                    <span class="smtxtg">รุ่น {{ order_product.model }} {% if order_product.size_color %}&nbsp;{{ '(' ~ order_product.size_color ~ ')' }} {% endif %}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="text-center" style="vertical-align:middle;">
+                        <div class="bigprice">{{ order_product.datetime_cancel }}</div>
+                        <span class="lightgray">ยกเลิกคำสั่งซื้อ </span>
+                    </td>
+                    <td class="text-center" style="vertical-align:middle;">
+                        <div class="redtxt">
+                            <b> {{ order_product.cancel_reason }} </b>
+                        </div>
+                    </td>
+
+                    <td class="text-center" colspan="2" style="vertical-align:middle;">
+
+                        <b class="blacktxt">หมายเหตุ</b>
+                        <br>
+                        <span class="lightgray">
+                            {{ order_product.cancel_remark }}
+                            <br><a href="index.php?route=sale/order/deleteCancel&order_product_id={{ order_product.order_product_id }}&user_token={{ user_token }}" onclick="return confirm('Confirm Delete');">ลบ</a>
+                        </span>
+
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endfor %}
+
+<div class="paginator" align="center">
+{% for f in 1..count_page %}
+    {% if f == count_page %}
+        <a href="index.php?route=sale/order/order4&page={{ f }}&user_token={{ user_token }}">{{ f }}</a>
+    {% elseif f == page %}
+        {{ f }} |
+    {% else %}
+        <a href="index.php?route=sale/order/order4&page={{ f }}&user_token={{ user_token }}">{{ f }}</a> |  
+    {% endif %}
+{% endfor %}
+</div>
+
+        <div class="page_each_c">
+        <div class="row mt-5 mb-5">
+            <div class="col-md-6">
+                {# <span class="showpage">
+                ทั้งหมด 1 
+                </span> 
+                <select class="form-select form-control" aria-label="Default select example">
+                    <option selected>10</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select> #}
+            </div>
+            <div class="col-md-6">
+                {# <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-ite">
+                            <a class="page-link" href="#" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="14" height="14" fill="currentColor" class="bi bi-caret-left-fill"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                                </svg></a>
+                        </li>
+
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1 </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                    fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                                </svg></a>
+                        </li>
+                    </ul>
+                </nav> #}
+            </div>
+        </div>
+    </div>
+
+    <div style="display: none;" id="checkstatus_box">
+        <h2>ชื่อผู้ซื้อ : <span class="bluetxt">สิทธิพล สนองมือ</span></h2>
+
+        <div class="row no-gutters">
+            <div class="col-md-2">
+                สหกรณ์โพนยางคำ
+            </div>
+            <div class="col-md-2">
+                สกลนคร <br> เมืองสกลนคร
+            </div>
+            <div class="col-md-2">
+                48000 <br>
+                Thailand
+            </div>
+            <div class="col-md-2">
+                โทร : 0988888888
+            </div>
+        </div>
+        <br>
+        <table class="table table-invoice-fill table-bordered">
+            <thead>
+                <tr>
+                    <th>หมายเลขคำสั่งซื้อ</th>
+                    <th>สินค้า</th>
+                    <th>ผู้ให้บริการ</th>
+                    <th>หมายเลข Tracking</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>00000032</td>
+                    <td>
+                        <div class="row no-gutters">
+
+                            <div class="col-md-3">
+                                <img src="asset/images/producttest.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="productcontent">
+                                    <h4>เครื่องสีข้าว 3 ระบบ + มอเตอร์ 3 แรง (สีข้าว, บด, สับ)</h4>
+                                    <span class="smtxt">LANDMART</span> <br>
+                                    <span class="smtxtg">รุ่น LM-6N2018-9FC21</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td> Delivery by LANDMART : Business Idea <br> สามารถนำรหัสเช็คสถานะการจัดส่งได้ที่ <br> <a
+                            href="http://www.business-idea.co.th/tracking">www.business-idea.co.th/tracking</a></td>
+                    <td>CEI534324234</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="row no-gutters">
+
+                            <div class="col-md-3">
+                                <img src="asset/images/producttest.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="productcontent">
+                                    <h4>เครื่องสีข้าว 3 ระบบ + มอเตอร์ 3 แรง (สีข้าว, บด, สับ)</h4>
+                                    <span class="smtxt">LANDMART</span> <br>
+                                    <span class="smtxtg">รุ่น LM-6N2018-9FC21</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td> Delivery by LANDMART : Business Idea <br> สามารถนำรหัสเช็คสถานะการจัดส่งได้ที่ <br> <a
+                            href="http://www.business-idea.co.th/tracking">www.business-idea.co.th/tracking</a></td>
+                    <td>CEI534324234</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+<script>
+    function showUnShowSummaryData(order_id) {
+        $(".order_no_" + order_id).toggle();
+    }
+</script>
+{{ footer }}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	{{ inc_header }}
+</head>
+<style>
+	.sidemember li:nth-child(1) {
+		background-color: #f9cc48;
+		font-weight: bold;
+
+	}
+
+</style>
+
+<body>
+
+	<div class="container-fluid nopad">
+
+		<div class="row">
+			<div class="col-md-3">
+				<div class="logo_payment">
+					<a href="index.php"><img src="asset/images/payment/Payment_logo_03.png" class="img-fluid smlogo_p"></a>
+				</div>
+
+			</div>
+			<div class="col-md-9">
+				<div class="bgyellow_title text-right">
+					ต้องการสอบถามการสั่งซื้อสินค้าของคุณ <i class="fas fa-phone-alt"></i> 09-2929-4998
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="bgblack text-md-right">
+					<span class="whitetxt_sm">โปรดตรวจสอบข้อมูลการสั่งซื้อสินค้าทุกครั้ง</span>
+				</div>
+			</div>
+		</div>
+		<div class="bgbodygray">
+			<div class="wrapper_pad">
+
+				<div class="row">
+					<div class="col-md-7">
+						<div class="title_head_text">
+							บัญชีของฉัน
+						</div>
+						<div class="box_l_blue">
+							โปรดตรวจสอบข้อมูลของคุณให้ดีก่อนทำการสั่งซื้อสินค้าทุกครั้ง เพราะจะเป็นข้อมูลในการนำส่งสินค้า
+						</div>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						{{ inc_sidemember }}
+					</div>
+					<div class="col-md-9">
+						<div class="bgwhite mt-5">
+							<div class="title_head_text">
+								ข้อมูลผู้ใช้
+							</div>
+							<hr>
+							<div class="row mt-3">
+								<div class="col-md-10">
+									<div class="memberid">
+										Member ID : {{ member.customer_id }}
+									</div>
+								</div>
+								<div class="col-md-2">
+									<a href="index.php?route=member/member/member_info" class="btn edit_member">
+										แก้ไข <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+											<path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+										</svg>
+									</a>
+								</div>
+							</div>
+							<div class="row mt-1">
+								<div class="col-md-10">
+									<div class="list_address_member">
+										<li class="graytxt">ชื่อ</li>
+										<li>{% if(member.firstname != '') %}{{ member.firstname }}{% else %} -{% endif %}</li>
+										<li class="graytxt">นามสกุล</li>
+										<li>{% if(member.lastname != '') %}{{ member.lastname }}{% else %} -{% endif %}</li>
+										<li class="graytxt">อีเมล</li>
+										<li>{% if(member.email != '') %}{{ member.email }}{% else %} -{% endif %}</li>
+										<li class="graytxt">โทรศัพท์</li>
+										<li>{% if(member.telephone != '') %}{{ member.telephone }}{% else %} -{% endif %}</li>
+										<li class="graytxt">วันเกิด</li>
+										<li>{% if(member.birth_day != '') %}{{ member.birth_day }}{% else %} -{% endif %}</li>
+									</div>
+
+								</div>
+							</div>
+							<div class="title_head_text mt-3">
+								ข้อมูลจัดส่งสินค้า
+							</div>
+							<hr>
+							<div class="row mt-3">
+								<div class="col-md-10">
+									<div class="list_address_member">
+										<li class="graytxt">ที่อยู่</li>
+										<li>{% if(member.customer_address1 != '') %}{{ member.customer_address1 }}{% else %} -{% endif %}</li>
+										<li class="graytxt">เขต/ตำบล</li>
+										<li>{% if(tumbol.DISTRICT_NAME != '') %}{{ tumbol.DISTRICT_NAME }}{% else %} -{% endif %}</li>
+										<li class="graytxt">แขวง/อำเภอ</li>
+										<li>{% if(amphur.AMPHUR_NAME != '') %}{{ amphur.AMPHUR_NAME }}{% else %} -{% endif %}</li>
+										<li class="graytxt">จังหวัด</li>
+										<li>{% if(province.PROVINCE_NAME != '') %}{{ province.PROVINCE_NAME }}{% else %} -{% endif %}</li>
+										<li class="graytxt">รหัสไปรษณีย์</li>
+										<li>{% if(member.customer_postcode != '') %}{{ member.customer_postcode }}{% else %} -{% endif %}</li>
+									</div>
+
+								</div>
+								<div class="col-md-2">
+									<a href="index.php?route=member/member/member_info" class="btn edit_member">
+										แก้ไข <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+											<path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+										</svg>
+									</a>
+								</div>
+							</div>
+							<div class="title_head_text mt-3">
+								ข้อมูลใบกำกับภาษี
+							</div>
+							<hr>
+							<div class="row mt-3">
+								<div class="col-md-10">
+									<div class="list_address_member">
+										<li class="graytxt">ชื่อ</li>
+										<li>{% if(member.customer_invoice_name != '') %}{{ member.customer_invoice_name }}{% else %} -{% endif %}</li>
+										<li class="graytxt">ที่อยู่</li>
+										<li>{% if(member.customer_invoice_address1 != '') %}{{ member.customer_invoice_address1 }}{% else %} -{% endif %}</li>
+										<li class="graytxt">เขต/ตำบล</li>
+										<li>{% if(tumbol_invoice.DISTRICT_NAME != '') %}{{ tumbol_invoice.DISTRICT_NAME }}{% else %} -{% endif %}</li>
+										<li class="graytxt">แขวง/อำเภอ</li>
+										<li>{% if(amphur_invoice.AMPHUR_NAME != '') %}{{ amphur_invoice.AMPHUR_NAME }}{% else %} -{% endif %}</li>
+										<li class="graytxt">จังหวัด</li>
+										<li>{% if(province_invoice.PROVINCE_NAME != '') %}{{ province_invoice.PROVINCE_NAME }}{% else %} -{% endif %}</li>
+										<li class="graytxt">รหัสไปรษณีย์</li>
+										<li>{% if(member.customer_postcode != '') %}{{ member.customer_postcode }}{% else %} -{% endif %}</li>
+										<li style="width:100%;">
+											<div class="memberid">
+												เลขผู้เสียภาษี : {% if(member.customer_card_id != '') %}{{ member.customer_card_id }}{% else %} -{% endif %}
+											</div>
+										</li>
+									</div>
+
+
+								</div>
+								<div class="col-md-2">
+									<a href="index.php?route=member/member/member_info" class="btn edit_member">
+										แก้ไข <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+											<path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+										</svg>
+									</a>
+								</div>
+							</div>
+							<br>
+						</div>
+
+					</div>
+
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+{{ footer }}

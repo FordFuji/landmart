@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	{{ inc_header }}
+</head>
+
+<body>
+
+
+	<style>
+		.method_pay{
+			font-size: 1.2em;
+		}
+		.display-slide {
+			display: none;
+		}
+
+		.society-set li {
+			width: 22%;
+			display: inline-block;
+			background-color: #fbfbfb;
+			border-radius: 5px;
+			padding: 10px;
+			text-align: center;
+			border: 1px solid #eee;
+			margin-right: 10px;
+			font-size: 0.9em;
+			margin-bottom: 20px;
+		}
+
+		.society-set li.active a {
+			color: #4e9cd3;
+		}
+
+		.society-set li.active {
+			border-color: #4e9cd3;
+		}
+
+		.society-set a {
+			color: #54565a;
+			text-decoration: none;
+		}
+
+		.visatag {
+			position: relative;
+		}
+
+		.visacard {
+			position: absolute;
+			right: -200px;
+			top: 50px;
+		}
+
+		.pic_payment img {
+			filter: grayscale(100%);
+		}
+
+
+		.society-set>li.active>a>div>img {
+			filter: none;
+		}
+
+	</style>
+
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="logo_payment">
+					<a href="index.php"><img src="asset/images/payment/Payment_logo_03.png" class="img-fluid smlogo_p"></a>
+				</div>
+
+			</div>
+			<div class="col-md-9">
+				<div class="bgyellow_title text-right">
+					ต้องการสอบถามการสั่งซื้อสินค้าของคุณ <i class="fas fa-phone-alt"></i> 09-2929-4998
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="bgblack text-md-right">
+					<span class="whitetxt_sm">โปรดตรวจสอบข้อมูลการสั่งซื้อสินค้าทุกครั้ง</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="wrapper_pad">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="title_head_text">
+						เลือกวิธีการชำระเงิน
+					</div>
+					<div class="society-set select-display-slide">
+						<li class="active" rel="1">
+							<a href="javascript:void(0)">
+								<div class="pic_payment"><img src="asset/images/Payment_03.png"></div>
+								<div class="method_pay">บัตรเครดิต / บัตรเดบิต </div>
+							</a>
+						</li>
+						<li rel="2">
+							<a href="javascript:void(0)">
+								<div class="pic_payment"><img src="asset/images/Payment_05.png"> </div>
+								<div class="method_pay">ชำระเงินผ่านทาง 
+									เคาเตอร์เซอวิส </div>
+							</a> </li>
+						<li rel="3">
+							<a href="javascript:void(0)">
+								<div class="pic_payment"><img src="asset/images/Payment_07.png"> </div>
+								<div class="method_pay">
+									Online Banking
+								</div>
+
+							</a> </li>
+
+						<li rel="4">
+							<a href="javascript:void(0)">
+								<div class="pic_payment"><img src="asset/images/Payment_09.png"> </div>
+								<div class="method_pay">เก็บเงินปลายทาง COD</div>
+							</a> </li>
+						<li rel="5">
+							<a href="javascript:void(0)">
+								<div class="pic_payment"><img src="asset/images/Payment_16.png"> <br> 0% </div>
+								<div class="method_pay">ผ่อนชำระ </div>
+							</a> </li>
+						<li rel="6">
+							<a href="javascript:void(0)">
+								<div class="pic_payment"><img src="asset/images/Payment_18.png"> <br>50%</div>
+								<div class="method_pay">จองสินค้า </div>
+							</a> </li>
+						<li rel="7">
+							<a href="javascript:void(0)">
+								<div class="pic_payment"><img src="asset/images/Payment_19.png"> <br>50%</div>
+								<div class="method_pay">รับสินค้าที่หน้าร้าน </div>
+							</a> </li>
+
+					</div>
+					<div class="society-content mt-3">
+						<div class="display-slide" rel="1" style="display:block;">
+							<div class="row">
+								<div class="col-lg-9 col-xl-8">
+									<div class="form_address">
+										<label>ชื่อที่ปรากฏบนบัตร</label>
+										<input type="text" placeholder="กรุณาระบุชื่อที่ปรากฏบนบัตร" class="form-control">
+										<div class="visatag">
+											<label>หมายเลขบัตรเครดิต</label>
+											<input type="text" placeholder="กรุณาระบุหมายเลขบัตรเครดิต" class="form-control">
+											<span class="visacard"><img src="asset/images/cart_visa.png"></span>
+										</div>
+										<div class="row">
+											<div class="col-lg-4">
+												<label>วันหมดอายุ</label>
+												<input type="text" placeholder="MM" class="form-control">
+											</div>
+											<div class="col-lg-4">
+												<label>ชื่อที่ปรากฏบนบัตร</label>
+												<input type="text" placeholder="YYYY" class="form-control">
+											</div>
+											<div class="col-lg-4">
+												<label>CVV</label>
+												<input type="text" placeholder="000" class="form-control">
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="display-slide" rel="2"> เลือกบัญชีธนาคาร
+							<br>
+
+							<div class="row">
+								<div class="col-md-12 col-xl-6">
+									<div class="md-radio md-radio-inline radiocheck">
+										<input id="section-1" type="radio" name="accordion-group1" />
+										<label for="section-1">
+											<div>
+												<img src="asset/images/banktrans_03.png" class="imgs7"> ธนาคารกสิกรไทย
+											</div>
+
+										</label>
+
+									</div>
+								</div>
+								<div class="col-md-12 col-xl-6 ">
+									<div class="md-radio md-radio-inline radiocheck">
+										<input id="section-2" type="radio" name="accordion-group1" />
+										<label for="section-2">
+											<div>
+												<img src="asset/images/banktrans_06.png" class="imgs7"> ธนาคารไทยพาณิชย์
+											</div>
+
+										</label>
+
+									</div>
+								</div>
+								<div class="col-md-12 col-xl-6">
+									<div class="md-radio md-radio-inline radiocheck">
+										<input id="section-3" type="radio" name="accordion-group1" />
+										<label for="section-3">
+											<div>
+												<img src="asset/images/banktrans_10.png" class="imgs7"> ธนาคารกรุงไทย
+											</div>
+
+										</label>
+
+									</div>
+								</div>
+								<div class="col-md-12 col-xl-6">
+									<div class="md-radio md-radio-inline radiocheck">
+										<input id="section-4" type="radio" name="accordion-group1" />
+										<label for="section-4">
+											<div>
+												<img src="asset/images/banktrans_11.png" class="imgs7"> ธนาคารกรุงศรี
+											</div>
+
+										</label>
+
+									</div>
+								</div>
+								<div class="col-md-12 col-xl-6">
+									<div class="md-radio md-radio-inline radiocheck">
+										<input id="section-5" type="radio" name="accordion-group1" />
+										<label for="section-5">
+											<div>
+												<img src="asset/images/banktrans_14.png" class="imgs7"> ธนาคารกรุงเทพ
+											</div>
+
+										</label>
+
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+						<div class="display-slide" rel="3"> ชำระเงินผ่านทางเคาเตอร์บริการ ภายใน 48 ชั่วโมง โดยใช้หมายเลขอ้างอิง ซึ่งอาจมีค่าธรรมเนียมเพิ่มเติม
+							<br>
+							<div class="row">
+								<div class="col-md-12 col-xl-6">
+									<div class="md-radio md-radio-inline radiocheck">
+										<input id="section-6" type="radio" name="accordion-group1" />
+										<label for="section-6">
+											<div>
+												<img src="asset/images/seven.png" class="imgs7"> เคาเตอร์เซอวิส เซเว่นอีเลฟเว่น
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="display-slide" rel="4"> ท่านสามารถชำระเงินกับพนักงาน</div>
+						<div class="display-slide" rel="5"> ท่านสามารถชำระเงินกับพนักงาน</div>
+						<div class="display-slide" rel="6"> ท่านสามารถชำระเงินกับพนักงาน</div>
+						<div class="display-slide" rel="7"> ท่านสามารถชำระเงินกับพนักงาน</div>
+
+					</div>
+
+					<br>
+					เพื่อให้เรานำเสนอประสบการณ์ที่ดีและตรงใจคุณที่สุด ให้เรารู้จักคุณมากขึ้นด้วยการเช็กกล่องด้านล่างนี้
+
+					<div class="row mt-3 mb-3">
+						<div class="col-md-6">
+							<a href="payment_summary.php" class="btn btn-yellow">ชำระเงิน</a>
+						</div>
+					</div>
+
+					การคลิกปุ่มชำระเงิน ถือว่าท่านได้ยอมรับ <a href="#" class="redtxt">ข้อกำหนดเงื่อนไข</a> และ <a href="#" class="redtxt">นโยบายความเป็นส่วนตัว</a>
+
+					<br>
+
+					<img src="images/Payment_logo.png" class="img-fluid" alt="">
+				</div>
+				<div class="col-md-4">
+					<div class="title_head_text">
+						สรุปรายการสั่งซื้อ
+					</div>
+
+					<div class="summary_cart">
+						<div class="promocode">
+							<input type='text' placeholder="รหัสคูปอง / โปรโมชั่น">
+
+							<button class="icon-sub-m">
+								ใช้</button>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								ราคาสินค้าไม่รวมภาษี
+							</div>
+							<div class="col-md-6 text-md-right">
+								<b>฿8,490</b>
+							</div>
+							<div class="col-md-6">
+								ค่าขนส่งและส่งพิเศษไม่รวมภาษี
+							</div>
+							<div class="col-md-6 text-md-right">
+								<b>฿800</b>
+							</div>
+							<div class="col-md-6">
+								ภาษีมูลค่าเพิ่ม
+							</div>
+							<div class="col-md-6 text-md-right">
+								<b>ฟรี</b>
+							</div>
+						</div>
+						<hr style="margin-top: 10px;
+    margin-bottom: 10px;">
+
+						<div class="row">
+							<div class="col-md-6">
+								<b>ผลรวมทั้งสิ้น</b>
+							</div>
+							<div class="col-md-6 text-md-right">
+								<b><span class="redtxt">฿9,290</span></b>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".select-display-slide > li").click(function() {
+				var rel = $(this).attr("rel");
+				console.log(rel);
+				$('.display-slide').hide();
+				$('.display-slide[rel=' + rel + ']').fadeIn();
+				$(".select-display-slide > li").removeClass("active");
+				$(this).addClass("active");
+			});
+		});
+
+	</script>
+{{ footer }}

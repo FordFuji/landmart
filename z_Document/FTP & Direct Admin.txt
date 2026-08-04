@@ -1,0 +1,45 @@
+รีเซ็ทรหัสผ่านโฮสติ้งเรียบร้อยแล้ว โดยข้อมูลการใช้งานใหม่ดังนี้ครับ
+
+Username: landmartco
+Password: Vqg!UkJQyRnFK4R
+
+หน้าเว็บแสดงผล
+มีโดเมนแล้ว http://www.landmart.co.th/ [1]
+
+ข้อมูล FTP
+Host ns213.pathosting.com   หรือ   ftp.landmart.co.th [1]
+Username landmartco
+Password Vqg!UkJQyRnFK4R
+Port 21
+
+Control Panel (DirectAdmin) (เข้าทางใดก็ได้)
+(พอร์ท 2222) ผ่านไอพี http://ns213.pathosting.com:2222/
+ผ่านโดเมนเนม http://www.landmart.co.th:2222/ [1]
+FAQ: ทำไมเข้า DirectAdmin แล้วขึ้นหน้าเตือนเรื่องความปลอดภัย?
+[1] เฉพาะกรณีที่มีโดเมน และตั้ง Name Servers มาที่โฮสติ้งแล้ว
+
+Name Servers
+NS1: ns213.pathosting.com
+NS2: ns214.pathosting.com
+Host IP: 111.223.52.28
+
+หน้าเว็บเมล
+ผ่านไอพี http://111.223.52.28/roundcube/
+ผ่านโดเมนเนม http://www.landmart.co.th/roundcube/ [1]
+
+รายละเอียดโฮสติ้ง
+เริ่มใช้งาน 25 พ.ค. 2561
+หมดอายุ 25 พ.ค. 2566
+แพ็คเกจ Plan1500
+พื้นที่ใช้ 3 GB
+แบนด์วิดท์[3] 80 GB/เดือน
+
+คู่มือการใช้งานโฮสติ้ง
+• วิธีอัพโหลดเว็บไซต์ (ด้วยโปรแกรม FileZilla)
+• วิธีใช้งานฐานข้อมูล
+• วิธีสร้างบัญชีผู้ใช้งานอีเมล
+• การใช้งานอีเมลผ่าน Outlook
+• วิธีเปลี่ยนรหัสผ่าน
+• คู่มือการใช้งานทั้งหมด
+
+ขอบคุณที่ใช้บริการครับ

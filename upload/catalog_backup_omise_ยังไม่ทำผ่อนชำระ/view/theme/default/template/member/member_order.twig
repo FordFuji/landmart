@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	{{ inc_header }}
+</head>
+<style>
+	.sidemember li:nth-child(4) {
+		background-color: #f9cc48;
+		font-weight: bold;
+
+	}
+
+	.bot_tell{
+		position: relative;
+	}
+	.product_name{
+		padding-top: 0px;
+	}
+</style>
+
+<body>
+
+	<div class="container-fluid nopad">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="logo_payment">
+					<a href="index.php"><img src="asset/images/payment/Payment_logo_03.png" class="img-fluid smlogo_p"></a>
+				</div>
+
+			</div>
+			<div class="col-md-9">
+				<div class="bgyellow_title text-right">
+					ต้องการสอบถามการสั่งซื้อสินค้าของคุณ <i class="fas fa-phone-alt"></i> 09-2929-4998
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="bgblack text-md-right">
+					<span class="whitetxt_sm">โปรดตรวจสอบข้อมูลการสั่งซื้อสินค้าทุกครั้ง</span>
+				</div>
+			</div>
+		</div>
+		<div class="bgbodygray">
+			<div class="wrapper_pad">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="title_head_text">
+							บัญชีของฉัน
+						</div>
+						<div class="box_l_blue">
+							โปรดตรวจสอบข้อมูลของคุณให้ดีก่อนทำการสั่งซื้อสินค้าทุกครั้ง เพราะจะเป็นข้อมูลในการนำส่งสินค้า
+						</div>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						{{ inc_sidemember }}
+					</div>
+					<div class="col-md-9">
+						<div class="bgwhite mt-5">
+							<div class="title_head_text">
+								ประวัติการสั่งซื้อสินค้า
+							</div>
+							<hr>
+{% for r1 in memberOrderResultCtrl %}
+	{% set i = 0 %}
+	{% for r2 in orderProductCtrl %}
+		{% if r1.order_id == r2.order_id %}
+			{% if r1.order_id == r2.order_id %}
+				{% set i = i + 1 %}
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+							<div class="row">
+								<div class="col-md-10">
+
+									<div class="cart_smallbox  mt-3">
+										<div class="row">
+											<div class="col-md-6">
+												1 จาก {{ i }} จำหน่ายโดย LANDMART <!-- จัดส่งโดย Business idea -->
+											</div>
+											<div class="col-md-6 text-md-right">
+												<!-- จัดส่งสินค้า ภายในวันที่ 16 - 18 ธ.ค. 63 -->
+											</div>
+										</div>
+									</div>
+									<br>
+									<hr>
+									<a data-fancybox data-src="#orderdetails" href="javascript:;" class="details_style" data-width="980" data-height="800">
+										<div class="summary_cart mb-4">
+	{% for r2 in orderProductCtrl %}
+		{% if r1.order_id == r2.order_id %}
+											<div class="row">
+												<div class="col-md-7">
+													<div class="product_name">
+														<h3>{{ r2.name }}</h3>
+														<span class="lightgray">
+															รหัสสินค้า {{ r2.model }}
+														</span>
+														<span class="bot_tell">
+															*งดร่วมรายการส่วนลดอื่นๆ
+														</span>
+													</div>
+												</div>
+												<div class="col-md-1">
+													<div class="product_name">
+														{{ r2.quantity }}
+													</div>
+												</div>
+												<div class="col-md-4 text-right">
+													<div class="product_name">
+														<b> ฿{{ r2.price|number_format(2, '.', ',') }} <br>
+															<!-- (฿9,290 รวมค่าจัดส่ง) --></b>
+													</div>
+												</div>
+											</div>
+		{% endif %}
+	{% endfor %}
+										</div>
+									</a>
+								
+
+									<div style="display: none;" id="orderdetails">
+										<h4>รายการสั่งซื้อ เลขที่ {{ r1.order_id }}</h4> <br>
+	{% for r2 in orderProductCtrl %}
+		{% if r1.order_id == r2.order_id %}
+										<div class="summary_cart mb-4">
+											<div class="row">
+												<div class="col-md-2">
+													<img src="image/{{ r2.image }}" class="img-fluid" alt="">
+												</div>
+												<div class="col-md-8">
+													<div class="product_name">
+														<h3>{{ r2.name }}</h3>
+														<span class="lightgray">
+															รหัสสินค้า {{ r2.model }}
+														</span>
+
+													</div>
+												</div>
+												<div class="col-md-2">
+													<div class="product_name">
+														{{ r2.quantity }}
+													</div>
+												</div>
+											</div>
+										</div>
+		{% endif %}
+	{% endfor %}
+										<!-- <div class="summary_cart mb-4">
+											<div class="row">
+												<div class="col-md-2">
+													<img src="asset/images/newd/product_test.png" class="img-fluid" alt="">
+												</div>
+												<div class="col-md-8">
+													<div class="product_name">
+														<h3>เครื่องสีข้าว 1 ระบบ เครื่องยนต์เบนซิน 7.5 แรงม้า</h3>
+														<span class="lightgray">
+															รหัสสินค้า LM-6N2018
+														</span>
+
+													</div>
+												</div>
+												<div class="col-md-2">
+													<div class="product_name">
+														1
+													</div>
+												</div>
+
+											</div>
+
+										</div> -->
+	{% set sub_total = r1.total - r1.shipping_price %}
+										<div class="row">
+											<div class="col">
+												<table class="table sumtable">
+													<tr>
+														<td>ราคา</td>
+														<td class="text-right"> ฿{{ sub_total|number_format(2, '.', ',') }}</td>
+													</tr>
+													<tr>
+														<td>รวมทั้งหมด</td>
+														<td class="text-right">(฿{{ r1.total|number_format(2, '.', ',') }} รวมค่าจัดส่ง)</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<h4>ที่อยู่จัดส่ง</h4>
+												<div class="list_address_member">
+													<li class="graytxt">ชื่อ</li>
+													<li>{{ r1.shipping_firstname }}</li>
+													<li class="graytxt">นามสกุล</li>
+													<li>{{ r1.shipping_lastname }}</li>
+													<li class="graytxt">อีเมล</li>
+													<li>{{ r1.email }}</li>
+													<li class="graytxt">โทรศัพท์</li>
+													<li>{{ r1.telephone }}</li>
+													<li class="graytxt">ที่อยู่</li>
+													<li>{{ r1.shipping_address_1 }} {{ r2.shipping_address_2 }}</li>
+													<li class="graytxt">เขต/ตำบล</li>
+													<li>
+{% for tumbol in tumbols %}	
+	{% if r1.payment_tumbol == tumbol.DISTRICT_ID %}
+		{{ tumbol.DISTRICT_NAME }}
+	{% endif %}						
+{% endfor %}
+													</li>
+													<li class="graytxt">แขวง/อำเภอ</li>
+													<li>
+{% for amphur in amphurs %}	
+	{% if r1.payment_amphur == amphur.AMPHUR_ID %}
+		{{ amphur.AMPHUR_NAME }}
+	{% endif %}						
+{% endfor %}													
+													</li>
+													<li class="graytxt">จังหวัด</li>
+													<li>
+{% for province in provinces %}	
+	{% if r1.payment_city == province.PROVINCE_ID %}
+		{{ province.PROVINCE_NAME }}
+	{% endif %}						
+{% endfor %}					
+													</li>
+													<li class="graytxt">รหัสไปรษณีย์</li>
+													<li>{{ r1.shipping_postcode }}</li>
+												</div>
+											</div>
+												<div class="col-md-6">
+													<h4>ข้อมูลใบกำกับภาษี </h4>
+													<div class="list_address_member">
+														<li class="graytxt">ชื่อ</li>
+														<li>{{ r1.payment_firstname }}</li>
+														<li class="graytxt">อีเมล</li>
+														<li>{{ r1.email }}</li>
+														<li class="graytxt">โทรศัพท์</li>
+														<li>{{ r1.telephone }}</li>
+														<!-- <li class="graytxt">วันเกิด</li>
+														<li>14/2/2534</li> -->
+														<li class="graytxt">ที่อยู่</li>
+														<li>{{ r1.payment_address_1 }}</li>
+														<li class="graytxt">เขต/ตำบล</li>
+														<li>
+{% for tumbol in tumbols %}	
+	{% if r1.shipping_tumbol == tumbol.DISTRICT_ID %}
+		{{ tumbol.DISTRICT_NAME }}
+	{% endif %}						
+{% endfor %}														
+														</li>
+														<li class="graytxt">แขวง/อำเภอ</li>
+														<li>
+{% for amphur in amphurs %}	
+	{% if r1.shipping_amphur == amphur.AMPHUR_ID %}
+		{{ amphur.AMPHUR_NAME }}
+	{% endif %}						
+{% endfor %}														
+														</li>
+														<li class="graytxt">จังหวัด</li>
+														<li>
+{% for province in provinces %}	
+	{% if r1.shipping_city == province.PROVINCE_ID %}
+		{{ province.PROVINCE_NAME }}
+	{% endif %}						
+{% endfor %}
+														</li>
+														<li class="graytxt">รหัสไปรษณีย์</li>
+														<li>{{ r1.shipping_postcode }}</li>
+														<li class="graytxt">เลขผู้เสียภาษี</li>
+														<li>{{ r1.card_id }}</li>
+
+													</div>
+												</div>
+										</div>
+										<br><br>
+										<center><a href="#" class="btn  btn-yellow-width"> พิมพ์รายการ</a></center>		
+									</div>
+
+								</div>
+							</div>
+{% endfor %}
+							<!-- <div class="row">
+								<div class="col-md-10">
+									<div class="cart_smallbox  mt-3">
+										<div class="row">
+											<div class="col-md-6">
+												1 จาก 1 จำหน่ายโดย LANDMART จัดส่งโดย Business idea
+											</div>
+											<div class="col-md-6 text-md-right">
+												จัดส่งสินค้า ภายในวันที่ 16 - 18 ธ.ค. 63
+											</div>
+										</div>
+									</div>
+									<br>
+									<hr>
+									<a data-fancybox data-src="#orderdetails" href="javascript:;" class="details_style" data-width="980" data-height="800">
+									<div class="summary_cart mb-4">
+										<div class="row">
+											
+											<div class="col-md-7">
+												<div class="product_name">
+													<h3>เครื่องสีข้าว 1 ระบบ เครื่องยนต์เบนซิน 7.5 แรงม้า</h3>
+													<span class="lightgray">
+														รหัสสินค้า LM-6N2018
+													</span>
+													<span class="bot_tell">
+														*งดร่มรายการส่วนลดอื่นๆ
+													</span>
+												</div>
+											</div>
+											<div class="col-md-1">
+												<div class="product_name">
+													1
+												</div>
+											</div>
+											<div class="col-md-4 text-right">
+												<div class="product_name">
+													<b> ฿8,490 <br>
+														(฿9,290 รวมค่าจัดส่ง)</b>
+												</div>
+											</div>
+										</div>
+									</div>
+									</a>
+
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-10">
+									<div class="cart_smallbox  mt-3">
+										<div class="row">
+											<div class="col-md-6">
+												1 จาก 1 จำหน่ายโดย LANDMART จัดส่งโดย Business idea
+											</div>
+											<div class="col-md-6 text-md-right">
+												จัดส่งสินค้า ภายในวันที่ 16 - 18 ธ.ค. 63
+											</div>
+										</div>
+									</div>
+									<br>
+									<hr>
+									<a data-fancybox data-src="#orderdetails" href="javascript:;" class="details_style" data-width="980" data-height="800">
+									<div class="summary_cart mb-4">
+										<div class="row">
+											
+											<div class="col-md-7">
+												<div class="product_name">
+													<h3>เครื่องสีข้าว 1 ระบบ เครื่องยนต์เบนซิน 7.5 แรงม้า</h3>
+													<span class="lightgray">
+														รหัสสินค้า LM-6N2018
+													</span>
+													<span class="bot_tell">
+														*งดร่มรายการส่วนลดอื่นๆ
+													</span>
+												</div>
+											</div>
+											<div class="col-md-1">
+												<div class="product_name">
+													1
+												</div>
+											</div>
+											<div class="col-md-4 text-right">
+												<div class="product_name">
+													<b> ฿8,490 <br>
+														(฿9,290 รวมค่าจัดส่ง)</b>
+												</div>
+											</div>
+										</div>
+									</div>
+									</a>
+								</div>
+							</div> -->
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+{{ footer }}

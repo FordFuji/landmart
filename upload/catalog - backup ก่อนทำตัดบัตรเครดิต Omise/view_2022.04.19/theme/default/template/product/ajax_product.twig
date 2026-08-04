@@ -1,0 +1,383 @@
+	{% for product in products %}
+		{% set i = 0 %}
+								<div class="slide-item each_product">
+									<div class="product_cropbox">
+										<div class="grad_product">
+											<a href="index.php?route=product/product&path={{ product.category_id }}&product_id={{ product.product_id }}">
+												<img src="{{ product.thumb }}" class="img-fluid" alt="">
+											</a>
+		{% if product.discount_percent != 0 %}
+											<span class="savetag_new">
+												SAVE
+											</span>
+											<div class="ribbon">
+												{{ product.discount_percent|round }}%
+											</div>
+		{% endif %}
+										</div>
+
+										<div class="product_box_details">
+		{% if product.product_landmart == 'Yes' %}
+											<span class="brand_small">
+												LANDMART
+											</span>
+		{% endif %}
+											<h4>{{ product.name }}</h4>
+											<span class="wishlist_new">
+												<a href="#"><img src="asset/images/g2494_06.png"></a>
+											</span>
+											<div class="row">
+												<div class="col">
+													<span class="code_product">
+														{{ product.model }}
+													</span>
+												</div>
+											</div>
+
+		{% if product.special == 0 %}
+												<div class="price_discount">
+													฿ {{ product.price }}
+												</div>
+		{% else %}
+												<div class="price_original">
+													฿ {{ product.price }}
+												</div>
+												<div class="price_discount">
+													฿ {{ product.special }}
+												</div>
+		{% endif %}
+
+
+											<!-- <div class="addselect">
+												<a href="#" class="btn btn-cart-select">แสดงตัวเลือก</a>
+											</div> -->
+											<!-- <div class="bottom_cart"> -->
+		{% for r in rows %}
+			{% if r.product_id == product.product_id %}
+				{% if r.quantity > 0 %}
+					{% if product.isSizeColor == true %}
+												<div class="addselect">
+													<a href="javascript:void(0);"
+														class="btn btn-cart-select more-select">แสดงตัวเลือก</a>
+												</div>
+					{% elseif product.isSizeColor == false %}
+												<div class="qty_sm">
+													<input type="text" class="form-control qty qty_{{ product.product_id }}" value="1">
+												</div>
+												<div class="addcart">
+													<a href="javascript:cart.add({{ product.product_id }});" class="btn btn-cart-new"><img src="asset/images/newd/icon_cart.png" alt=""> สั่งซื้อสินค้า</a>
+												</div>
+					{% endif %}
+				{% else %}
+												<div class="addselect" style="text-align: center;">
+													<b>{{ r.name }}</b>
+												</div>			
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+											<!-- </div> -->
+										</div>
+									</div>
+		{% if product.isSizeColor == true %}
+									<!-- โค้ดวิว ทำเลือกสี รุ่น -->
+									<div class="product_cropbox" style="display:none;">
+										<div class="more_chioce_box">		
+			{% set i = 0 %}
+			{% for size_color in sizeColor %}
+				{% if product.product_id == size_color.product_id %}
+					{% set i = i + 1 %}
+											<div class="display-slide" rel="{{ i }}" {% if i == 1 %}style="display:block;"{% endif %}>
+												<div class="row">
+													<div class="col-md-4 pad_right_no">
+														<img src="{{ size_color.product_option_value_image }}" class="img-fluid" alt="">
+													</div>
+													<div class="col-md-8 product_box_details">
+														{% if product.product_landmart == 'Yes' %}
+														<span class="brand_small">
+															LANDMART
+														</span>
+														{% endif %}
+														<h4>{{ product.product_name }}</h4>
+														<span class="code_product">
+															{{ product.model }}
+														</span>
+														{# {% if product.special == '0.00' %}
+															<div class="price_discount">
+																{{ product.price }}
+															</div>
+														{% else %}
+															<div class="price_original">
+																{{ product.price }}
+															</div>
+															<div class="price_discount">
+																{{ product.special }}
+															</div>
+														{% endif %} #}
+														<div class="price_discount">
+															฿&nbsp;{{ size_color.price_cal|number_format(0, '.', ',') }}
+														</div>
+													</div>
+												</div>
+											</div>
+				{% endif %}
+			{% endfor %}
+											<span class="title_select">Select more</span>
+											<div class="gallery_pic select-display-slide">
+			{% set i = 0 %}
+			{% for sc in sizeColor %}
+				{% if product.product_id == sc.product_id %}
+					{% set i = i + 1 %}
+												{# <li {% if i == 1 %} class="active" {% endif %} rel="{{ i }}">
+													<a href="javascript:void(0)" id="{{ sc.product_option_value_id }}" class="color_size_image">
+														{{ sc.name_option }}
+													</a>
+												</li> #}
+												<li rel="{{ i }}">
+													<a href="javascript:void(0)" id="{{ sc.product_option_value_id }}" class="color_size_image">
+														{{ sc.name_option }}
+													</a>
+												</li>
+				{% endif %}
+			{% endfor %}
+											</div>
+											
+											<div class="bottom_cart_more">
+												<div class="qty_sm">
+													<input type="text" class="form-control qtyMore_{{ product.product_id }}" value="1">
+												</div>
+												<div class="addcart">
+													<a href="javascript:cartMore.add({{ product.product_id }})" class="btn btn-cart-new"><svg
+															xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#000" class="bi bi-cart3" viewBox="0 0 16 16">
+														<path
+															d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+													</svg> สั่งซื้อสินค้า</a>
+												</div>
+											</div>
+										</div>
+	
+										<a href="javascript:void(0);" class="close-more-select">
+											<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#000" class="bi bi-x" viewBox="0 0 16 16">
+												<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+											</svg>
+										</a>
+									</div>
+		{% endif %}
+									<!-- End โค้ดวิว ทำเลือกสี รุ่น -->
+								</div>
+		{% set i = i + 1 %}						
+	{% endfor %}
+
+	<script>
+		$(document).ready(function () {
+			$('.bannertop').owlCarousel({
+				margin: 20,
+				loop: true,
+				item: 1,
+				autoplay: false,
+				autoplayTimeout: 4000,
+				autoplayHoverPause: false,
+				smartSpeed: 2000,
+				dots: true,
+				responsive: {
+					0: {
+						items: 1,
+						slideBy: 1,
+						margin: 10,
+						nav: false,
+
+					},
+					600: {
+						items: 1,
+						slideBy: 1,
+						nav: false,
+
+					},
+					1024: {
+						items: 1,
+						slideBy: 1
+					},
+					1200: {
+						items: 1,
+						slideBy: 1
+					}
+				}
+			})
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$(".select-display-slide > li").click(function () {
+				var rel = $(this).attr("rel");
+				console.log(rel);
+				$('.display-slide').hide();
+				$('.display-slide[rel=' + rel + ']').fadeIn();
+				$(".select-display-slide > li").removeClass("active");
+				$(this).addClass("active");
+			});
+		});
+	</script>
+	
+	<script>
+		$(document).ready(function () {
+			$(".more-select").click(function () {
+				$(this).parents('.each_product').find('.product_cropbox').eq(0).hide();
+				$(this).parents('.each_product').find('.product_cropbox').eq(1).show();
+			});
+
+			$('.close-more-select').click(function () {
+				$(this).parents('.each_product').find('.product_cropbox').eq(0).show();
+				$(this).parents('.each_product').find('.product_cropbox').eq(1).hide();
+			});
+		});
+	</script>
+
+	<script>
+	$(document).ready(function() {
+		$('.bannertop').owlCarousel({
+			margin: 20,
+			loop: true,
+			item: 1,
+			autoplay: false,
+			autoplayTimeout: 4000,
+			autoplayHoverPause: false,
+			smartSpeed: 2000,
+			dots: true,
+			responsive: {
+				0: {
+					items: 1,
+					slideBy: 1,
+					margin: 10,
+					nav: false,
+
+				},
+				600: {
+					items: 1,
+					slideBy: 1,
+					nav: false,
+
+				},
+				1024: {
+					items: 1,
+					slideBy: 1
+				},
+				1200: {
+					items: 1,
+					slideBy: 1
+				}
+			}
+		});
+
+		$(".qty").keydown(function(event) {
+			// Allow: backspace, delete, tab, escape, enter and .
+			if ( $.inArray(event.keyCode,[46,8,9,27,13,190]) !== -1 ||
+				// Allow: Ctrl+A
+				(event.keyCode == 65 && event.ctrlKey === true) || 
+				// Allow: home, end, left, right
+				(event.keyCode >= 35 && event.keyCode <= 39)) {
+					// let it happen, don't do anything
+					return;
+			}
+			else {
+				// Ensure that it is a number and stop the keypress
+				if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+					event.preventDefault(); 
+				}   
+			}
+		});
+	});
+
+	function chkNumber(ele)
+	{
+		var vchar = String.fromCharCode(event.keyCode);
+		if ((vchar<'0' || vchar>'9') && (vchar != '.')) return false;
+		ele.onKeyPress=vchar;
+	}
+
+	// Cart add remove functions
+	var cart = {
+		'add': function(product_id) {
+			$.ajax({
+				url: 'index.php?route=checkout/cart/add',
+				type: 'post',
+				data: 'product_id=' + product_id + '&quantity=' + $(".qty_" + product_id).val(),
+				dataType: 'json',
+				beforeSend: function() {
+					$('#cart > button').button('loading');
+				},
+				success: function(json) {
+					$('.alert, .text-danger').remove();
+
+					$('#cart > button').button('reset');
+
+					if (json['redirect']) {
+						location = json['redirect'];
+					}
+
+					if (json['success']) {
+						$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+						//$('#cart-total').html(json['total']);
+
+						$(".numbercart").html(json['total']);
+
+						$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+						$('#cart > ul').load('index.php?route=common/cart/info ul li');
+					}
+				}
+			});
+		},
+	};
+
+	// Add More 
+	var color_size; 
+	$(".color_size_image").click(function () {
+		//console.log($(this).attr('id'));
+		//return false;
+		color_size = $(this).attr('id');
+		console.log(color_size);	
+	});
+
+	//console.log(color_size);
+
+	// Cart add remove functions
+	var cartMore = {
+		'add': function(product_id) {
+
+			$.ajax({
+				url: 'index.php?route=checkout/cart/add',
+				type: 'post',
+				data: 'product_id=' + product_id + '&quantity=' + $(".qtyMore_" + product_id).val() + '&option=' + color_size,
+				dataType: 'json',
+				beforeSend: function() {
+					$('#cart > button').button('loading');
+				},
+				success: function(json) {
+					console.log(color_size);
+
+					$('.alert, .text-danger').remove();
+
+					$('#cart > button').button('reset');
+
+					if (json['redirect']) {
+						location = json['redirect'];
+					}
+
+					console.log(json);
+
+					if (json['success']) {
+						$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+						//$('#cart-total').html(json['total']);
+
+						$(".numbercart").html(json['total']);
+
+						$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+						$('#cart > ul').load('index.php?route=common/cart/info ul li');
+					}
+				}
+			});
+		},
+	};
+	</script>
