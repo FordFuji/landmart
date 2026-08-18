@@ -1,6 +1,0 @@
-รอการชำระเงิน		Pending
-กำลังดำเนินการ ทั้งหมด	Processing
-พร้อมจัดส่ง		Processed
-จัดส่งแล้ว		Shipped
-ยกเลิก		Canceled
-ประวัติการขาย		All
